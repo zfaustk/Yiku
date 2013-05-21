@@ -8,36 +8,37 @@ namespace Yiku.Models.DataBase
     public partial class YikuDataRepository : IYikuDataRepository
     {
         //T_Shopping Get
-        T_Shopping GetT_Shopping(int shoppingID)
+        public T_Shopping GetT_Shopping(int shoppingID)
         {
             return yikuData.T_Shopping.SingleOrDefault(tsh => tsh.T_Sh_ID == shoppingID);
         }
 
-        T_Shopping GetT_Shopping(Item item, User user )
+        public T_Shopping GetT_Shopping(Item item, User user)
         {
             return yikuData.T_Shopping.SingleOrDefault(tsh => tsh.IID == item.IID && tsh.UID == user.UID );
         }
 
-        IQueryable<T_Shopping> GetT_Shopping(Item item)
+        public IQueryable<T_Shopping> GetT_Shopping(Item item)
         {
             return from tsh in yikuData.T_Shopping
                    where tsh.IID == item.IID
                    select tsh;
         }
 
-        IQueryable<T_Shopping> GetT_Shopping(User user)
+        public IQueryable<T_Shopping> GetT_Shopping(User user)
         {
             return from tsh in yikuData.T_Shopping
                    where tsh.UID == user.UID
                    select tsh;
         }
         //T_Shopping Set
-        T_Shopping AddShopping(User user, Item item)
+        public T_Shopping AddShopping(User user, Item item)
         {
             return AddShopping(user, item, 1, null);
         }
 
-        T_Shopping AddShopping(User user, Item item, int Count, string Cut = null){
+        public T_Shopping AddShopping(User user, Item item, int Count, string Cut = null)
+        {
             T_Shopping tsh = GetT_Shopping(item, user);
             if (tsh == null)
             {
@@ -57,21 +58,27 @@ namespace Yiku.Models.DataBase
             return tsh;
         }
 
-        void DeleteShopping(User user, Item item)
+        public void DeleteShopping(User user, Item item)
         {
             T_Shopping tsh = GetT_Shopping(item, user);
             if (tsh != null)
                 Delete(tsh);
         }
 
-        void DeleteShopping(User user, Item item, int count)
+        public T_Shopping DeleteShopping(User user, Item item, int count)
         {
             T_Shopping tsh = GetT_Shopping(item, user);
             if (tsh != null)
             {
                 if (tsh.Count < count) Delete(tsh);
-                else tsh.Count -= count;
+                else
+                {
+                    tsh.Count -= count;
+                    return tsh;
+                }
             }
+            return null;
+
         }
 
     }
