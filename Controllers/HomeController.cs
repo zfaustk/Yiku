@@ -20,5 +20,17 @@ namespace Yiku.Controllers
         {
             return View();
         }
+        public ActionResult sy()
+        {
+            return View();
+        }
+        public ActionResult Search()
+        {
+            return View();
+        }
+        public ActionResult item()
+        {
+            return View();
+        }
     }
 }
