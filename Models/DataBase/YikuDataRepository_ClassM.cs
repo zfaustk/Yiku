@@ -42,6 +42,7 @@ namespace Yiku.Models.DataBase
             classm.Name = className;
             classm.FatherID = classFather.CID;
             yikuData.ClassMs.AddObject(classm);
+            return classm;
         }
 
         public ClassM ClassCreate(string className, int classFatherID)
@@ -50,6 +51,7 @@ namespace Yiku.Models.DataBase
             classm.Name = className;
             classm.FatherID = classFatherID;
             yikuData.ClassMs.AddObject(classm);
+            return classm;
         }
 
         public ClassM ClassCreateAsRoot(string className)
@@ -58,6 +60,7 @@ namespace Yiku.Models.DataBase
             classm.Name = className;
             classm.FatherID = null;
             yikuData.ClassMs.AddObject(classm);
+            return classm;
         }
 
         #endregion
