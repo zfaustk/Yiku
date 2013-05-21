@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="YikuDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="YikuDataModelStoreContainer">
+          <EntitySet Name="Class" EntityType="YikuDataModel.Store.Class" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Item" EntityType="YikuDataModel.Store.Item" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="YikuDataModel.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Picture" EntityType="YikuDataModel.Store.Picture" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_Classify" EntityType="YikuDataModel.Store.T_Classify" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_Collection" EntityType="YikuDataModel.Store.T_Collection" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="T_Shopping" EntityType="YikuDataModel.Store.T_Shopping" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="YikuDataModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Class_Class" Association="YikuDataModel.Store.FK_Class_Class">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="Class1" EntitySet="Class" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Publisher" Association="YikuDataModel.Store.FK_Item_Publisher">
+            <End Role="User" EntitySet="User" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Item" Association="YikuDataModel.Store.FK_Order_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="YikuDataModel.Store.FK_Order_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_Item" Association="YikuDataModel.Store.FK_Picture_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Picture" EntitySet="Picture" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Classify_Class" Association="YikuDataModel.Store.FK_T_Classify_Class">
+            <End Role="Class" EntitySet="Class" />
+            <End Role="T_Classify" EntitySet="T_Classify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Classify_Item" Association="YikuDataModel.Store.FK_T_Classify_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="T_Classify" EntitySet="T_Classify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Collection_Item" Association="YikuDataModel.Store.FK_T_Collection_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="T_Collection" EntitySet="T_Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Collection_User" Association="YikuDataModel.Store.FK_T_Collection_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="T_Collection" EntitySet="T_Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Shopping_Item" Association="YikuDataModel.Store.FK_T_Shopping_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="T_Shopping" EntitySet="T_Shopping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Shopping_User" Association="YikuDataModel.Store.FK_T_Shopping_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="T_Shopping" EntitySet="T_Shopping" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FatherID" Type="int" />
+          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="IID" />
+          </Key>
+          <Property Name="IID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PublisherID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Detail" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Stock" Type="int" Nullable="false" />
+          <Property Name="Volume" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="TimeCreate" Type="datetime" Nullable="false" />
+          <Property Name="Cut" Type="nchar" MaxLength="10" />
+          <Property Name="Exist" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrID" />
+          </Key>
+          <Property Name="OrID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="IID" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Cut" Type="nchar" MaxLength="20" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="Cost" Type="money" Nullable="false" />
+          <Property Name="State" Type="nchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Route" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Classify">
+          <Key>
+            <PropertyRef Name="T_Cl_ID" />
+          </Key>
+          <Property Name="T_Cl_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IID" Type="int" Nullable="false" />
+          <Property Name="CID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Collection">
+          <Key>
+            <PropertyRef Name="T_Co_ID" />
+          </Key>
+          <Property Name="T_Co_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="IID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_Shopping">
+          <Key>
+            <PropertyRef Name="T_Sh_ID" />
+          </Key>
+          <Property Name="T_Sh_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="IID" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Cut" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Point" Type="bigint" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Consignee" Type="nvarchar" MaxLength="20" />
+          <Property Name="Tel" Type="char" MaxLength="15" />
+          <Property Name="ZipCode" Type="char" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Class_Class">
+          <End Role="Class" Type="YikuDataModel.Store.Class" Multiplicity="0..1" />
+          <End Role="Class1" Type="YikuDataModel.Store.Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="Class1">
+              <PropertyRef Name="FatherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Publisher">
+          <End Role="User" Type="YikuDataModel.Store.User" Multiplicity="1" />
+          <End Role="Item" Type="YikuDataModel.Store.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="PublisherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Item">
+          <End Role="Item" Type="YikuDataModel.Store.Item" Multiplicity="1" />
+          <End Role="Order" Type="YikuDataModel.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="IID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="YikuDataModel.Store.User" Multiplicity="1" />
+          <End Role="Order" Type="YikuDataModel.Store.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Picture_Item">
+          <End Role="Item" Type="YikuDataModel.Store.Item" Multiplicity="1" />
+          <End Role="Picture" Type="YikuDataModel.Store.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="IID" />
+            </Principal>
+            <Dependent Role="Picture">
+              <PropertyRef Name="IID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Classify_Class">
+          <End Role="Class" Type="YikuDataModel.Store.Class" Multiplicity="1" />
+          <End Role="T_Classify" Type="YikuDataModel.Store.T_Classify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="T_Classify">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Classify_Item">
+          <End Role="Item" Type="YikuDataModel.Store.Item" Multiplicity="1" />
+          <End Role="T_Classify" Type="YikuDataModel.Store.T_Classify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="IID" />
+            </Principal>
+            <Dependent Role="T_Classify">
+              <PropertyRef Name="IID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Collection_Item">
+          <End Role="Item" Type="YikuDataModel.Store.Item" Multiplicity="1" />
+          <End Role="T_Collection" Type="YikuDataModel.Store.T_Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="IID" />
+            </Principal>
+            <Dependent Role="T_Collection">
+              <PropertyRef Name="IID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Collection_User">
+          <End Role="User" Type="YikuDataModel.Store.User" Multiplicity="1" />
+          <End Role="T_Collection" Type="YikuDataModel.Store.T_Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="T_Collection">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Shopping_Item">
+          <End Role="Item" Type="YikuDataModel.Store.Item" Multiplicity="1" />
+          <End Role="T_Shopping" Type="YikuDataModel.Store.T_Shopping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="IID" />
+            </Principal>
+            <Dependent Role="T_Shopping">
+              <PropertyRef Name="IID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Shopping_User">
+          <End Role="User" Type="YikuDataModel.Store.User" Multiplicity="1" />
+          <End Role="T_Shopping" Type="YikuDataModel.Store.T_Shopping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="T_Shopping">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YikuDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="YikuDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ClassMs" EntityType="YikuDataModel.ClassM" />
+          <EntitySet Name="Items" EntityType="YikuDataModel.Item" />
+          <EntitySet Name="Orders" EntityType="YikuDataModel.Order" />
+          <EntitySet Name="Pictures" EntityType="YikuDataModel.Picture" />
+          <EntitySet Name="T_Classify" EntityType="YikuDataModel.T_Classify" />
+          <EntitySet Name="T_Collection" EntityType="YikuDataModel.T_Collection" />
+          <EntitySet Name="T_Shopping" EntityType="YikuDataModel.T_Shopping" />
+          <EntitySet Name="Users" EntityType="YikuDataModel.User" />
+          <AssociationSet Name="FK_Class_Class" Association="YikuDataModel.FK_Class_Class">
+            <End Role="Class" EntitySet="ClassMs" />
+            <End Role="Class1" EntitySet="ClassMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Classify_Class" Association="YikuDataModel.FK_T_Classify_Class">
+            <End Role="Class" EntitySet="ClassMs" />
+            <End Role="T_Classify" EntitySet="T_Classify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Item_Publisher" Association="YikuDataModel.FK_Item_Publisher">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Item" Association="YikuDataModel.FK_Order_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Picture_Item" Association="YikuDataModel.FK_Picture_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Picture" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Classify_Item" Association="YikuDataModel.FK_T_Classify_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="T_Classify" EntitySet="T_Classify" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Collection_Item" Association="YikuDataModel.FK_T_Collection_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="T_Collection" EntitySet="T_Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Shopping_Item" Association="YikuDataModel.FK_T_Shopping_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="T_Shopping" EntitySet="T_Shopping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_User" Association="YikuDataModel.FK_Order_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Collection_User" Association="YikuDataModel.FK_T_Collection_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="T_Collection" EntitySet="T_Collection" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Shopping_User" Association="YikuDataModel.FK_T_Shopping_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="T_Shopping" EntitySet="T_Shopping" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ClassM">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FatherID" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Class1" Relationship="YikuDataModel.FK_Class_Class" FromRole="Class" ToRole="Class1" />
+          <NavigationProperty Name="Class2" Relationship="YikuDataModel.FK_Class_Class" FromRole="Class1" ToRole="Class" />
+          <NavigationProperty Name="T_Classify" Relationship="YikuDataModel.FK_T_Classify_Class" FromRole="Class" ToRole="T_Classify" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="IID" />
+          </Key>
+          <Property Name="IID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PublisherID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Detail" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
+          <Property Name="Volume" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="TimeCreate" Type="DateTime" Nullable="false" />
+          <Property Name="Cut" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Exist" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="YikuDataModel.FK_Item_Publisher" FromRole="Item" ToRole="User" />
+          <NavigationProperty Name="Orders" Relationship="YikuDataModel.FK_Order_Item" FromRole="Item" ToRole="Order" />
+          <NavigationProperty Name="Pictures" Relationship="YikuDataModel.FK_Picture_Item" FromRole="Item" ToRole="Picture" />
+          <NavigationProperty Name="T_Classify" Relationship="YikuDataModel.FK_T_Classify_Item" FromRole="Item" ToRole="T_Classify" />
+          <NavigationProperty Name="T_Collection" Relationship="YikuDataModel.FK_T_Collection_Item" FromRole="Item" ToRole="T_Collection" />
+          <NavigationProperty Name="T_Shopping" Relationship="YikuDataModel.FK_T_Shopping_Item" FromRole="Item" ToRole="T_Shopping" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrID" />
+          </Key>
+          <Property Name="OrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="IID" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Cut" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Time" Type="DateTime" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Item" Relationship="YikuDataModel.FK_Order_Item" FromRole="Order" ToRole="Item" />
+          <NavigationProperty Name="User" Relationship="YikuDataModel.FK_Order_User" FromRole="Order" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Route" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="IID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="YikuDataModel.FK_Picture_Item" FromRole="Picture" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="T_Classify">
+          <Key>
+            <PropertyRef Name="T_Cl_ID" />
+          </Key>
+          <Property Name="T_Cl_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IID" Type="Int32" Nullable="false" />
+          <Property Name="CID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Class" Relationship="YikuDataModel.FK_T_Classify_Class" FromRole="T_Classify" ToRole="Class" />
+          <NavigationProperty Name="Item" Relationship="YikuDataModel.FK_T_Classify_Item" FromRole="T_Classify" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="T_Collection">
+          <Key>
+            <PropertyRef Name="T_Co_ID" />
+          </Key>
+          <Property Name="T_Co_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="IID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Item" Relationship="YikuDataModel.FK_T_Collection_Item" FromRole="T_Collection" ToRole="Item" />
+          <NavigationProperty Name="User" Relationship="YikuDataModel.FK_T_Collection_User" FromRole="T_Collection" ToRole="User" />
+        </EntityType>
+        <EntityType Name="T_Shopping">
+          <Key>
+            <PropertyRef Name="T_Sh_ID" />
+          </Key>
+          <Property Name="T_Sh_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="IID" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Cut" Type="String" MaxLength="20" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="Item" Relationship="YikuDataModel.FK_T_Shopping_Item" FromRole="T_Shopping" ToRole="Item" />
+          <NavigationProperty Name="User" Relationship="YikuDataModel.FK_T_Shopping_User" FromRole="T_Shopping" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
+          <Property Name="Point" Type="Int64" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Consignee" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Tel" Type="String" MaxLength="15" Unicode="false" FixedLength="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="Items" Relationship="YikuDataModel.FK_Item_Publisher" FromRole="User" ToRole="Item" />
+          <NavigationProperty Name="Orders" Relationship="YikuDataModel.FK_Order_User" FromRole="User" ToRole="Order" />
+          <NavigationProperty Name="T_Collection" Relationship="YikuDataModel.FK_T_Collection_User" FromRole="User" ToRole="T_Collection" />
+          <NavigationProperty Name="T_Shopping" Relationship="YikuDataModel.FK_T_Shopping_User" FromRole="User" ToRole="T_Shopping" />
+        </EntityType>
+        <Association Name="FK_Class_Class">
+          <End Role="Class" Type="YikuDataModel.ClassM" Multiplicity="0..1" />
+          <End Role="Class1" Type="YikuDataModel.ClassM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="Class1">
+              <PropertyRef Name="FatherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Classify_Class">
+          <End Role="Class" Type="YikuDataModel.ClassM" Multiplicity="1" />
+          <End Role="T_Classify" Type="YikuDataModel.T_Classify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="CID" />
+            </Principal>
+            <Dependent Role="T_Classify">
+              <PropertyRef Name="CID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Item_Publisher">
+          <End Role="User" Type="YikuDataModel.User" Multiplicity="1" />
+          <End Role="Item" Type="YikuDataModel.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="PublisherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Item">
+          <End Role="Item" Type="YikuDataModel.Item" Multiplicity="1" />
+          <End Role="Order" Type="YikuDataModel.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="IID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Picture_Item">
+          <End Role="Item" Type="YikuDataModel.Item" Multiplicity="1" />
+          <End Role="Picture" Type="YikuDataModel.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="IID" />
+            </Principal>
+            <Dependent Role="Picture">
+              <PropertyRef Name="IID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Classify_Item">
+          <End Role="Item" Type="YikuDataModel.Item" Multiplicity="1" />
+          <End Role="T_Classify" Type="YikuDataModel.T_Classify" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="IID" />
+            </Principal>
+            <Dependent Role="T_Classify">
+              <PropertyRef Name="IID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Collection_Item">
+          <End Role="Item" Type="YikuDataModel.Item" Multiplicity="1" />
+          <End Role="T_Collection" Type="YikuDataModel.T_Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="IID" />
+            </Principal>
+            <Dependent Role="T_Collection">
+              <PropertyRef Name="IID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Shopping_Item">
+          <End Role="Item" Type="YikuDataModel.Item" Multiplicity="1" />
+          <End Role="T_Shopping" Type="YikuDataModel.T_Shopping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="IID" />
+            </Principal>
+            <Dependent Role="T_Shopping">
+              <PropertyRef Name="IID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_User">
+          <End Role="User" Type="YikuDataModel.User" Multiplicity="1" />
+          <End Role="Order" Type="YikuDataModel.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Collection_User">
+          <End Role="User" Type="YikuDataModel.User" Multiplicity="1" />
+          <End Role="T_Collection" Type="YikuDataModel.T_Collection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="T_Collection">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Shopping_User">
+          <End Role="User" Type="YikuDataModel.User" Multiplicity="1" />
+          <End Role="T_Shopping" Type="YikuDataModel.T_Shopping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UID" />
+            </Principal>
+            <Dependent Role="T_Shopping">
+              <PropertyRef Name="UID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YikuDataModelStoreContainer" CdmEntityContainer="YikuDataEntities">
+          <EntitySetMapping Name="ClassMs">
+            <EntityTypeMapping TypeName="YikuDataModel.ClassM">
+              <MappingFragment StoreEntitySet="Class">
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="FatherID" ColumnName="FatherID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="YikuDataModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="IID" ColumnName="IID" />
+                <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="TimeCreate" ColumnName="TimeCreate" />
+                <ScalarProperty Name="Cut" ColumnName="Cut" />
+                <ScalarProperty Name="Exist" ColumnName="Exist" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="YikuDataModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrID" ColumnName="OrID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="IID" ColumnName="IID" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Cut" ColumnName="Cut" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="YikuDataModel.Picture">
+              <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="PID" ColumnName="PID" />
+                <ScalarProperty Name="Route" ColumnName="Route" />
+                <ScalarProperty Name="IID" ColumnName="IID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Classify">
+            <EntityTypeMapping TypeName="YikuDataModel.T_Classify">
+              <MappingFragment StoreEntitySet="T_Classify">
+                <ScalarProperty Name="T_Cl_ID" ColumnName="T_Cl_ID" />
+                <ScalarProperty Name="IID" ColumnName="IID" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Collection">
+            <EntityTypeMapping TypeName="YikuDataModel.T_Collection">
+              <MappingFragment StoreEntitySet="T_Collection">
+                <ScalarProperty Name="T_Co_ID" ColumnName="T_Co_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="IID" ColumnName="IID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Shopping">
+            <EntityTypeMapping TypeName="YikuDataModel.T_Shopping">
+              <MappingFragment StoreEntitySet="T_Shopping">
+                <ScalarProperty Name="T_Sh_ID" ColumnName="T_Sh_ID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="IID" ColumnName="IID" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Cut" ColumnName="Cut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="YikuDataModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Consignee" ColumnName="Consignee" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="YikuData" ZoomLevel="55">
+        <EntityTypeShape EntityType="YikuDataModel.ClassM" Width="1.5" PointX="9.75" PointY="6.5" Height="2.1610522460937496" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.Item" Width="1.5" PointX="6" PointY="6.5" Height="4.0712491861979148" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.Order" Width="1.5" PointX="4.125" PointY="6.5" Height="2.9251310221354148" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.Picture" Width="1.5" PointX="7.875" PointY="8.75" Height="1.7790128580729174" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.T_Classify" Width="1.5" PointX="7.875" PointY="6.5" Height="1.9700325520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.T_Collection" Width="1.5" PointX="2.375" PointY="4.125" Height="1.9700325520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.T_Shopping" Width="1.5" PointX="2.375" PointY="10.125" Height="2.3520719401041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.User" Width="1.5" PointX="2.375" PointY="6.5" Height="3.1161507161458317" IsExpanded="true" />
+        <AssociationConnector Association="YikuDataModel.FK_Class_Class" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.281923076923077" PointY="8.66105224609375" />
+          <ConnectorPoint PointX="10.281923076923077" PointY="8.91105224609375" />
+          <ConnectorPoint PointX="10.728461538461538" PointY="8.91105224609375" />
+          <ConnectorPoint PointX="10.728461538461538" PointY="8.66105224609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="YikuDataModel.FK_T_Classify_Class" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="7.4850162760416659" />
+          <ConnectorPoint PointX="9.375" PointY="7.4850162760416659" />
+        </AssociationConnector>
+        <AssociationConnector Association="YikuDataModel.FK_Item_Publisher" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.875" PointY="9.5518908691406228" />
+          <ConnectorPoint PointX="6" PointY="9.5518908691406228" />
+        </AssociationConnector>
+        <AssociationConnector Association="YikuDataModel.FK_Order_Item" ManuallyRouted="false">
+          <ConnectorPoint PointX="6" PointY="7.9625655110677069" />
+          <ConnectorPoint PointX="5.625" PointY="7.9625655110677069" />
+        </AssociationConnector>
+        <AssociationConnector Association="YikuDataModel.FK_Picture_Item" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="9.6395064290364587" />
+          <ConnectorPoint PointX="7.875" PointY="9.6395064290364587" />
+        </AssociationConnector>
+        <AssociationConnector Association="YikuDataModel.FK_T_Classify_Item" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="7.4850162760416659" />
+          <ConnectorPoint PointX="7.875" PointY="7.4850162760416659" />
+        </AssociationConnector>
+        <AssociationConnector Association="YikuDataModel.FK_T_Collection_Item" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.4671872132746344" PointY="6.5" />
+          <ConnectorPoint PointX="6.4671872132746344" PointY="5.1100162760416659" />
+          <ConnectorPoint PointX="3.875" PointY="5.1100162760416659" />
+        </AssociationConnector>
+        <AssociationConnector Association="YikuDataModel.FK_T_Shopping_Item" ManuallyRouted="false">
+          <ConnectorPoint PointX="6" PointY="10.348124593098957" />
+          <ConnectorPoint PointX="3.875" PointY="10.348124593098957" />
+        </AssociationConnector>
+        <AssociationConnector Association="YikuDataModel.FK_Order_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.875" PointY="7.9625655110677069" />
+          <ConnectorPoint PointX="4.125" PointY="7.9625655110677069" />
+        </AssociationConnector>
+        <AssociationConnector Association="YikuDataModel.FK_T_Collection_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.125" PointY="6.5" />
+          <ConnectorPoint PointX="3.125" PointY="6.0950325520833317" />
+        </AssociationConnector>
+        <AssociationConnector Association="YikuDataModel.FK_T_Shopping_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.125" PointY="9.6161507161458317" />
+          <ConnectorPoint PointX="3.125" PointY="10.125" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
