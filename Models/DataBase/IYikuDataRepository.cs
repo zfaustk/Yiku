@@ -145,16 +145,12 @@ namespace Yiku.Models.DataBase
          User GetUser(string userName);
          User GetUser(Item item);//publisher
         //User Method Set
-         User UserCreate(string name, string psw, string address, string consignee, string tel, string zipcode);
+         User UserCreate(string name, string address, string consignee, string tel, string zipcode, bool overwrite = false);
         //User Method Get
          bool UserExist(User user);
-         IQueryable<User> UsersGetByRandom(int Num);
-         IQueryable<User> UsersGetByClass(int Num);
-         IQueryable<User> UsersGetByItems(IQueryable<User> items);
+         IQueryable<User> UsersGetByItems(IQueryable<Item> items);
         //User Method Get <itorate>
-         IQueryable<User> UsersGetByRandom(IQueryable<User> users, int Num);
-         IQueryable<User> UsersGetByClass(IQueryable<User> users, int Num);
-         IQueryable<User> UsersGetByItems(IQueryable<User> users, IQueryable<User> items);
+         IQueryable<User> UsersGetByItems(IQueryable<User> users, IQueryable<Item> items);
 
         #endregion
 

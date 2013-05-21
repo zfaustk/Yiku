@@ -13,31 +13,69 @@ namespace Yiku.Models.DataBase
         {
             return yikuData.Users.SingleOrDefault(u => u.UID == userID);
         }
-        public User GetUser(string userName);
-        public User GetUser(Item item);//publisher
+        public User GetUser(string userName)
+        {
+            return yikuData.Users.SingleOrDefault(u => u.Name == userName);
+        }
+        public User GetUser(Item item)//publisher
+        {
+            return yikuData.Users.SingleOrDefault(u => u.UID == item.IID);
+        }
 
         #endregion
 
         #region User Method Set
 
-        public User UserCreate(string name, string psw, string address, string consignee, string tel, string zipcode);
+        public User UserCreate(string name, string address, string consignee, string tel, string zipcode, bool overwrite = false)
+        {
+            User user = GetUser(name);
+            if (user != null)
+            {
+                if (!overwrite) return user;
+                user.Address = address;
+                user.Consignee = consignee;
+                user.Tel = tel;
+                user.ZipCode = zipcode;
+                user.Exist = true;
+            }
+            else
+            {
+                user = new User();
+                user.Name = name;
+                user.Address = address;
+                user.Consignee = consignee;
+                user.Tel = tel;
+                user.ZipCode = zipcode;
+                user.Exist = true;
+                Add(user);
+            }
+            return user;
+        }
 
         #endregion
 
         #region User Method Get
 
-        public bool UserExist(User user);
-        public IQueryable<User> UsersGetByRandom(int Num);
-        public IQueryable<User> UsersGetByClass(int Num);
-        public IQueryable<User> UsersGetByItems(IQueryable<User> items);
+        public bool UserExist(User user)
+        {
+            return user.Exist;
+        }
 
+        public IQueryable<User> UsersGetByItems(IQueryable<Item> items)
+        {
+            return UsersGetByItems(yikuData.Users, items);
+        }
+        
         #endregion
 
         #region User Method Get <itorate>
 
-        public IQueryable<User> UsersGetByRandom(IQueryable<User> users, int Num);
-        public IQueryable<User> UsersGetByClass(IQueryable<User> users, int Num);
-        public IQueryable<User> UsersGetByItems(IQueryable<User> users, IQueryable<User> items);
+        public IQueryable<User> UsersGetByItems(IQueryable<User> users, IQueryable<Item> items)
+        {
+            return from ord in yikuData.Orders
+                   where items.Contains(ord.Item) && yikuData.Users.Contains(ord.User)
+                   select ord.User;
+        }
 
         #endregion
 

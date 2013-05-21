@@ -2020,12 +2020,14 @@ namespace Yiku.Models.DataBase
         /// <param name="uID">UID 属性的初始值。</param>
         /// <param name="name">Name 属性的初始值。</param>
         /// <param name="point">Point 属性的初始值。</param>
-        public static User CreateUser(global::System.Int32 uID, global::System.String name, global::System.Int64 point)
+        /// <param name="exist">Exist 属性的初始值。</param>
+        public static User CreateUser(global::System.Int32 uID, global::System.String name, global::System.Int64 point, global::System.Boolean exist)
         {
             User user = new User();
             user.UID = uID;
             user.Name = name;
             user.Point = point;
+            user.Exist = exist;
             return user;
         }
 
@@ -2203,6 +2205,30 @@ namespace Yiku.Models.DataBase
         private global::System.String _ZipCode;
         partial void OnZipCodeChanging(global::System.String value);
         partial void OnZipCodeChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Exist
+        {
+            get
+            {
+                return _Exist;
+            }
+            set
+            {
+                OnExistChanging(value);
+                ReportPropertyChanging("Exist");
+                _Exist = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Exist");
+                OnExistChanged();
+            }
+        }
+        private global::System.Boolean _Exist;
+        partial void OnExistChanging(global::System.Boolean value);
+        partial void OnExistChanged();
 
         #endregion
 

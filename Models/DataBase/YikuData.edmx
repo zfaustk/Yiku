@@ -140,6 +140,7 @@
           <Property Name="Consignee" Type="nvarchar" MaxLength="20" />
           <Property Name="Tel" Type="char" MaxLength="15" />
           <Property Name="ZipCode" Type="char" MaxLength="10" />
+          <Property Name="Exist" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Class_Class">
           <End Role="Class" Type="YikuDataModel.Store.Class" Multiplicity="0..1" />
@@ -434,6 +435,7 @@
           <NavigationProperty Name="Orders" Relationship="YikuDataModel.FK_Order_User" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="T_Collection" Relationship="YikuDataModel.FK_T_Collection_User" FromRole="User" ToRole="T_Collection" />
           <NavigationProperty Name="T_Shopping" Relationship="YikuDataModel.FK_T_Shopping_User" FromRole="User" ToRole="T_Shopping" />
+          <Property Type="Boolean" Name="Exist" Nullable="false" />
         </EntityType>
         <Association Name="FK_Class_Class">
           <End Role="Class" Type="YikuDataModel.ClassM" Multiplicity="0..1" />
@@ -653,6 +655,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="YikuDataModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Exist" ColumnName="Exist" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
