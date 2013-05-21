@@ -71,11 +71,12 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\CurrentUserModels.cs" />
+    <Compile Include="Models\DataBase\YikuDataRepository_UserCurrent.cs" />
     <Compile Include="Models\DataBase\IYikuDataRepository.cs" />
     <Compile Include="Models\DataBase\SortHelper\SortHelper_Item.cs" />
     <Compile Include="Models\DataBase\YikuData.Designer.cs">
@@ -93,6 +94,9 @@
     <Compile Include="Models\DataBase\YikuDataRepository_T_Classify.cs" />
     <Compile Include="Models\DataBase\YikuDataRepository_T_Collection.cs" />
     <Compile Include="Models\DataBase\YikuDataRepository_T_Shopping.cs" />
+    <Compile Include="Methods\CurrentUser.cs" />
+    <Compile Include="Methods\UserLogAttribute.cs" />
+    <Compile Include="Models\ItemModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +109,7 @@
     <Content Include="Content\a_002.css" />
     <Content Include="Content\a_0022.css" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\MainPage_.css" />
     <Content Include="Content\register.css" />
     <Content Include="Content\sy.css" />
     <Content Include="Content\sy2.css" />
@@ -183,9 +188,9 @@
     <Content Include="Scripts\sy_sy\tlabs-min.js" />
     <Content Include="Scripts\sy_sy\zeroclipboard-min.js" />
     <Content Include="Scripts\sy_sy\zeroclipboard.js" />
-    <Content Include="Views\Account\Cregister.aspx" />
+    <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\login.aspx" />
-    <Content Include="Views\Home\item.aspx" />
+    <Content Include="Views\Item\Details.aspx" />
     <Content Include="Views\Home\Search.aspx" />
     <Content Include="Views\Home\sy.aspx" />
     <Content Include="Web.config" />
@@ -211,7 +216,7 @@
     <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
-    <Content Include="Views\Account\Register.aspx" />
+    <Content Include="Views\Account\Ha_Register.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
@@ -226,7 +231,9 @@
     </EntityDeploy>
     <None Include="Scripts\sy_sy\counter6" />
     <None Include="Scripts\sy_sy\saved_resource%281%29" />
+    <Content Include="Views\Shared\Sudo.Master" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

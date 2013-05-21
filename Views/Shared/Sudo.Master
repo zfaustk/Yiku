@@ -1,0 +1,166 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <link href="../../Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div role="navigation" id="site-nav">
+    <div id="sn-bd">
+        <b class="sn-edge"></b>
+        <div class="sn-container">
+                        <p id="login-info" class="sn-login-info">喵，欢迎来天猫！<a class="sn-login" href="http://login.tmall.com/?redirect_url=http%3A%2F%2Fdetail.tmall.com%2Fitem.htm%3Fspm%3Da220m.1000858.1000725.9.GRNb0a%26id%3D4492887220%26user_id%3D101450072%26is_b%3D1%26cat_id%3D2%26q%3D%25CB%25D1%25B5%25BD%25B5%25C4%26rn%3Db621330347669321b4fd1b80ef8b91d3" target="_top">请登录</a><a class="sn-register" href="http://register.tmall.com/" target="_top">免费注册</a><i class="sn-separator"></i></p>
+            <ul class="sn-quick-menu">
+                                            <li class="sn-mytaobao menu-item j_MyTaobao">
+                    <div class="sn-menu">
+                        <a aria-label="右键弹出菜单，tab键导航，esc关闭当前菜单" aria-haspopup="menu-291" tabindex="0" class="menu-hd" href="http://i.taobao.com/my_taobao.htm" target="_top" rel="nofollow">我的淘宝<b></b></a>
+                        <div id="menu-291" aria-hidden="true" role="menu" class="menu-bd">
+                            <div class="menu-bd-panel" id="myTaobaoPanel">
+                                    <a href="http://trade.taobao.com/trade/itemlist/list_bought_items.htm?t=20110530" target="_top" rel="nofollow">已买到的宝贝</a>
+                                    <a href="http://trade.taobao.com/trade/itemlist/list_sold_items.htm?t=20110530" target="_top" rel="nofollow">已卖出的宝贝</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="sn-seller hidden j_SellerCenter">
+                    <a target="_top" href="http://mai.taobao.com/seller_admin.htm">商家中心</a>
+                </li>
+                <li class="sn-mybrand">
+                </li>
+                <li class="cart mini-cart menu">
+                    <a id="mc-menu-hd" class="menu-hd" href="http://cart.tmall.com/cart/myCart.htm?from=btop" target="_top" rel="nofollow"><span class="mini-cart-line"></span><s></s>购物车<span class="mc-count mc-pt3">0</span>件</a>
+                </li>
+                <li class="sn-favorite menu-item">
+                    <div class="sn-menu">
+                        <a aria-label="右键弹出菜单，tab键导航，esc关闭当前菜单" aria-haspopup="menu-292" tabindex="0" class="menu-hd" href="http://favorite.taobao.com/collect_list-1-.htm?scjjc=c1" target="_top" rel="nofollow">收藏夹<b></b></a>
+
+                        <div id="menu-292" aria-hidden="true" role="menu" class="menu-bd">
+                            <div class="menu-bd-panel">
+                                    <a href="http://favorite.taobao.com/collect_list.htm?itemtype=1" target="_top" rel="nofollow">收藏的宝贝</a>
+                                    <a href="http://favorite.taobao.com/collect_list.htm?itemtype=0" target="_top" rel="nofollow">收藏的店铺</a>   
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="sn-separator"></li>
+                <li class="sn-mobile">
+                    <a title="天猫无线" target="_top" class="sn-mobile-link" href="http://mobile.tmall.com/?scm=1027.1.1.1">手机版</a>
+                </li>
+                <li class="sn-home">
+                    <a href="http://www.taobao.com/">淘宝网</a>
+                </li>
+                <li class="sn-sitemap menu-item">
+                    <div class="sn-menu">
+                        <a aria-label="右键弹出菜单，tab键导航，esc关闭当前菜单" aria-haspopup="menu-293" tabindex="0" class="menu-hd" href="http://www.tmall.com/go/chn/navi-map/index.php" target="_top">网站导航<b></b></a>
+
+                        <div id="menu-293" aria-hidden="true" role="menu" class="menu-bd">
+                            <ul>
+                               
+						<li>
+						
+							 <h3>商家：</h3> 						
+						
+														<a target="_top" href="http://mai.taobao.com/?spm=3.169406.198401.1">商家中心</a>
+														<a class="sitemap-right" target="_top" href="http://zhaoshang.tmall.com/?spm=3.169406.198401.2">商家入驻</a>
+														<a target="_top" href="http://fw.tmall.com/?spm=3.169406.198401.3">商家服务</a>
+														<a class="sitemap-right" target="_top" href="http://www.tmall.com/go/chn/mall/pzsc-gfsj.php?spm=3.169406.198401.4">商家品控</a>
+														<a target="_top" href="http://fuwu.tmall.com/?spm=3.169406.198401.5&amp;scm=1215.100.100.506">商家工具</a>
+													
+						</li>
+					
+						<li>
+						
+													
+						
+														<a target="_top" href="http://mobile.tmall.com/?spm=3.169406.198401.6">天猫无线</a>
+														<a class="sitemap-right" target="_top" href="http://brand.tmall.com/?spm=3.169406.198401.7">品牌街</a>
+														<a target="_top" href="http://temai.tmall.com/?spm=3.169406.198401.8">品牌特卖</a>
+														<a class="sitemap-right" target="_top" href="http://yao.tmall.com/?spm=3.169406.198401.9">医药馆</a>
+														<a target="_top" href="http://book.tmall.com/?spm=3.169406.198401.10&amp;prt=1346727469564&amp;prc=2">天猫书城</a>
+													
+						</li>
+					
+						<li>
+						
+							 <h3>帮助：</h3> 						
+						
+														<a target="_top" href="http://service.tmall.com/support/tmall/tmallHelp.htm?spm=3.169406.198401.11">帮助中心</a>
+													
+						</li>
+					
+                            </ul>
+                            <a class="sitemap-more" href="http://www.tmall.com/go/chn/navi-map/index.php" target="_top">更多内容<b class="sitemap-more-link"></b></a>
+                        </div>
+                    </div>
+                </li>
+                <li class="sn-mcate j_MallCateHoverTrigger" id="J_MallCate">
+                    <div class="sn-menu">
+                        <h3 class="menu-hd sn-mcate-hd">所有商品分类<b></b></h3>
+                    </div>
+                </li>
+                                </ul>
+        </div>
+    </div>
+</div>
+
+<div id="header">
+     <!-- flash logo -->
+    <div id="headerCon" class="hasSubLogo">
+        <div id="tmallSearch">
+                <form name="searchTop" action="./Search" class="mallSearch-form">
+                <fieldset>
+                    <div class="mallSearch-input clearfix">
+                        <label style="visibility: visible;" for="mq">搜索</label>
+                        <input name="q" accesskey="s" autocomplete="off" x-webkit-speech="" x-webkit-grammar="builtin:search" id="mq" type="text">
+                        <button id="J_CurrShopBtn" class="currShopBtn" type="button">搜本店<s></s></button>
+                        <button id="J_SearchBtn" type="submit">搜依库<s></s></button>
+                        <input id="J_Type" name="type" value="p" type="hidden">
+                        <input id="J_MallSearchStyle" name="style" value="" type="hidden">
+                                                    <input id="J_Cat" name="cat" value="all" type="hidden">
+                                            </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+            
+<div class="headerNav">
+</div>
+</div>
+
+
+
+    <div class="page">
+
+        <div id="header1">
+            <div id="title">
+                <h1>我的 MVC 应用程序</h1>
+            </div>
+              
+            <div id="logindisplay">
+                <% Html.RenderPartial("LogOnUserControl"); %>
+            </div> 
+            
+            <div id="menucontainer">
+            
+                <ul id="menu">              
+                    <li><%: Html.ActionLink("主页", "Index", "Home")%></li>
+                    <li><%: Html.ActionLink("关于", "About", "Home")%></li>
+                </ul>
+            
+            </div>
+        </div>
+
+        <div id="main">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+
+            <div id="footer">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

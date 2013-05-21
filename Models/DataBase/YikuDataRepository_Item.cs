@@ -70,7 +70,7 @@ namespace Yiku.Models.DataBase
 
         #region item Method Get
 
-        public bool ClassExist(Item item)
+        public bool ItemExist(Item item)
         {
             if (item.Exist) return true;
             else return false;

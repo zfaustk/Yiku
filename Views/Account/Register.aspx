@@ -47,13 +47,13 @@
 
         <div class="item extra-tips">
             <label>密码</label>
-            <%: Html.TextBoxFor(m => m.Password) %>
+            <%: Html.PasswordFor(m => m.Password)%>
             <%: Html.ValidationMessageFor(m => m.Password)%>
         </div>
 
         <div class="item extra-tips">
             <label>重复密码</label>
-            <%: Html.TextBoxFor(m => m.ConfirmPassword)%>
+            <%: Html.PasswordFor(m => m.ConfirmPassword)%>
             <%: Html.ValidationMessageFor(m => m.ConfirmPassword)%>
         </div>
 

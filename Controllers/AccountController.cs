@@ -9,6 +9,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using Yiku.Models;
 using Yiku.Models.DataBase;
+using System.Security.Cryptography;
 
 namespace Yiku.Controllers
 {
@@ -16,7 +17,7 @@ namespace Yiku.Controllers
     [HandleError]
     public class AccountController : Controller
     {
-        private YikuDataRepository yikuata = new YikuDataRepository();
+        private YikuDataRepository yikuData = new YikuDataRepository();
 
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
@@ -41,9 +42,10 @@ namespace Yiku.Controllers
         [HttpPost]
         public ActionResult LogIn(LogOnModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            if (yikuData.UserCurrent == null)
             {
-                if (MembershipService.ValidateUser(model.UserName, model.Password))
+                
+                if (MembershipService.ValidateUser(model.UserName,  model.Password))
                 {
                     FormsService.SignIn(model.UserName, model.RememberMe);
                     if (!String.IsNullOrEmpty(returnUrl))
@@ -92,7 +94,9 @@ namespace Yiku.Controllers
             if (ModelState.IsValid)
             {
                 // 尝试注册用户
-                UserCreateStatus createResult = MembershipService.CreateUser(model.UserName, model.Password, null, null, null, null, true);
+                UserCreateStatus createResult 
+                    = 
+                    MembershipService.CreateUser(model.UserName, model.Password, model.ConfirmPassword, model.Address, model.Consignee, model.Tel, model.Zipcode);
 
                 if (createResult == UserCreateStatus.Succeed)
                 {

@@ -49,6 +49,7 @@ namespace Yiku.Models.DataBase
                     user.Consignee = consignee;
                     user.Tel = tel;
                     user.ZipCode = zipcode;
+                    user.ROLE = "User";
                     user.Exist = true;
                     Add(user);
                 }
