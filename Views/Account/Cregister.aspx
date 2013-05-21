@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Yiku.Models.RegisterModel>" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -33,32 +33,53 @@
         <div class="article">
 	  
     
-    <form name="lzform" method="post" action="">
-        <div style="display:none;">
-            <input name="source" value="simple" type="hidden">
-            <input name="redir" value="" type="hidden">
-            <img src="" onload="">
-        </div>
+    <% using (Html.BeginForm())
+       { %>
+        <%: Html.ValidationSummary(true, "帐户创建不成功。请更正错误并重试。")%>
         <div class="item extra-tips">
             <label>帐号名</label>
-            <input id="email" name="form_email" class="basic-input" maxlength="60" tabindex="1" type="text">
+            <%: Html.TextBoxFor(m => m.UserName) %>
+            <%: Html.ValidationMessageFor(m => m.UserName) %>
         </div>
         <div class="suggestion">
             <div id="email_suggestion"></div>
         </div>
+
         <div class="item extra-tips">
             <label>密码</label>
-            <input id="password" name="form_password" class="basic-input" tabindex="2" maxlength="20" type="password">
-        </div>
-        <div class="item extra-tips">
-            <label>姓名</label>
-            <input id="name" name="form_name" class="basic-input" maxlength="15" tabindex="3" type="text">
+            <%: Html.TextBoxFor(m => m.Password) %>
+            <%: Html.ValidationMessageFor(m => m.Password)%>
         </div>
 
-            <div class="extra-tips">
-                <label>地址</label>
-                <input name="loc"  name="form_location" class="basic-input" maxlength="15" tabindex="3" type="text">
-            </div>
+        <div class="item extra-tips">
+            <label>重复密码</label>
+            <%: Html.TextBoxFor(m => m.ConfirmPassword)%>
+            <%: Html.ValidationMessageFor(m => m.ConfirmPassword)%>
+        </div>
+
+        <div class="item extra-tips">
+            <label>联系电话</label>
+            <%: Html.TextBoxFor(m => m.Tel) %>
+            <%: Html.ValidationMessageFor(m => m.Tel)%>
+        </div>
+
+        <div class="item extra-tips">
+            <label>地址</label>
+            <%: Html.TextBoxFor(m => m.Address) %>
+            <%: Html.ValidationMessageFor(m => m.Address)%>
+        </div>
+
+        <div class="item extra-tips">
+            <label>收件人</label>
+            <%: Html.TextBoxFor(m => m.Consignee)%>
+            <%: Html.ValidationMessageFor(m => m.Consignee)%>
+        </div>
+
+        <div class="item extra-tips">
+            <label>邮编</label>
+            <%: Html.TextBoxFor(m => m.Zipcode) %>
+            <%: Html.ValidationMessageFor(m => m.Zipcode)%>
+        </div>
 
       <div class="item-error"></div>
         <div class="item-submit">
@@ -66,7 +87,7 @@
             <div></div>
             <input value="注册" id="zcitem" tabindex="6" title="" type="submit"color="#ffffff" background="#fa156">
         </div>
-    </form>
+    <%} %>
 
 	</div>
         <div class="aside">

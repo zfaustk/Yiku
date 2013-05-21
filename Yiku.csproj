@@ -75,6 +75,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CurrentUserModels.cs" />
     <Compile Include="Models\DataBase\IYikuDataRepository.cs" />
     <Compile Include="Models\DataBase\SortHelper\SortHelper_Item.cs" />
     <Compile Include="Models\DataBase\YikuData.Designer.cs">
@@ -223,8 +224,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>YikuData.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Scripts\sy_sy\counter6" />
     <None Include="Scripts\sy_sy\saved_resource%281%29" />
   </ItemGroup>

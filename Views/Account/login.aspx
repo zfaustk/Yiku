@@ -1,52 +1,18 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<dynamic>" %>
+﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Yiku.Models.LogOnModel>" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html class="" lang="zh-CN"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta charset="UTF-8">
-<meta property="wb:webmaster" content="f307b26227e4f2c3">
-<title>登录依库</title>
-<link rel="Stylesheet"  type="text/css"  href="../../Content/login.css">
-<script>
-
-    function changeWindowSize() {
-        var d = document.documentElement;
-        var ch = document.getElementById('header').offsetHeight
-          + document.getElementById('content').offsetHeight
-          + document.getElementById('side-nav').offsetHeight;
-        if (d.offsetWidth <= 500
-  || d.offsetHeight <= ch) {
-            if (!changeWindowSize.changed) {
-                window.resizeTo(500, ch);
-                changeWindowSize.changed = true;
-            }
-            d.className = 'narrow-layout';
-            resizeEvent(true);
-        } else {
-            d.className = '';
-            resizeEvent(false);
-        }
-    }
-
-    function resizeEvent(bind) {
-        if (!bind) {
-            window.onresize = null;
-            return;
-        }
-        window.onresize = (function () {
-            var delay;
-            return function () {
-                if (delay) {
-                    window.clearTimeout(delay);
-                }
-                delay = window.setTimeout(changeWindowSize, 100);
-            }
-        })();
-    }
-</script>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta property="wb:webmaster" content="f307b26227e4f2c3">
+    <title>登录依库</title>
+    <link rel="Stylesheet"  type="text/css"  href="../../Content/login.css">
 </head>
+
 <body onload="changeWindowSize()">
+
 <div class="wrapper">
   <div id="header">
       <a href="" class="logo">登录依库</a>
@@ -54,31 +20,29 @@
 
 <div id="content">
   <h1>登录依库</h1>
-  <div class="article">
+<div class="article">
       
 
-<form id="lzform" name="lzform" method="post" action="https://www.douban.com/accounts/login" onsubmit="return validateForm(this);">
-  <div style="display:none;">
-      <img src="%E7%99%BB%E9%99%86_files/blank.gif" onload="loadTestImage('https://www.douban.com/accounts/login')">
-  </div>
-    <input name="source" value="index_nav" type="hidden">
-      <input name="redir" value="http://www.douban.com/" type="hidden">
-    <div id="item-error">
+<% using (Html.BeginForm()) { %>
+    <div id="item-error" style="display:none">
         <p class="error">错误的帐号类型</p>
     </div>
     <div class="item">
-        <label>帐号</label>
-        <input style="color: rgb(204, 204, 204);" id="email" name="form_email" class="basic-input" maxlength="60" value="邮箱/手机号" tabindex="1" type="text">
+            <label>帐号</label> 
+            <%: Html.TextBoxFor(m => m.UserName) %>
+            <%: Html.ValidationMessageFor(m => m.UserName) %>
     </div>
     <div class="item">
-        <label>密码</label>
-        <input id="password" name="form_password" class="basic-input" maxlength="20" tabindex="2" type="password">
+            <label>密码</label>
+
+            <%: Html.PasswordFor(m => m.Password) %>
+            <%: Html.ValidationMessageFor(m => m.Password) %>
     </div>
       
     <div class="item">
         <label>&nbsp;</label>
         <p class="remember">
-            <input id="remember" name="remember" tabindex="4" type="checkbox">
+            <%: Html.CheckBoxFor(m => m.RememberMe) %>
             <label for="remember" class="remember">下次自动登录</label>
         </p>
     </div>
@@ -86,11 +50,11 @@
         <label>&nbsp;</label>
         <input value="登录" name="user_login" class="btn-submit" tabindex="5" type="submit">
     </div>
-</form>
+<% } %>
 
   </div>
   <ul id="side-nav" class="aside">
-    <li>&gt;&nbsp;还没有依库帐号？<a rel="nofollow" href="Cregister">立即注册</a></li>
+    <li>&gt;&nbsp;还没有依库帐号？<%: Html.ActionLink("立即注册", "Register") %></li>
   </ul>
 </div>
 <div id="footer">
@@ -103,7 +67,7 @@
 
 </div>
 
-<script>
+<script type="text/javascript">
     ; (function (doc) {
         var $ = function (id) { return doc.getElementById(id); };
         var placeholder = '邮箱/手机号';
@@ -137,10 +101,10 @@
 
     function validateForm(frm) {
         var error = 0,
-  captcha = frm.elements['captcha-solution'],
-  account = frm.elements['form_email'],
-  passwd = frm.elements['form_password'],
-  defaultError = document.getElementById('item-error');
+          captcha = frm.elements['captcha-solution'],
+          account = frm.elements['form_email'],
+          passwd = frm.elements['form_password'],
+          defaultError = document.getElementById('item-error');
 
         account_value = trim(account.value);
         captcha_value = trim(captcha.value);
@@ -200,15 +164,21 @@
 
 
 </div>
-<script>    var _check_hijack = function () {
+
+<script>
+    var _check_hijack = function () {
+
         var _sig = "7534NUTN", _login = false, bid = get_cookie('bid');
+        
         if (location.protocol != "file:" && (typeof (bid) != "string" && _login || typeof (bid) == "string" && bid.substring(0, 8) != _sig)) {
             location.href += (/\?/.test(location.href) ? "&" : "?") + "_r=" + Math.random().toString(16).substring(2);
-        } 
+        }
     };
+
     if (typeof (Do) != 'undefined') Do(_check_hijack);
+
     else if (typeof (get_cookie) != 'undefined') _check_hijack();
-            </script>
+</script>
 
 
 
