@@ -26,14 +26,16 @@ namespace Yiku.Controllers
         //
         // GET: /Item/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            ItemModels itemModel = new ItemModels();
-            itemModel.item = yikuData.GetItem(id);
-            if(itemModel.Exist)
-                return View(itemModel);
-            else
-                return RedirectToAction("Index", "Home");
+            if (id != null)
+            {
+                ItemModels itemModel = new ItemModels();
+                itemModel.item = yikuData.GetItem(id.Value);
+                if (itemModel.Exist)
+                    return View(itemModel);
+            }
+            return RedirectToAction("Index", "Item");
         }
 
         //

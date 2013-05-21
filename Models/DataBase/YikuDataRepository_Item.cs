@@ -72,7 +72,7 @@ namespace Yiku.Models.DataBase
 
         public bool ItemExist(Item item)
         {
-            if (item.Exist) return true;
+            if (item != null && item.Exist) return true;
             else return false;
         }
 

@@ -85,7 +85,7 @@ namespace Yiku.Models.DataBase
         {
             User user = GetUser(userName);
             if( UserExist(user) )
-                return user.PSW == password;
+                return user.PSW.Trim() == password;
             return false;
         }
 

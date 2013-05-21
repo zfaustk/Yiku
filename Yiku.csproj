@@ -190,9 +190,11 @@
     <Content Include="Scripts\sy_sy\zeroclipboard.js" />
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\login.aspx" />
-    <Content Include="Views\Item\Details.aspx" />
+    <Content Include="Views\Item\Detail.aspx" />
     <Content Include="Views\Home\Search.aspx" />
     <Content Include="Views\Home\sy.aspx" />
+    <Content Include="Views\Item\Details.aspx" />
+    <Content Include="Views\Item\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -122,7 +122,7 @@ namespace Yiku.Models
             if (String.IsNullOrEmpty(userName)) throw new ArgumentException("值不能为 null 或为空。", "userName");
             if (String.IsNullOrEmpty(password)) throw new ArgumentException("值不能为 null 或为空。", "password");
 
-            return yikuData.ValidateUser(userName, password);
+            return yikuData.ValidateUser(userName, password.Trim());
         }
 
         public UserCreateStatus CreateUser(string username, string password, string passwordComfirm, string address, string consignee, string tel, string zipcode, bool overwrite = false)
