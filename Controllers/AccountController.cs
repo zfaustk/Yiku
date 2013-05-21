@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using Yiku.Models;
+using Yiku.Models.DataBase;
 
 namespace Yiku.Controllers
 {
@@ -15,6 +16,7 @@ namespace Yiku.Controllers
     [HandleError]
     public class AccountController : Controller
     {
+        private YikuDataRepository yikuata = new YikuDataRepository();
 
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
@@ -31,13 +33,13 @@ namespace Yiku.Controllers
         // URL: /Account/LogOn
         // **************************************
 
-        public ActionResult LogOn()
+        public ActionResult LogIn()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        public ActionResult LogIn(LogOnModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -90,16 +92,19 @@ namespace Yiku.Controllers
             if (ModelState.IsValid)
             {
                 // 尝试注册用户
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
+                UserCreateStatus createResult = MembershipService.CreateUser(model.UserName, model.Password, null, null, null, null, true);
 
-                if (createStatus == MembershipCreateStatus.Success)
+                if (createResult == UserCreateStatus.Succeed)
                 {
                     FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
+                    if (createResult == UserCreateStatus.Faild)
+                        ModelState.AddModelError("", "创建失败");
+                    if (createResult == UserCreateStatus.AlreadyExist)
+                        ModelState.AddModelError("", "该用户已存在");
                 }
             }
 
@@ -148,10 +153,8 @@ namespace Yiku.Controllers
         {
             return View();
         }
-        public ActionResult login()
-        {
-            return View();
-        }
+            
+
         public ActionResult Cregister()
         {
             return View();

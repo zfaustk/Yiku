@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Yiku.Models.DataBase;
 
 namespace Yiku.Models
 {
@@ -55,11 +56,6 @@ namespace Yiku.Models
         public string UserName { get; set; }
 
         [Required]
-        [DataType(DataType.EmailAddress)]
-        [DisplayName("电子邮件地址")]
-        public string Email { get; set; }
-
-        [Required]
         [ValidatePasswordLength]
         [DataType(DataType.Password)]
         [DisplayName("密码")]
@@ -69,6 +65,21 @@ namespace Yiku.Models
         [DataType(DataType.Password)]
         [DisplayName("确认密码")]
         public string ConfirmPassword { get; set; }
+
+        [DataType(DataType.Text)]
+        [DisplayName("电话号码")]
+        public string Address { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [DisplayName("电话号码")]
+        public string Tel { get; set; }
+
+        [DisplayName("邮编")]
+        public string Zipcode { get; set; }
+
+        [DisplayName("收件人")]
+        public string Consignee { get; set; }
+
     }
     #endregion
 
@@ -83,30 +94,27 @@ namespace Yiku.Models
         int MinPasswordLength { get; }
 
         bool ValidateUser(string userName, string password);
-        MembershipCreateStatus CreateUser(string userName, string password, string email);
+        UserCreateStatus CreateUser(string username, string password, string address, string consignee, string tel, string zipcode, bool overwrite = false);
         bool ChangePassword(string userName, string oldPassword, string newPassword);
     }
 
     public class AccountMembershipService : IMembershipService
     {
-        private readonly MembershipProvider _provider;
+        private readonly YikuDataRepository yikuData = new YikuDataRepository();
 
         public AccountMembershipService()
-            : this(null)
         {
+            ;
         }
 
-        public AccountMembershipService(MembershipProvider provider)
-        {
-            _provider = provider ?? Membership.Provider;
-        }
+        //public AccountMembershipService(MembershipProvider provider)
+        //{
+        //    _provider = provider ?? Membership.Provider;
+        //}
 
         public int MinPasswordLength
         {
-            get
-            {
-                return _provider.MinRequiredPasswordLength;
-            }
+            get { return 6; }
         }
 
         public bool ValidateUser(string userName, string password)
@@ -114,18 +122,17 @@ namespace Yiku.Models
             if (String.IsNullOrEmpty(userName)) throw new ArgumentException("值不能为 null 或为空。", "userName");
             if (String.IsNullOrEmpty(password)) throw new ArgumentException("值不能为 null 或为空。", "password");
 
-            return _provider.ValidateUser(userName, password);
+            return yikuData.ValidateUser(userName, password);
         }
 
-        public MembershipCreateStatus CreateUser(string userName, string password, string email)
+        public UserCreateStatus CreateUser(string username, string password, string address, string consignee, string tel, string zipcode, bool overwrite = false)
         {
-            if (String.IsNullOrEmpty(userName)) throw new ArgumentException("值不能为 null 或为空。", "userName");
+            if (String.IsNullOrEmpty(username)) throw new ArgumentException("值不能为 null 或为空。", "userName");
             if (String.IsNullOrEmpty(password)) throw new ArgumentException("值不能为 null 或为空。", "password");
-            if (String.IsNullOrEmpty(email)) throw new ArgumentException("值不能为 null 或为空。", "email");
 
-            MembershipCreateStatus status;
-            _provider.CreateUser(userName, password, email, null, null, true, null, out status);
-            return status;
+            UserCreateStatus result = yikuData.UserCreate(username, password, address, consignee, tel, zipcode, overwrite);
+            yikuData.Save();
+            return result;
         }
 
         public bool ChangePassword(string userName, string oldPassword, string newPassword)
@@ -134,12 +141,15 @@ namespace Yiku.Models
             if (String.IsNullOrEmpty(oldPassword)) throw new ArgumentException("值不能为 null 或为空。", "oldPassword");
             if (String.IsNullOrEmpty(newPassword)) throw new ArgumentException("值不能为 null 或为空。", "newPassword");
 
-            // 在某些出错情况下，基础 ChangePassword() 将引发异常，
-            // 而不是返回 false。
             try
             {
-                MembershipUser currentUser = _provider.GetUser(userName, true /* userIsOnline */);
-                return currentUser.ChangePassword(oldPassword, newPassword);
+                if (yikuData.UserCurrent.Name == userName)
+                {
+                    bool result = yikuData.UserChangePassword(yikuData.UserCurrent, oldPassword, newPassword);
+                    yikuData.Save();
+                    return result;
+                }
+                return false;
             }
             catch (ArgumentException)
             {
