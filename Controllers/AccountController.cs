@@ -148,6 +148,13 @@ namespace Yiku.Controllers
         {
             return View();
         }
-
+        public ActionResult login()
+        {
+            return View();
+        }
+        public ActionResult Cregister()
+        {
+            return View();
+        }
     }
 }

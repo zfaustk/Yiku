@@ -1,0 +1,124 @@
+/*pub-1|2012-07-05 20:09:32*/KISSY.add("2.0/mods/dialog",function(D,E,B,F){var C={width:300,height:110,type:"ok",bodyTpl:'<div class="brandMsgTips"><div class="ui-msg ui-top-tip ui-msg-clean"><div class="ui-msg-con ui-msg-{type}">{text}<s class="ui-msg-icon"></s></div></div></div>',content:"",confirm:false,closeCallBack:new Function(),callback:new Function()};function A(J){var G=D.merge(C,J||{}),I=D.substitute(G.bodyTpl,{type:G.type,text:G.content}),K;if(G.confirm){var M=E.create('<a class="ui-btn-l" href="">\u5426</a>'),L=E.create('<a class="ui-btn-l-primary" href="">\u662f</a>'),H=E.create('<p class="brandMsgTips-btn"></p>');E.append(L,H);E.append(M,H);I=E.create(I);E.append(H,I)}K=new F.Dialog({elCls:"brandTipsDialog",width:G.width,height:G.height,skin:"gray",closeAction:"destroy",elStyle:{position:D.UA.ie==6?"absolute":"fixed"},zIndex:9999999,headerContent:"",bodyContent:I,showCat:false,mask:true,align:{points:["cc","cc"]}});this.el=K;K.render();K.show();if(G.closeCallBack&&typeof G.closeCallBack=="function"){K.on("destroy",function(){G.closeCallBack()})}if(G.confirm){B.on(M,"click",function(N){N.halt();K.hide()});B.on(L,"click",function(N){N.halt();K.hide();G.callback()})}}return A},{requires:["dom","event","tml/overlay","tml/overlay/css/overlay.css"]});/*pub-1|2013-05-13 15:08:51*/KISSY.add("2.0/mods/collect",function(d,g,f,b){f.detach(".j_CollectBrand","click");f.on(".j_CollectBrand","click",function(h){c("http://log.mmstat.com/tmallbrand.1002.13")});function c(h){if(h){new Image().src=h}}var a={triggerCls:"j_CollectBrand",cfgAttr:"data-brandId"};function e(h){this._init(d.merge(a,h||{}))}d.augment(e,{_init:function(h){function i(j,l){function k(){d.onTgalleryReady(j,l)}d.configTgallery={tag:"20121031",path:"http://"+ASSETS_SERVER+"/apps/"};d.onTgalleryReady?k():d.getScript(d.configTgallery.path+"tmall/common/tgallery.js?t="+d.configTgallery.tag,k)}i("tgallery/department/common/brandbar",function(j,k){k.show({urlMyBrand:SERVER_URL+"/myBrandsIndex.htm"});k.bindEl("."+h.triggerCls,{attrName:h.cfgAttr,addServer:SERVER_URL+"/ajax/brandAddToFav.htm"});k.on("flyComplete",function(){h.callback&&h.callback()});k.on("error",function(l){j.use("2.0/mods/dialog",function(n,m){new m({type:(l.code==-1?"attention":"error"),content:l.message+'<p class="brandMsgTips-p">\u67e5\u770b<a href="myBrandsIndex.htm">\u6211\u5173\u6ce8\u7684\u54c1\u724c>></a></p>',closeCallBack:h.callback})});return false})})}});return e},{requires:["dom","event","ajax"]});/*pub-1|2013-05-13 15:08:51*/KISSY.add("2.0/mods/floor",function(d,c){var b=d.Event,f=d.DOM,g=d.UA.ie==6,e;function a(k){if(!(e=d.get(k))){return}var l=d.get(".j_FloorTop",e),j="bFlil-expand",i=[];b.on(f.query("li",l),"mouseenter",function(){var m=this;if(f.hasClass(m,j)){return}d.each(f.query("li",l),function(n){f.removeClass(n,j)});f.addClass(m,j)});if(g){b.on(f.query("li",l),"mouseenter",function(){f.addClass(this,".bFt-list-hover")});b.on(f.query("li",l),"mouseleave",function(){f.removeClass(this,".bFt-list-hover")})}d.each(f.query(".j_FloorSlide",e),function(o,m){var p=d.get(".bFlis-hd",o),n=d.query(".bFlis-con-list",o);i[m]=new c(o,{contentCls:"bFlis-con",navCls:"bFlis-hd-nav",activeTriggerCls:"brandSlide-active",effect:"scrollx",duration:".3",easing:"easeOutStrong",lazyDataType:"img-src",autoplay:false});i[m].switchTo(parseInt(Math.random()*2));b.on(n,"mouseenter",function(){var q=d.get(".bFlis-con-mask",this);new d.Anim(q,{top:"90px"},0.1).run()});b.on(n,"mouseleave",function(){var q=d.get(".bFlis-con-mask",this);new d.Anim(q,{top:"130px"},0.1).run()})});d.each(f.query(".bFl-item-logo",e),function(n,m){b.on(f.query("li",n),"mouseenter",function(){f.addClass(this,"bFl-item-hover")});b.on(f.query("li",n),"mouseleave",function(){f.removeClass(this,"bFl-item-hover")})});b.detach(".bFlil-link","click");b.on(".bFlil-link","click",function(m){if(KISSY.trim(d.one(m.currentTarget).one(".bFlil-mask").html())){h("http://log.mmstat.com/tmallbrand.1002.13")}});function h(m){if(m){new Image().src=m}}}return a},{requires:["switchable"]});/**
+ * 右侧快捷菜单
+ * guiyuan.hj@tmall.com
+ **/
+
+KISSY.add("2.0/mods/quick" , function(S , DOM , Event , Anim){
+	var win = window , doc = document ,
+		isIE6 = S.UA.ie == 6 , isIE7 = S.UA.ie == 7 , isIE = !!S.UA.ie , isIE8 = S.UA.ie== 8 ,
+		baseLine = 200 ,
+		HIDDEN = 'bQN-hidden' ,
+		tipTpl = '<span class="bQN-list-tips">{{text}}<i></i></span>' ;
+
+	function QuickNav(){
+		this.nav = S.get('#J_BrandQuickNav');
+		if(!this.nav){return;}
+		this._init();
+	}
+
+	S.augment(QuickNav , {
+		_init : function(){
+			this._bindEvent();
+		} ,
+
+		//hover 提示
+		_hoverTips : function(){
+			var self = this ,
+				nav = self.nav ,
+				list = DOM.get('.bQN-list' , nav) ,
+				link = DOM.query('a' , list) ;
+
+			Event.on(link , 'mouseenter' , function(){
+				var el = this , anim ,
+					text = el.rel ,
+					nextEl = DOM.next(el , function(n){return DOM.hasClass(n , '.bQN-list-tips')}) ;
+
+				if(!nextEl){
+					nextEl = DOM.create(tipTpl.replace('{{text}}' , text));
+					if(isIE7){
+						DOM.css(nextEl , {width : text.length * 13});
+					}
+					DOM.insertAfter(nextEl , el) ;
+					DOM.css(nextEl , {left : 0 - (DOM.width(nextEl)+30)});
+
+				}
+				//ie8 下透明动画问题多
+				if(!isIE8){
+					DOM.css(nextEl , {visibility : 'visible'});
+					new Anim(nextEl , {opacity : 1} , .1).run();
+				}else{
+					DOM.css(nextEl , {visibility : 'visible' , opacity : 1});
+				}
+
+			});
+
+			Event.on(link , 'mouseleave' , function(){
+				var el = this , anim ,
+					text = el.rel ,
+					nextEl = DOM.next(el , function(n){return DOM.hasClass(n , '.bQN-list-tips')}) ;
+
+				if(!isIE8){
+					anim = Anim(nextEl , {opacity : 0} , .1) ;
+					anim.run();
+
+					anim.on('complate' , function(){
+						DOM.css(nextEl , {visibility : 'hidden'});
+					})
+				}else{
+					DOM.css(nextEl , {visibility : 'hidden' , opacity : 0});
+				}
+				
+			});
+
+			//是否需要动画效果
+			Event.on(link , 'click' , function(ev){
+
+			}) ;	
+
+		} ,
+
+		//绑定事件
+		_bindEvent : function(){
+			var self = this , 
+				nav = self.nav , 
+				backTop = DOM.get('.bQN-backTop' , nav) ;
+
+			Event.on(backTop , 'click' , function(ev){
+				ev.halt();
+				win.scrollTo(0,0);
+			});
+
+			Event.on(win ,'scroll' , function(){
+				self._showEl();
+			})
+
+		} ,
+
+		//显示导航
+		_showEl : function(){
+			var nav = this.nav ,
+				isHidden = DOM.hasClass(nav , HIDDEN) ,
+		    	scrollTop = parseInt(DOM.scrollTop(doc)) ;
+
+			if(scrollTop > baseLine){
+				DOM.show(nav);
+				new Anim(nav , {right : '0px'} , .1).run();
+			}else if(scrollTop < baseLine){
+				DOM.hide(nav);
+				new Anim(nav , {right : '-60px'} , .1).run();
+			}
+			
+			//IE 修复fixed 问题
+			if(isIE6){
+
+				var ch = DOM.viewportHeight(doc) ,
+				    top = (scrollTop + ch) - 40 - DOM.height(nav);
+
+				DOM.css(nav , 'top' , top );
+			}
+		}
+	})
+
+	return QuickNav ;
+
+} , {requires : ['dom' , 'event' , 'anim']}) ;/*pub-1|2013-05-13 15:08:51*/KISSY.add("2.0/index",function(f,i,h,j,a,b,e,g){var d=f.UA.ie==6;function c(){var o=a({mod:"manual",diff:100}),n=null,m=null,k=f.query(".j_BrandFloor");f.each(k,function(p){o.addCallback(p,function(){i.css(p,{background:"none"});setTimeout(function(){try{new b(p)}catch(q){}},64)})});if(d){h.on(".bFnL-item","mouseenter",function(){i.addClass(this,"bFnL-item-hover")});h.on(".bFnL-item","mouseleave",function(){i.removeClass(this,"bFnL-item-hover")})}!f.UA.mobile&&h.on(".bF-azIndex-list","mouseenter",function(){i.show(".bF-azIndex-tips");clearTimeout(n);n=setTimeout(function(){new f.Anim(".bF-azIndex-tips",{opacity:"1"},0.1).run()},100)});!f.UA.mobile&&h.on(".bF-azIndex-list","mouseleave",function(){i.hide(".bF-azIndex-tips");clearTimeout(m);m=setTimeout(function(){new f.Anim(".bF-azIndex-tips",{opacity:"0"},0.1).run()},100)});if(f.get("#J_FpSlide")){var l=new f.Carousel("#J_FpSlide",{autoplay:true,effect:"scrollx",easing:"easeOutStrong",viewSize:[590],circular:true,contentCls:"brandFp-slide-bd",prevBtnCls:"brandFp-slide-l",nextBtnCls:"brandFp-slide-r",interval:5,steps:1,lazyDataType:"img-src"});h.on("#J_FpSlide","mouseenter",function(){f.Anim(".brandFp-slide-l",{left:"20px"},0.2,"easeNone").run();f.Anim(".brandFp-slide-r",{right:"20px"},0.2,"easeNone").run()});h.on("#J_FpSlide","mouseleave",function(){f.Anim(".brandFp-slide-l",{left:"-55px"},0.2,"easeNone").run();f.Anim(".brandFp-slide-r",{right:"-55px"},0.2,"easeNone").run()})}if(f.get("#J_NewBrandSlide")){var l=new j("#J_NewBrandSlide",{contentCls:"bFenB-slide-con",navCls:"bFenB-slide-nav",activeTriggerCls:"brandSlide-active",effect:"scrollx",duration:".3",easing:"easeOutStrong",lazyDataType:"img-src",autoplay:false});l.switchTo(parseInt(Math.random()*2))}new g();if(f.get("#J_BrandUserLogin")){h.on("#J_BrandUserLogin","click",function(p){p.halt();TML.use("minilogin,overlay/css/overlay.css",function(q,r){r.show(function(){location.reload()})})})}new e();TMall&&TMall.THeader&&TMall.THeader.setNav("brandfp")}return c},{requires:["dom","event","switchable","datalazyload","2.0/mods/floor","2.0/mods/collect","2.0/mods/quick"]});
