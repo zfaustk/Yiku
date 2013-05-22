@@ -2730,7 +2730,9 @@ a {
 #popupPanel .ks-stdmod-header {
 	display: none
 }
-#content {
+#content 
+{
+    padding-top: 28px;
 	background: #fff;
 	*zoom: 1
 }

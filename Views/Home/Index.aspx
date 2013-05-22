@@ -64,14 +64,16 @@
             <style>.bFl-item-logo li{background-image:url(http://img01.taobaocdn.com/tps/i1/T1a3_QXohaXXXzKHv4-200-366.png);}.brandFloor .bFlil-link:hover{-webkit-animation:none;}.bFlil-mask-add{position:static;display:inline-block;}#brandFloor8 .brandFloor .bFlil-link:hover{top:0;}</style>
         </div>
 
+
+
     <div class="floorLoading j_BrandFloor" id="brandFloor1">
         <div>           
-            <div class="brandFloor" data-spm="3.1000474.1">
+            <div class="brandFloor">
 				<h3 class="ui-title">
 					<em class="ui-title-num">01</em>
-					<a target="_blank" href="http://www.tmall.com/go/act/tmall/dapai.php?spm=3.1000473.322489.24.vpQbEx&amp;ad_id=&amp;am_id=13010528496fb12e80b0&amp;cm_id=&amp;pm_id=" class="ui-title-con brandFloor-hd0">
+					<a target="_blank" href="#" class="ui-title-con brandFloor-hd0">
 						<b class="ui-title-text">
-							国际品牌
+							推荐
 							<s class="ui-title-mask"></s>
 						</b>
 						<i class="ui-title-arrow"></i>
@@ -79,7 +81,9 @@
 				</h3>
 
             <div class="brandFloor-con">
-                                        <div class="module" ><ul class="brandFloor-list" data-spm="3.2167905.a2223nt">
+                 <div class="module">
+                 
+                 <ul class="brandFloor-list" data-spm="3.2167905.a2223nt">
 			
 			<li class="bFl-item">
 				<div class="bFl-item-slide j_FloorSlide">
