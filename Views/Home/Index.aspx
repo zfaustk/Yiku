@@ -62,6 +62,97 @@
                 </ul>
             </div>
             <style>.bFl-item-logo li{background-image:url(http://img01.taobaocdn.com/tps/i1/T1a3_QXohaXXXzKHv4-200-366.png);}.brandFloor .bFlil-link:hover{-webkit-animation:none;}.bFlil-mask-add{position:static;display:inline-block;}#brandFloor8 .brandFloor .bFlil-link:hover{top:0;}</style>
+        
+            <div class="brandFp-extra">
+                 <div class="bFe-userFav">
+                    <h3>我关注的分类<s></s></h3>
+                        <div class="bFeuF-login">
+                            <% if (Model.CurrentUser == null)
+                               {%>
+                                <a id="J_BrandUserLogin" href="../Account/Login?returnUrl=../Home/Index " class="ui-btn-l-primary">用户登录</a>
+                            <%} else { %>
+                                未填
+                            <%} %>
+      </div>
+   </div>
+<div class="bFe-recommend">
+    <h3>猜你喜欢的品牌<s></s></h3>
+    <ul class="bFl-item-logo clearfix">
+                      <li>
+          <a target="_blank" title="Apple/苹果" class="bFlil-link" href="http://tj189.tmall.com/?scm=1003.5.06001.0&amp;spm=1.0.0.N&amp;acm=06001.1003.661.215.30111_6">
+                                   <img src="http://img03.taobaocdn.com/bao/uploaded/i3/T10lZDXbFhXXbc_Djq-90-45.jpg_120x120.jpg" width="90" height="45">
+            <span class="bFlil-mask">
+              <b class="bFlil-mask-shop">去逛逛<i></i></b>
+              <b class="bFlil-mask-add j_CollectBrand" data-brandid="30111">+ 关注该品牌</b>
+            </span>
+          </a>
+        </li>
+                     <li>
+          <a target="_blank" title="红蜻蜓" class="bFlil-link" href="http://reddragonfly.tmall.com/?scm=1003.5.06001.0&amp;spm=1.0.0.N&amp;acm=06001.1003.661.215.44618_6">
+                                   <img src="http://img03.taobaocdn.com/bao/uploaded/i3/T16ZYUXkVdXXXQXDnq-90-45.png_120x120.jpg" width="90" height="45">
+            <span class="bFlil-mask">
+              <b class="bFlil-mask-shop">去逛逛<i></i></b>
+              <b class="bFlil-mask-add j_CollectBrand" data-brandid="44618">+ 关注该品牌</b>
+            </span>
+          </a>
+        </li>
+                     <li>
+          <a target="_blank" title="Belle/百丽" class="bFlil-link" href="http://ebelle.tmall.com/?scm=1003.5.06001.0&amp;spm=1.0.0.N&amp;acm=06001.1003.661.215.29468_6">
+                                   <img src="http://img02.taobaocdn.com/bao/uploaded/i2/T1kZzRXhVoXXXQXDnq-90-45.png_120x120.jpg" width="90" height="45">
+            <span class="bFlil-mask">
+              <b class="bFlil-mask-shop">去逛逛<i></i></b>
+              <b class="bFlil-mask-add j_CollectBrand" data-brandid="29468">+ 关注该品牌</b>
+            </span>
+          </a>
+        </li>
+                     <li>
+          <a target="_blank" title="YANGSANG/杨桑" class="bFlil-link" href="http://pba.tmall.com/?scm=1003.5.06001.0&amp;spm=1.0.0.N&amp;acm=06001.1003.661.215.117090802_6">
+                                   <img src="http://img.taobaocdn.com/bao/uploaded/T2s8yiXkVcXXXXXXXX_!!186687659.jpg_120x120.jpg" width="90" height="45">
+            <span class="bFlil-mask">
+              <b class="bFlil-mask-shop">去逛逛<i></i></b>
+              <b class="bFlil-mask-add j_CollectBrand" data-brandid="117090802">+ 关注该品牌</b>
+            </span>
+          </a>
+        </li>
+                     <li>
+          <a target="_blank" title="Fairwhale/马克华菲" class="bFlil-link" href="http://fairwhale.tmall.com/?scm=1003.5.06001.0&amp;spm=1.0.0.N&amp;acm=06001.1003.661.215.29482_6">
+                                   <img src="http://img03.taobaocdn.com/bao/uploaded/i3/T1BxDNXltgXXbc_Djq-90-45.jpg_120x120.jpg" width="90" height="45">
+            <span class="bFlil-mask">
+              <b class="bFlil-mask-shop">去逛逛<i></i></b>
+              <b class="bFlil-mask-add j_CollectBrand" data-brandid="29482">+ 关注该品牌</b>
+            </span>
+          </a>
+        </li>
+                     <li>
+          <a target="_blank" title="Osairous/欧塞洛斯" class="bFlil-link" href="http://osairous.tmall.com/?scm=1003.5.06001.0&amp;spm=1.0.0.N&amp;acm=06001.1003.661.215.91878077_6">
+                                   <img src="http://img03.taobaocdn.com/bao/uploaded/i3/T1E5nZXhRdXXXQXDnq-90-45.png_120x120.jpg" width="90" height="45">
+            <span class="bFlil-mask">
+              <b class="bFlil-mask-shop">去逛逛<i></i></b>
+              <b class="bFlil-mask-add j_CollectBrand" data-brandid="91878077">+ 关注该品牌</b>
+            </span>
+          </a>
+        </li>
+        </ul>
+ </div>
+                        
+                        <div class="bFe-newBrand" data-spm="$spm_module_id">
+    <h3>新品牌入驻<s></s></h3>
+    <div class="bFenB-slide" id="J_NewBrandSlide" style="position: relative;">
+        <ul class="bFenB-slide-nav">
+            <li class="brandSlide-active">•</li>
+            <li>•</li>
+        </ul>
+        <ul class="bFenB-slide-con" data-spm="$spm_module_id" style="position: absolute; width: 380px;">
+            
+                        <li style="display: block; float: left;"><a href="http://guess.tmall.com/shop/view_shop.htm?spm=3.272136.263215.1&amp;rn=eb659ad1c9e7e66aa640a19a70de69f8" target="_blank"><img src="http://img03.taobaocdn.com/tps/i3/T1dL1IXvJfXXaJgC6l-190-90.jpg" height="90" width="190" alt=""></a></li>
+                        <li style="display: block; float: left;"><a href="http://arcteryx.tmall.com/?spm=3.272136.263215.2" target="_blank"><img src="http://img02.taobaocdn.com/tps/i2/T1M6SxXpXgXXaJgC6l-190-90.jpg" height="90" width="190" alt=""></a></li>
+                        
+        </ul>
+    </div>
+</div>
+
+        </div>
+        
         </div>
 
 

@@ -75,17 +75,17 @@ button {
 	width: 950px;
 	margin: 0 auto;
 }
-#header {
+#header_Log {
 	padding-top: 30px;
 }
 #content {
 	min-height: 400px;
 	*height: 400px;
 }
-#header, #content {
+#header_Log, #content {
 	margin-bottom: 40px;
 }
-#header, #content, #footer {
+#header_Log, #content, #footer {
 	width: 100%;
 	overflow: hidden;
 }
@@ -130,17 +130,17 @@ button {
 	float: none;
 }
 /* header*/
-	.logo {
+	.logo_log {
 	float: left;
 	width: 215px;
 	height: 30px;
 	overflow: hidden;
 	line-height: 10em;
 }
-a.logo: link,
-a.logo: visited,
-a.logo: hover,
-a.logo: active {
+a.logo_log: link,
+a.logo_log: visited,
+a.logo_log: hover,
+a.logo_log: active {
 	background: transparent url(data: image/png;
 	base64,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) no-repeat;
 	*background-image: url(mhtml: http: //www.douban.com/accounts/login!logo);

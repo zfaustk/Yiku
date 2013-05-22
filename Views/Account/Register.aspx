@@ -1,28 +1,22 @@
-﻿<%@ Page Language="C#" Inherits="System.Web.Mvc.ViewPage<Yiku.Models.RegisterModel>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/Sudo.Master" Inherits="System.Web.Mvc.ViewPage<Yiku.Models.RegisterModel>" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+	欢迎加入依库
+</asp:Content>
 
-<html class="ua-windows ua-ff21" lang="zh-CN"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
 
- <title>
-欢迎加入依库
-</title>
-    <link rel="Stylesheet"  type="text/css" href="../../Content/register.css">
+<link rel="Stylesheet"  type="text/css" href="../../Content/register.css">
     <link rel="shortcut icon" href="" type="image/x-icon">
-<body>
     <script type="text/javascript">        var _body_start = new Date();</script>
+</asp:Content>
+
+    
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    
     <div id="wrapper">
         
-<div id="header">
-  <div class="site-nav single-nav">
-    <div class="site-nav-logo">
-      <a href="">
-          <img src="" alt="依库">
-      </a>
-    </div>
-  </div>  
-</div>
+
 
         
     <div id="content">
@@ -576,4 +570,7 @@
 </ul><div id="p_directly"><div class="panel"><ul><li><a title="2229511人" id="108288" class="habitable" href="#">北京</a></li><li><a title="1350120人" id="108296" class="habitable" href="#">上海</a></li><li><a title="972107人" id="118281" class="habitable" href="#">广州</a></li><li><a title="619452人" id="118254" class="habitable" href="#">武汉</a></li><li><a title="598255人" id="118282" class="habitable" href="#">深圳</a></li><li><a title="588726人" id="118318" class="habitable" href="#">成都</a></li><li><a title="513006人" id="118172" class="habitable" href="#">杭州</a></li><li><a title="453747人" id="118159" class="habitable" href="#">南京</a></li><li><a title="438696人" id="118371" class="habitable" href="#">西安</a></li><li><a title="360728人" id="108309" class="habitable" href="#">重庆</a></li><li><a title="354294人" id="118237" class="habitable" href="#">郑州</a></li><li><a title="353525人" id="118267" class="habitable" href="#">长沙</a></li><li><a title="348610人" id="108289" class="habitable" href="#">天津</a></li><li><a title="256157人" id="118163" class="habitable" href="#">苏州</a></li><li><a title="255673人" id="118200" class="habitable" href="#">福州</a></li></ul></div></div>
 <p style="display: none;" class="loading">正在加载数据，请稍候...</p>
 
-</div>				</div>			</div></body></html>
+</div>				</div>			</div><
+
+
+</asp:Content>

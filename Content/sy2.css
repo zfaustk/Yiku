@@ -84,6 +84,7 @@ a.brand-subNav-last,strong.brand-subNav-last {
 	width:100%;
 	background-color:#f1ebeb;
 }
+
 .brandCon {
 	width:990px;
 	margin:0 auto;
@@ -539,7 +540,7 @@ a.ks-switchable-disable-btn,a.ks-switchable-disable-btn:hover {
 	height:25px;
 	line-height:25px;
 	font-weight:bold;
-	background:#ccc url(http://a.tbcdn.cn/apps/tmall/mui/btn/img/btn.png) repeat-x;
+	*background:#ccc url(http://a.tbcdn.cn/apps/tmall/mui/btn/img/btn.png) repeat-x;
 	color:#333;
 	font-size:12px;
 	border:0 none;
@@ -554,6 +555,11 @@ a.ks-switchable-disable-btn,a.ks-switchable-disable-btn:hover {
 	border-radius:2px;
 	*zoom:1;
 }
+.ui-btn-l-primary:hover
+{
+    background-color:#9B8C4B !important;
+}
+
 .ui-btn-m {
 	background-position:0 -380px;
 }
