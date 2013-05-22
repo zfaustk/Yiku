@@ -16,24 +16,17 @@
             <a target="_top" href="#"> <b>
                 <%: Page.User.Identity.Name %>的依库</b>
             </a>
+            
+            <%: Html.ActionLink("登出", "LogOff", "Account") %>
         </li>
         <li class="sn-seller j_SellerCenter">
             <a target="_top" href="http://mai.taobao.com/seller_admin.htm">商家中心</a>
         </li>
         <li class="sn-mybrand">
-            <div id="menu-291" aria-hidden="true" role="menu" class="menu-hd">
-                    <div class="menu-bd-panel" id="myTaobaoPanel">
-                            <a href="Item/Buy" target="_top" rel="nofollow">已卖出的宝贝</a>
-
-                    </div>
-                </div>
+            <a href="Item/Buy" target="_top" rel="nofollow">已卖出的宝贝</a>
         </li>
         <li class="sn-mybrand">
-            <div id="Div1" aria-hidden="true" role="menu" class="menu-hd">
-                    <div class="menu-bd-panel" id="Div2">
-                            <a href="Item/Buy" target="_top" rel="nofollow">已买到的宝贝</a>
-                    </div>
-                </div>
+            <a href="Item/Sold" target="_top" rel="nofollow">已买到的宝贝</a>
         </li>
         <li class="cart mini-cart menu">
                 

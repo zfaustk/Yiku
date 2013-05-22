@@ -192,7 +192,7 @@
     <Content Include="Views\Account\login.aspx" />
     <Content Include="Views\Item\Detail.aspx" />
     <Content Include="Views\Home\Search.aspx" />
-    <Content Include="Views\Home\sy.aspx" />
+    <Content Include="Views\Home\ssssssy.aspx" />
     <Content Include="Views\Item\Details.aspx" />
     <Content Include="Views\Item\Index.aspx" />
     <Content Include="Web.config" />
@@ -251,7 +251,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>6158</DevelopmentServerPort>
+          <DevelopmentServerPort>3394</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
