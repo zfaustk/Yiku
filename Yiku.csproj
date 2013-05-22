@@ -71,10 +71,12 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DataBase\YikuDataRepository_UserCurrent.cs" />
     <Compile Include="Models\DataBase\IYikuDataRepository.cs" />
     <Compile Include="Models\DataBase\SortHelper\SortHelper_Item.cs" />
     <Compile Include="Models\DataBase\YikuData.Designer.cs">
@@ -92,6 +94,9 @@
     <Compile Include="Models\DataBase\YikuDataRepository_T_Classify.cs" />
     <Compile Include="Models\DataBase\YikuDataRepository_T_Collection.cs" />
     <Compile Include="Models\DataBase\YikuDataRepository_T_Shopping.cs" />
+    <Compile Include="Methods\CurrentUser.cs" />
+    <Compile Include="Methods\UserLogAttribute.cs" />
+    <Compile Include="Models\ItemModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -99,7 +104,97 @@
     <Content Include="App_Data\YikuData_log.ldf">
       <DependentUpon>YikuData.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\a.css" />
+    <Content Include="Content\a2.css" />
+    <Content Include="Content\a_002.css" />
+    <Content Include="Content\a_0022.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\MainPage_.css" />
+    <Content Include="Content\register.css" />
+    <Content Include="Content\sy.css" />
+    <Content Include="Content\sy2.css" />
+    <Content Include="Content\T10szYXgRaXXX7spjX.css" />
+    <Content Include="Content\T1pKTWXcReXXX7spjX.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\item\03054.js" />
+    <Content Include="Scripts\item\a.js" />
+    <Content Include="Scripts\item\adapter-min.js" />
+    <Content Include="Scripts\item\aplus_v2.js" />
+    <Content Include="Scripts\item\a_002.js" />
+    <Content Include="Scripts\item\a_003.js" />
+    <Content Include="Scripts\item\a_004.js" />
+    <Content Include="Scripts\item\a_005.js" />
+    <Content Include="Scripts\item\a_006.js" />
+    <Content Include="Scripts\item\a_007.js" />
+    <Content Include="Scripts\item\a_008.js" />
+    <Content Include="Scripts\item\a_009.js" />
+    <Content Include="Scripts\item\a_010.js" />
+    <Content Include="Scripts\item\a_011.js" />
+    <Content Include="Scripts\item\a_012.js" />
+    <Content Include="Scripts\item\a_013.js" />
+    <Content Include="Scripts\item\a_014.js" />
+    <Content Include="Scripts\item\a_015.js" />
+    <Content Include="Scripts\item\a_016.js" />
+    <Content Include="Scripts\item\a_017.js" />
+    <Content Include="Scripts\item\a_018.js" />
+    <Content Include="Scripts\item\core.js" />
+    <Content Include="Scripts\item\counter6.js" />
+    <Content Include="Scripts\item\feedback.js" />
+    <Content Include="Scripts\item\hc.js" />
+    <Content Include="Scripts\item\header.js" />
+    <Content Include="Scripts\item\index.js" />
+    <Content Include="Scripts\item\initItemDetail.js" />
+    <Content Include="Scripts\item\login-api.js" />
+    <Content Include="Scripts\item\recommend.htm" />
+    <Content Include="Scripts\item\T1JtCfXEVcXXcWeqbX.txt" />
+    <Content Include="Scripts\item\tb-mpp-min.js" />
+    <Content Include="Scripts\item\tlabs-min.js" />
+    <Content Include="Scripts\item\webww-min.js" />
+    <Content Include="Scripts\search\a.js" />
+    <Content Include="Scripts\search\adapter-min.js" />
+    <Content Include="Scripts\search\aplus_v2.js" />
+    <Content Include="Scripts\search\a_002.js" />
+    <Content Include="Scripts\search\a_003.js" />
+    <Content Include="Scripts\search\a_004.js" />
+    <Content Include="Scripts\search\a_005.js" />
+    <Content Include="Scripts\search\a_006.js" />
+    <Content Include="Scripts\search\backtop.js" />
+    <Content Include="Scripts\search\bottombar.js" />
+    <Content Include="Scripts\search\brandbar.js" />
+    <Content Include="Scripts\search\btm-search.js" />
+    <Content Include="Scripts\search\core.js" />
+    <Content Include="Scripts\search\counter6.js" />
+    <Content Include="Scripts\search\feedback.js" />
+    <Content Include="Scripts\search\init.js" />
+    <Content Include="Scripts\search\switchable-min.js" />
+    <Content Include="Scripts\search\tb-mpp-min.js" />
+    <Content Include="Scripts\search\tgallery.js" />
+    <Content Include="Scripts\search\tgallery_002.js" />
+    <Content Include="Scripts\search\tlabs-min.js" />
+    <Content Include="Scripts\search\webww-min.js" />
+    <Content Include="Scripts\sy_sy\aplus_v2.js" />
+    <Content Include="Scripts\sy_sy\bottombar.js" />
+    <Content Include="Scripts\sy_sy\brandbar.js" />
+    <Content Include="Scripts\sy_sy\core%281%29.js" />
+    <Content Include="Scripts\sy_sy\core.js" />
+    <Content Include="Scripts\sy_sy\directpromo-min.js" />
+    <Content Include="Scripts\sy_sy\feedback.js" />
+    <Content Include="Scripts\sy_sy\minilogin-min.js" />
+    <Content Include="Scripts\sy_sy\overlay-min.js" />
+    <Content Include="Scripts\sy_sy\share-min.js" />
+    <Content Include="Scripts\sy_sy\tb-mpp-min.js" />
+    <Content Include="Scripts\sy_sy\template-min.js" />
+    <Content Include="Scripts\sy_sy\tgallery.js" />
+    <Content Include="Scripts\sy_sy\tlabs-min.js" />
+    <Content Include="Scripts\sy_sy\zeroclipboard-min.js" />
+    <Content Include="Scripts\sy_sy\zeroclipboard.js" />
+    <Content Include="Views\Account\Register.aspx" />
+    <Content Include="Views\Account\login.aspx" />
+    <Content Include="Views\Item\Detail.aspx" />
+    <Content Include="Views\Home\Search.aspx" />
+    <Content Include="Views\Home\ssssssy.aspx" />
+    <Content Include="Views\Item\Details.aspx" />
+    <Content Include="Views\Item\Index.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -123,7 +218,7 @@
     <Content Include="Views\Account\ChangePassword.aspx" />
     <Content Include="Views\Account\ChangePasswordSuccess.aspx" />
     <Content Include="Views\Account\LogOn.aspx" />
-    <Content Include="Views\Account\Register.aspx" />
+    <Content Include="Views\Account\Ha_Register.aspx" />
     <Content Include="Views\Home\About.aspx" />
     <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
@@ -136,7 +231,11 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>YikuData.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Scripts\sy_sy\counter6" />
+    <None Include="Scripts\sy_sy\saved_resource%281%29" />
+    <Content Include="Views\Shared\Sudo.Master" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -152,7 +251,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>6158</DevelopmentServerPort>
+          <DevelopmentServerPort>3394</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
