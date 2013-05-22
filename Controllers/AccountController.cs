@@ -10,6 +10,7 @@ using System.Web.Security;
 using Yiku.Models;
 using Yiku.Models.DataBase;
 using System.Security.Cryptography;
+using Yiku.Methods;
 
 namespace Yiku.Controllers
 {
@@ -34,12 +35,13 @@ namespace Yiku.Controllers
         // URL: /Account/LogOn
         // **************************************
 
+        [HttpPost, UserLog(Roles = "UnLog")]
         public ActionResult LogIn()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost,UserLog(Roles="UnLog")]
         public ActionResult LogIn(LogOnModel model, string returnUrl)
         {
             if (yikuData.UserCurrent == null)
