@@ -4,24 +4,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <title>
+        <asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+    </title>
+    
     <link rel="stylesheet" href="../../Content/a_0022.css">
     <link rel="stylesheet" href="../../Content/T1pKTWXcReXXX7spjX.css" type="text/css" media="screen">			
     <link rel="stylesheet" href="../../Content/T10szYXgRaXXX7spjX.css" type="text/css" media="screen">							
     <link rel="stylesheet" href="../../Content/MainPage_.css">
+    <link rel="shortcut icon" href="../../Content/cart.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../../Content/sy.css">
+    <script src="../../Scripts/sy_sy/saved_resource(2)"></script>
+    <link rel="stylesheet" href="../../Content/sy2.css">
 
-    <link rel="shortcut icon" href="http://a.tbcdn.cn/p/mall/base/favicon.ico" type="image/x-icon">
-    <!-- start vmc css-extra 3.1 -->
-    <!-- end vmc css-extra 3.1 -->
-    <!-- start vmc css-global 3.1-->
-    <link rel="stylesheet" href="../../Content/sy.css"><!-- end vmc css-global 3.1-->
-    <!-- start vmc js-global 3.1 -->
-    <script src="../../Models/Scripts/sy_sy/saved_resource(2)"></script>
-   <!-- end vmc js-global 3.1 -->
-
-
-
-<link rel="stylesheet" href="../../Content/sy2.css">
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
 </head>
 
 

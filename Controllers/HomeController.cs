@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Yiku.Models;
+
 
 namespace Yiku.Controllers
 {
@@ -13,7 +15,9 @@ namespace Yiku.Controllers
         {
             ViewData["Message"] = "欢迎使用 ASP.NET MVC!";
 
-            return View();
+            HomeModels hm = new HomeModels();
+
+            return View(hm);
         }
 
         public ActionResult About()

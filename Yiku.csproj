@@ -97,6 +97,7 @@
     <Compile Include="Methods\CurrentUser.cs" />
     <Compile Include="Methods\UserLogAttribute.cs" />
     <Compile Include="Models\ItemModels.cs" />
+    <Compile Include="Models\HomeModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
