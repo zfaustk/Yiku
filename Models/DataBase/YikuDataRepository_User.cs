@@ -49,6 +49,7 @@ namespace Yiku.Models.DataBase
                     user.Consignee = consignee;
                     user.Tel = tel;
                     user.ZipCode = zipcode;
+                    user.ROLE = "User";
                     user.Exist = true;
                     Add(user);
                 }
@@ -84,7 +85,7 @@ namespace Yiku.Models.DataBase
         {
             User user = GetUser(userName);
             if( UserExist(user) )
-                return user.PSW == password;
+                return user.PSW.Trim() == password;
             return false;
         }
 

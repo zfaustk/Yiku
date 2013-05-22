@@ -75,7 +75,7 @@ namespace Yiku.Models.DataBase
             Item ItemCreate(User publisher, string name, string detail, int stock, decimal price, string cutType);
             Item ItemUnable(Item item);
         //item Method Get
-            bool ClassExist(Item item);
+            bool ItemExist(Item item);
             IQueryable<Item> ItemGetRelateds(Item item);
             IQueryable<Item> ItemGetByTime(DateTime timeBegin, DateTime timeEnd);
             IQueryable<Item> ItemGetByPrice(decimal priceMin, decimal priceMax);

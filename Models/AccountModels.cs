@@ -94,7 +94,7 @@ namespace Yiku.Models
         int MinPasswordLength { get; }
 
         bool ValidateUser(string userName, string password);
-        UserCreateStatus CreateUser(string username, string password, string address, string consignee, string tel, string zipcode, bool overwrite = false);
+        UserCreateStatus CreateUser(string username, string password, string passwordComfirm, string address, string consignee, string tel, string zipcode, bool overwrite = false);
         bool ChangePassword(string userName, string oldPassword, string newPassword);
     }
 
@@ -122,14 +122,16 @@ namespace Yiku.Models
             if (String.IsNullOrEmpty(userName)) throw new ArgumentException("值不能为 null 或为空。", "userName");
             if (String.IsNullOrEmpty(password)) throw new ArgumentException("值不能为 null 或为空。", "password");
 
-            return yikuData.ValidateUser(userName, password);
+            return yikuData.ValidateUser(userName, password.Trim());
         }
 
-        public UserCreateStatus CreateUser(string username, string password, string address, string consignee, string tel, string zipcode, bool overwrite = false)
+        public UserCreateStatus CreateUser(string username, string password, string passwordComfirm, string address, string consignee, string tel, string zipcode, bool overwrite = false)
         {
             if (String.IsNullOrEmpty(username)) throw new ArgumentException("值不能为 null 或为空。", "userName");
             if (String.IsNullOrEmpty(password)) throw new ArgumentException("值不能为 null 或为空。", "password");
+            if (String.IsNullOrEmpty(passwordComfirm)) throw new ArgumentException("值不能为 null 或为空。", "passwordComfirm");
 
+            if (password != passwordComfirm) return UserCreateStatus.Faild;
             UserCreateStatus result = yikuData.UserCreate(username, password, address, consignee, tel, zipcode, overwrite);
             yikuData.Save();
             return result;

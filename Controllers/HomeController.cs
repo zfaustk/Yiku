@@ -20,7 +20,7 @@ namespace Yiku.Controllers
         {
             return View();
         }
-        public ActionResult sy()
+        public ActionResult ssssssy()
         {
             return View();
         }
