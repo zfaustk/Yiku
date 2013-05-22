@@ -2730,7 +2730,9 @@ a {
 #popupPanel .ks-stdmod-header {
 	display: none
 }
-#content {
+#content 
+{
+    padding-top: 28px;
 	background: #fff;
 	*zoom: 1
 }
@@ -3191,8 +3193,8 @@ body .tb-shop .layout {
 	*zoom: 1;
 }
 .ui-btn-s-primary,.ui-btn-m-primary,.ui-btn-l-primary {
-	background-color: #950b00;
-	border-color: #950b00;
+	background-color: #C2A548 !important;
+	border-color: #C2A548;
 	color: #fff;
 }
 .ui-btn-s,.ui-btn-m,.ui-btn-l {

@@ -83,10 +83,10 @@ html {
 	background: transparent url(http: //img04.taobaocdn.com/tps/i4/T1TZlJXEdXXXcqmXD0-439-73.png) no-repeat -9999px -9999px
 }
 #site-nav {
-	min-width: 990px;
+	min-width: 90%;
 	width: auto;
 	height: 30px;
-	background-color: #b10000;
+	background-color: #010101;
 	position: relative!important;
 	z-index: 99999
 }
@@ -94,7 +94,7 @@ html {
 	display: none
 }
 #sn-bd {
-	width: 990px;
+	width: 90%;
 	margin: auto;
 	position: relative;
 	*zoom: 1
