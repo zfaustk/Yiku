@@ -32,16 +32,15 @@ namespace Yiku.Controllers
         }
 
         // **************************************
-        // URL: /Account/LogOn
+        // URL: /Account/LogIn
         // **************************************
 
-        [HttpPost, UserLog(Roles = "UnLog")]
         public ActionResult LogIn()
         {
             return View();
         }
 
-        [HttpPost,UserLog(Roles="UnLog")]
+        [HttpPost]
         public ActionResult LogIn(LogOnModel model, string returnUrl)
         {
             if (yikuData.UserCurrent == null)
