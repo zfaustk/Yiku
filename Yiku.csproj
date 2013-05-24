@@ -107,6 +107,7 @@
     </Content>
     <Content Include="Content\a.css" />
     <Content Include="Content\a2.css" />
+    <Content Include="Content\appconfig.css" />
     <Content Include="Content\a_002.css" />
     <Content Include="Content\a_0022.css" />
     <Content Include="Content\list\banshi.css" />
@@ -115,6 +116,7 @@
     <Content Include="Content\list\bought.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\MainPage_.css" />
+    <Content Include="Content\pro\pf-base.css" />
     <Content Include="Content\register.css" />
     <Content Include="Content\shoppingtrolley\a.css" />
     <Content Include="Content\shoppingtrolley\cart-min.css" />
@@ -122,7 +124,7 @@
     <Content Include="Content\sy2.css" />
     <Content Include="Content\T10szYXgRaXXX7spjX.css" />
     <Content Include="Content\T1pKTWXcReXXX7spjX.css" />
-    <Content Include="Content\trade\orderConfirm-min.css" />
+    <Content Include="Content\pro\orderConfirm-min.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\item\03054.js" />
     <Content Include="Scripts\item\a.js" />
@@ -158,6 +160,7 @@
     <Content Include="Scripts\item\tb-mpp-min.js" />
     <Content Include="Scripts\item\tlabs-min.js" />
     <Content Include="Scripts\item\webww-min.js" />
+    <Content Include="Scripts\list\base.js" />
     <Content Include="Scripts\search\a.js" />
     <Content Include="Scripts\search\adapter-min.js" />
     <Content Include="Scripts\search\aplus_v2.js" />
@@ -200,8 +203,13 @@
     <Content Include="Views\Account\login.aspx" />
     <Content Include="Views\Home\cart.aspx" />
     <Content Include="Views\Home\list.aspx" />
+    <Content Include="Views\Home\profile.aspx" />
+    <Content Include="Views\Home\sell.aspx" />
+    <Content Include="Views\Home\selllist.aspx" />
+    <Content Include="Views\Home\sellorder.aspx" />
     <Content Include="Views\Home\trade.aspx" />
     <Content Include="Views\Home\tradeok.aspx" />
+    <Content Include="Views\Home\collect.aspx" />
     <Content Include="Views\Item\Detail.aspx" />
     <Content Include="Views\Home\Search.aspx" />
     <Content Include="Views\Home\ssssssy.aspx" />
@@ -250,7 +258,9 @@
     <None Include="Scripts\sy_sy\saved_resource%281%29" />
     <Content Include="Views\Shared\Sudo.Master" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Content\trade\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
