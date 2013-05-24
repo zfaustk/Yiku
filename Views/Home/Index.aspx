@@ -13,7 +13,7 @@
     
     <div id="content">
 	    
-        <input type="hidden" value="7J9nT6FrXi2h" id="J_TbToken" />
+    <input type="hidden" value="7J9nT6FrXi2h" id="J_TbToken" />
         
     <div class="brandCon">
         <div class="brandFp">
