@@ -2021,13 +2021,17 @@ namespace Yiku.Models.DataBase
         /// <param name="name">Name 属性的初始值。</param>
         /// <param name="point">Point 属性的初始值。</param>
         /// <param name="exist">Exist 属性的初始值。</param>
-        public static User CreateUser(global::System.Int32 uID, global::System.String name, global::System.Int64 point, global::System.Boolean exist)
+        /// <param name="pSW">PSW 属性的初始值。</param>
+        /// <param name="rOLE">ROLE 属性的初始值。</param>
+        public static User CreateUser(global::System.Int32 uID, global::System.String name, global::System.Int64 point, global::System.Boolean exist, global::System.String pSW, global::System.String rOLE)
         {
             User user = new User();
             user.UID = uID;
             user.Name = name;
             user.Point = point;
             user.Exist = exist;
+            user.PSW = pSW;
+            user.ROLE = rOLE;
             return user;
         }
 
@@ -2229,6 +2233,54 @@ namespace Yiku.Models.DataBase
         private global::System.Boolean _Exist;
         partial void OnExistChanging(global::System.Boolean value);
         partial void OnExistChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String PSW
+        {
+            get
+            {
+                return _PSW;
+            }
+            set
+            {
+                OnPSWChanging(value);
+                ReportPropertyChanging("PSW");
+                _PSW = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("PSW");
+                OnPSWChanged();
+            }
+        }
+        private global::System.String _PSW;
+        partial void OnPSWChanging(global::System.String value);
+        partial void OnPSWChanged();
+    
+        /// <summary>
+        /// 没有元数据文档可用。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ROLE
+        {
+            get
+            {
+                return _ROLE;
+            }
+            set
+            {
+                OnROLEChanging(value);
+                ReportPropertyChanging("ROLE");
+                _ROLE = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ROLE");
+                OnROLEChanged();
+            }
+        }
+        private global::System.String _ROLE;
+        partial void OnROLEChanging(global::System.String value);
+        partial void OnROLEChanged();
 
         #endregion
 

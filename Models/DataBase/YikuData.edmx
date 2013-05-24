@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="YikuDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="YikuDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="YikuDataModelStoreContainer">
           <EntitySet Name="Class" EntityType="YikuDataModel.Store.Class" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Item" EntityType="YikuDataModel.Store.Item" store:Type="Tables" Schema="dbo" />
@@ -141,6 +141,8 @@
           <Property Name="Tel" Type="char" MaxLength="15" />
           <Property Name="ZipCode" Type="char" MaxLength="10" />
           <Property Name="Exist" Type="bit" Nullable="false" />
+          <Property Name="PSW" Type="nchar" Nullable="false" MaxLength="30" />
+          <Property Name="ROLE" Type="nchar" Nullable="false" MaxLength="20" />
         </EntityType>
         <Association Name="FK_Class_Class">
           <End Role="Class" Type="YikuDataModel.Store.Class" Multiplicity="0..1" />
@@ -274,7 +276,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="YikuDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -431,11 +434,13 @@
           <Property Name="Consignee" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="Tel" Type="String" MaxLength="15" Unicode="false" FixedLength="true" />
           <Property Name="ZipCode" Type="String" MaxLength="10" Unicode="false" FixedLength="true" />
+          <Property Name="Exist" Type="Boolean" Nullable="false" />
+          <Property Name="PSW" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="true" />
+          <Property Name="ROLE" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
           <NavigationProperty Name="Items" Relationship="YikuDataModel.FK_Item_Publisher" FromRole="User" ToRole="Item" />
           <NavigationProperty Name="Orders" Relationship="YikuDataModel.FK_Order_User" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="T_Collection" Relationship="YikuDataModel.FK_T_Collection_User" FromRole="User" ToRole="T_Collection" />
           <NavigationProperty Name="T_Shopping" Relationship="YikuDataModel.FK_T_Shopping_User" FromRole="User" ToRole="T_Shopping" />
-          <Property Type="Boolean" Name="Exist" Nullable="false" />
         </EntityType>
         <Association Name="FK_Class_Class">
           <End Role="Class" Type="YikuDataModel.ClassM" Multiplicity="0..1" />
@@ -655,7 +660,6 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="YikuDataModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Exist" ColumnName="Exist" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Point" ColumnName="Point" />
@@ -663,6 +667,9 @@
                 <ScalarProperty Name="Consignee" ColumnName="Consignee" />
                 <ScalarProperty Name="Tel" ColumnName="Tel" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Exist" ColumnName="Exist" />
+                <ScalarProperty Name="PSW" ColumnName="PSW" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -686,61 +693,70 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="YikuData" ZoomLevel="55">
-        <EntityTypeShape EntityType="YikuDataModel.ClassM" Width="1.5" PointX="9.75" PointY="6.5" Height="2.1610522460937496" IsExpanded="true" />
-        <EntityTypeShape EntityType="YikuDataModel.Item" Width="1.5" PointX="6" PointY="6.5" Height="4.0712491861979148" IsExpanded="true" />
-        <EntityTypeShape EntityType="YikuDataModel.Order" Width="1.5" PointX="4.125" PointY="6.5" Height="2.9251310221354148" IsExpanded="true" />
-        <EntityTypeShape EntityType="YikuDataModel.Picture" Width="1.5" PointX="7.875" PointY="8.75" Height="1.7790128580729174" IsExpanded="true" />
-        <EntityTypeShape EntityType="YikuDataModel.T_Classify" Width="1.5" PointX="7.875" PointY="6.5" Height="1.9700325520833317" IsExpanded="true" />
-        <EntityTypeShape EntityType="YikuDataModel.T_Collection" Width="1.5" PointX="2.375" PointY="4.125" Height="1.9700325520833317" IsExpanded="true" />
-        <EntityTypeShape EntityType="YikuDataModel.T_Shopping" Width="1.5" PointX="2.375" PointY="10.125" Height="2.3520719401041674" IsExpanded="true" />
-        <EntityTypeShape EntityType="YikuDataModel.User" Width="1.5" PointX="2.375" PointY="6.5" Height="3.1161507161458317" IsExpanded="true" />
+      <Diagram Name="YikuData" ZoomLevel="60">
+        <EntityTypeShape EntityType="YikuDataModel.ClassM" Width="1.5" PointX="16.625" PointY="6.5" Height="2.1610522460937496" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.Item" Width="1.5" PointX="12.875" PointY="6.5" Height="4.0712491861979148" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.Order" Width="1.5" PointX="10" PointY="6.5" Height="2.9251310221354148" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.Picture" Width="1.5" PointX="14.75" PointY="8.75" Height="1.7790128580729174" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.T_Classify" Width="1.5" PointX="14.75" PointY="6.5" Height="1.9700325520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.T_Collection" Width="1.5" PointX="10" PointY="10.375" Height="1.9700325520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.T_Shopping" Width="1.5" PointX="7.75" PointY="3.375" Height="2.3520719401041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="YikuDataModel.User" Width="1.5" PointX="7.75" PointY="6.625" Height="3.6892097981770817" IsExpanded="true" />
         <AssociationConnector Association="YikuDataModel.FK_Class_Class" ManuallyRouted="false">
-          <ConnectorPoint PointX="10.281923076923077" PointY="8.66105224609375" />
-          <ConnectorPoint PointX="10.281923076923077" PointY="8.91105224609375" />
-          <ConnectorPoint PointX="10.728461538461538" PointY="8.91105224609375" />
-          <ConnectorPoint PointX="10.728461538461538" PointY="8.66105224609375" />
+          <ConnectorPoint PointX="17.156923076923075" PointY="8.66105224609375" />
+          <ConnectorPoint PointX="17.156923076923075" PointY="8.91105224609375" />
+          <ConnectorPoint PointX="17.603461538461538" PointY="8.91105224609375" />
+          <ConnectorPoint PointX="17.603461538461538" PointY="8.66105224609375" />
         </AssociationConnector>
         <AssociationConnector Association="YikuDataModel.FK_T_Classify_Class" ManuallyRouted="false">
-          <ConnectorPoint PointX="9.75" PointY="7.4850162760416659" />
-          <ConnectorPoint PointX="9.375" PointY="7.4850162760416659" />
+          <ConnectorPoint PointX="16.625" PointY="7.4850162760416659" />
+          <ConnectorPoint PointX="16.25" PointY="7.4850162760416659" />
         </AssociationConnector>
         <AssociationConnector Association="YikuDataModel.FK_Item_Publisher" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.875" PointY="9.5518908691406228" />
-          <ConnectorPoint PointX="6" PointY="9.5518908691406228" />
+          <ConnectorPoint PointX="9.25" PointY="9.9009204101562478" />
+          <ConnectorPoint PointX="12.875" PointY="9.9009204101562478" />
         </AssociationConnector>
         <AssociationConnector Association="YikuDataModel.FK_Order_Item" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="7.9625655110677069" />
-          <ConnectorPoint PointX="5.625" PointY="7.9625655110677069" />
+          <ConnectorPoint PointX="12.875" PointY="7.9625655110677069" />
+          <ConnectorPoint PointX="11.5" PointY="7.9625655110677069" />
         </AssociationConnector>
         <AssociationConnector Association="YikuDataModel.FK_Picture_Item" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="9.6395064290364587" />
-          <ConnectorPoint PointX="7.875" PointY="9.6395064290364587" />
+          <ConnectorPoint PointX="14.375" PointY="9.6395064290364587" />
+          <ConnectorPoint PointX="14.483666666666666" PointY="9.6395064290364587" />
+          <ConnectorPoint PointX="14.650333333333334" PointY="9.6395064290364587" />
+          <ConnectorPoint PointX="14.75" PointY="9.6395064290364587" />
         </AssociationConnector>
         <AssociationConnector Association="YikuDataModel.FK_T_Classify_Item" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="7.4850162760416659" />
-          <ConnectorPoint PointX="7.875" PointY="7.4850162760416659" />
+          <ConnectorPoint PointX="14.375" PointY="7.4850162760416659" />
+          <ConnectorPoint PointX="14.75" PointY="7.4850162760416659" />
         </AssociationConnector>
         <AssociationConnector Association="YikuDataModel.FK_T_Collection_Item" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.4671872132746344" PointY="6.5" />
-          <ConnectorPoint PointX="6.4671872132746344" PointY="5.1100162760416659" />
-          <ConnectorPoint PointX="3.875" PointY="5.1100162760416659" />
+          <ConnectorPoint PointX="14.375" PointY="8.3823275327725852" />
+          <ConnectorPoint PointX="14.567" PointY="8.3823275327725852" />
+          <ConnectorPoint PointX="14.567" PointY="11.489390369140622" />
+          <ConnectorPoint PointX="11.5" PointY="11.489390369140622" />
         </AssociationConnector>
         <AssociationConnector Association="YikuDataModel.FK_T_Shopping_Item" ManuallyRouted="false">
-          <ConnectorPoint PointX="6" PointY="10.348124593098957" />
-          <ConnectorPoint PointX="3.875" PointY="10.348124593098957" />
+          <ConnectorPoint PointX="13.625" PointY="6.5" />
+          <ConnectorPoint PointX="13.625" PointY="4.5510359700520837" />
+          <ConnectorPoint PointX="9.25" PointY="4.5510359700520837" />
         </AssociationConnector>
         <AssociationConnector Association="YikuDataModel.FK_Order_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.875" PointY="7.9625655110677069" />
-          <ConnectorPoint PointX="4.125" PointY="7.9625655110677069" />
+          <ConnectorPoint PointX="9.25" PointY="8.0250655110677069" />
+          <ConnectorPoint PointX="10" PointY="8.0250655110677069" />
         </AssociationConnector>
-        <AssociationConnector Association="YikuDataModel.FK_T_Collection_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.125" PointY="6.5" />
-          <ConnectorPoint PointX="3.125" PointY="6.0950325520833317" />
+        <AssociationConnector Association="YikuDataModel.FK_T_Collection_User" ManuallyRouted="true">
+          <ConnectorPoint PointX="7.75" PointY="7.319452373818387" />
+          <ConnectorPoint PointX="6.5677089242057445" PointY="7.319452373818387" />
+          <ConnectorPoint PointX="6.5677089242057445" PointY="11.360016276041666" />
+          <ConnectorPoint PointX="10" PointY="11.360016276041666" />
         </AssociationConnector>
-        <AssociationConnector Association="YikuDataModel.FK_T_Shopping_User" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.125" PointY="9.6161507161458317" />
-          <ConnectorPoint PointX="3.125" PointY="10.125" />
+        <AssociationConnector Association="YikuDataModel.FK_T_Shopping_User" ManuallyRouted="true">
+          <ConnectorPoint PointX="7.75" PointY="7.3431644463946686" />
+          <ConnectorPoint PointX="6.4956600204179011" PointY="7.3431644463946686" />
+          <ConnectorPoint PointX="6.4956600204179011" PointY="6.375" />
+          <ConnectorPoint PointX="8.5" PointY="6.375" />
+          <ConnectorPoint PointX="8.5" PointY="5.7270719401041674" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

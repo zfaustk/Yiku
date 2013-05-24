@@ -28,7 +28,7 @@ namespace Yiku.Models.DataBase
         public IQueryable<ClassM> GetRootClasses()
         {
             return from c in yikuData.ClassMs
-                   where c.FatherID == null || c.FatherID == 1
+                   where (c.FatherID == null || c.FatherID == 1) && c.CID != 1
                    select c;
         }
 
