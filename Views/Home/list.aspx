@@ -12,7 +12,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-<div id="page" style="width:990px;">
+<div id="page" style="width:990px;height:700px;">
     <!--
 <style>
 .mt-header{
@@ -26,7 +26,7 @@ margin-top:10px !important;
 -->
  
 <link rel="stylesheet" href="../../Content/list/banshi.css">
-<script type="text/javascript" src="http://a.tbcdn.cn/apps/mytaobao/3.0/mt/base/base.js?t=20130514.js"></script>
+<script type="text/javascript" src="../../Script/list/base.js"></script>
 <style>
 #Content .main-wrap,
 #content .main-wrap {
@@ -58,11 +58,9 @@ margin-left: -100%;
 <div id="main-content">
 <div class="navigation">
  <div class="crumbs " data-spm="6">
- <a href="http://i.taobao.com/my_taobao.jhtml?seller=false&amp;single=true">我是买家</a><span>&gt;</span><a href="http://trade.taobao.com/trade/itemlist/list_bought_items.htm?nekot=E2kdS8">交易管理</a><span>&gt;</span>已买到的宝贝
+ <span>&gt;</span><span>&gt;</span>订单管理
  </div>
   <div class="msg view-help">
- <p class="help naked"><a href="http://service.taobao.com/support/help-12010.htm" target="_blank">查看帮助</a>
- </p>
  </div>
 </div>
 <div class="remide-box" id="J_Remide" data-spm="7"> 
@@ -498,59 +496,24 @@ margin-left: -100%;
 <dl class="mt-menu-item" data-spm="a2109">
 <dt class="fs14">我的交易</dt>
 <dd>
-<a href="http://cart.taobao.com/my_cart.htm?nekot=1369316320448" target="_blank" role="menuitem" data-spm="d1000367">我的购物车</a>
+<a href="./profile"  role="menuitem" data-spm="d1000367">个人信息管理</a>
 </dd>
 <dd class="mt-menu-sub unfold J_MtSideTree">
-<b class="mt-indicator J_MtIndicator">-</b>
-<a id="bought" href="http://trade.taobao.com/trade/itemlist/list_bought_items.htm?nekot=1369316320448" data-spm="d1000368" class="selected">已买到的宝贝</a>
-<ul class="mt-menu-sub-content">
-<li id="jinpai">
-<a href="http://paimai.taobao.com/auctionList/my_auction_list.htm?nekot=1369316320448" data-spm="d1000369">我的拍卖</a>
-</li>
-<li id="jipiao">
-<a href="http://jipiao.trip.taobao.com/order_manager.htm?nekot=1369316320448" role="menuitem" data-spm="d1000370">机票酒店保险</a>
-</li>
-<li id="caipiao">
-<a href="http://caipiao.taobao.com/lottery/order/my_all_lottery_order.htm?nekot=1369316320448" data-spm="d1000371">我的彩票</a>
-</li>
-<li id="gamebuy">
-<a href="http://cgtrade.taobao.com/trade/gametrd/list_bought_items.htm?nekot=1369316320448" data-spm="d1000372">我的网游</a>
-</li>
-<li id="ebookbuy">
-<a href="http://ebook.taobao.com/myebook/my_items_list.htm?nekot=1369316320448" data-spm="d1000384">我的电子书</a>
-</li>
-</ul>
+<a id="bought" href="./list" data-spm="d1000368" class="selected">已买到的宝贝</a>
 </dd>
-<dd id="boughtShop"><a href="http://favorite.taobao.com/bought_shop_list.htm?itemtype=0&amp;nekot=1369316320448" data-spm="d1000373">购买过的店铺</a></dd>
-<dd id="favorite"><a href="http://favorite.taobao.com/collectList.htm?nekot=1369316320448" data-spm="d1000374">我的收藏</a></dd>
-<dd id="point"><a href="http://vip.tmall.com/point/my_point_detail.htm?nekot=1369316320448" target="_blank" data-spm="d1000375">我的积分</a></dd>
-<dd id="gotBonus"><a href="http://ecrm.taobao.com/mallcoupon/got_bonus.htm?nekot=1369316320448" data-spm="d1000376">我的优惠卡券</a></dd>
-<dd id="myRate"><a href="http://rate.taobao.com/myRate.htm?nekot=1369316320448" data-spm="d1000377">评价管理</a></dd>
-<dd class="mt-menu-sub fold J_MtSideTree">
-<b class="mt-indicator J_MtIndicator">+</b>
-<a class="J_MtIndicator" href="#" data-spm="d1000378">退款维权</a>
-<ul class="mt-menu-sub-content">
-<li id="refundList">
-<a href="http://refund.taobao.com/refund_list.htm?nekot=1369316320448" data-spm="d1000379">退款管理</a>
-</li>
-<li id="rightManager">
-<a href="http://support.taobao.com/myservice/aftersales/buyer_rights_list.htm?nekot=1369316320448" data-spm="d1000380">售后管理</a>
-</li>
-<li id="rulesManager">
-<a href="http://support.taobao.com/myservice/rules/buyer_rules_list.htm?nekot=1369316320448" data-spm="d1000383">投诉管理</a>
-</li>
-<li id="postedSuit">
-<a href="http://archer.taobao.com/myservice/report/report_i_posted_list.htm?type=2&amp;user_role=2&amp;isarchive=false&amp;nekot=1369316320448" data-spm="d1000381">举报管理</a>
-</li>
-<li id="leaveWord">
-<a href="http://service.taobao.com/support/leave_word_list.htm?nekot=1369316320448" data-spm="d1000382">咨询/回复</a>
-</li>
-</ul>
-</dd>
+<dd id="favorite"><a href="./collect" data-spm="d1000374">我的收藏</a></dd>
+
+
+<dt class="fs14">我是卖家</dt>
+<dd id="point"><a href="./sell" data-spm="d1000375">宝贝管理</a></dd>
+<dd id="gotBonus"><a href="./selllist" data-spm="d1000376">订单管理</a></dd>
+<dd id="myRate"><a href="./sellorder" data-spm="d1000377">订单确认</a></dd>
 </dl>
 </div>
 </aside> 
  </div>
  </div>
  </div>
+
+
 </asp:Content>
