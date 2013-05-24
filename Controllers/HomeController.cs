@@ -36,5 +36,42 @@ namespace Yiku.Controllers
         {
             return View();
         }
+        public ActionResult cart()
+        {
+            return View();
+        }
+        public ActionResult trade()
+        {
+            return View();
+        }
+        public ActionResult tradeok()
+        {
+            return View();
+        }
+        public ActionResult list()
+        {
+            return View();
+        }
+        public ActionResult profile()
+        {
+            return View();
+        }
+        public ActionResult collect()
+        {
+            return View();
+        }
+        public ActionResult selllist()
+        {
+            return View();
+        }
+        public ActionResult sell()
+        {
+            return View();
+        }
+        public ActionResult sellorder()
+        {
+            return View();
+        }
+
     }
 }
