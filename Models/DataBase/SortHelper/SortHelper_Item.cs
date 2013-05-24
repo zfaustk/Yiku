@@ -20,23 +20,23 @@ namespace Yiku.Models.DataBase
             {
                 case OrderHelper_Item_Enum.ID:
                     return ByID(items);
-                    break;
+
                 case OrderHelper_Item_Enum.Price:
                     return ByPrice(items);
-                    break;
+
                 case OrderHelper_Item_Enum.Publisher:
                     return ByPublisher(items);
-                    break;
+
                 case OrderHelper_Item_Enum.Stock:
                     return ByStock(items);
-                    break;
+
                 case OrderHelper_Item_Enum.Time:
                     return ByTime(items);
-                    break;
+
                 case OrderHelper_Item_Enum.Volume:
                     return ByVolume(items);
-                    break;
-                default: return ByID(items); break;
+
+                default: return ByID(items); 
             }
         }
 
