@@ -145,13 +145,14 @@ namespace Yiku.Models
 
             try
             {
-                if (yikuData.UserCurrent.Name == userName)
-                {
-                    bool result = yikuData.UserChangePassword(yikuData.UserCurrent, oldPassword, newPassword);
-                    yikuData.Save();
+                bool result = yikuData.UserChangePassword(yikuData.UserCurrent, oldPassword, newPassword);
+                yikuData.Save();
+                if(result){
                     return result;
                 }
-                return false;
+                else{
+                    throw new ArgumentException("验证失败", "newPassword");
+                }
             }
             catch (ArgumentException)
             {

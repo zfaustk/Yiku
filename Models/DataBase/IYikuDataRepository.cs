@@ -83,6 +83,7 @@ namespace Yiku.Models.DataBase
             IQueryable<Item> ItemGetByStock(int stockMin, int stockMax);
             IQueryable<Item> ItemGetByBuyer(User buyer);
             IQueryable<Item> ItemGetBySeller(User seller);
+            IQueryable<Item> ItemGetByExist(bool exist = true);
             //--item Method Search
             IQueryable<Item> ItemSearchByNameAndDetail(string searchString);
         //item Method Get <itorate>
@@ -93,6 +94,7 @@ namespace Yiku.Models.DataBase
             IQueryable<Item> ItemGetByStock(IQueryable<Item> items, int stockMin, int stockMax);
             IQueryable<Item> ItemGetByBuyer(IQueryable<Item> items, User buyer);
             IQueryable<Item> ItemGetBySeller(IQueryable<Item> items, User seller);
+            IQueryable<Item> ItemGetByExist(IQueryable<Item> items, bool exist = true);
             //--item Method Search <itorate>
             IQueryable<Item> ItemSearchByNameAndDetail(IQueryable<Item> items, string searchString);
         //item Method Sort
@@ -132,6 +134,7 @@ namespace Yiku.Models.DataBase
             IQueryable<Picture> GetPictures(Item item);
         //Picture Method Set
             Picture PictureCreate(Item item, string route);
+            void PictureRemoveAll(Item item);
         //Picture Method Get
             bool PictureExist(Picture picture);
         

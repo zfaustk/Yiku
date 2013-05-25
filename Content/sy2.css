@@ -1809,7 +1809,7 @@ li.brandSlide-active {
 	margin:0 7px;
 	height:100%;
 	background-position:0 32px;
-	font-family:\5fae \8f6f \96c5 \9ed1
+	font-family:"5fae 8f6f 96c5 9ed1"
 }
 .bQN-list a:hover {
 	background:#333;
@@ -2277,4 +2277,13 @@ a.azList-addBtn {
 }
 .azFilter-search-input:focus {
 	outline:0;
+}
+
+
+
+/*--------------------------------------*/
+._ItemPic
+{
+    width: 280px;
+
 }

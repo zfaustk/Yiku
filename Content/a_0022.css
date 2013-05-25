@@ -2273,8 +2273,8 @@ body
 #tm-bd {
 	background: #fff
 }
-a {
-	color: #fff
+a.white{
+	color: #fff !important;
 }
 .H {
 	color: #f50!important
@@ -3978,7 +3978,8 @@ button.ui-btn-l-primary,button.ui-btn-l {
 	margin: 5px;
 }
 .grid .more-items a {
-	float: right;
+	background-position: 0% 0%;
+    float: right;
 	width: 80px;
 	height: 20px;
 	margin-left: 12px;
@@ -3989,11 +3990,11 @@ button.ui-btn-l-primary,button.ui-btn-l {
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	background: #f60;
-	background-image: -moz-linear-gradient(top,#ffb75a,#f60);
-	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#ffb75a),color-stop(1,#f60));
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorStr='#ffb75a',EndColorStr='#ff6600');
 	-ms-filter: "progid: DXImageTransform.Microsoft.gradient(startColorStr='#ffb75a',EndColorStr='#ff6600')";
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#ffb75a),color-stop(1,#f60));
+    background-color: #f60;
+    background-repeat: repeat;
+    background-attachment: scroll;
 }
 .col-sub .shop-display .bd {
 	padding: 0;
@@ -4053,10 +4054,8 @@ button.ui-btn-l-primary,button.ui-btn-l {
 	display: inline-block;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	background-image: -moz-linear-gradient(top,#fef7ca,#fff3a9);
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#fef7ca),color-stop(1,#fff3a9));
-	filter: progid: DXImageTransform.Microsoft.gradient(startColorStr='#fef7ca',EndColorStr='#fff3a9');
-}
+	}
 .shop-rank .no-collect a,.shop-rank .no-traded a {
 	line-height: 26px;
 	text-decoration: none;
@@ -10068,4 +10067,26 @@ a.bts-btn {
 }
 .shop-list .price strong {
 	background-position: -3px -306px;
+}
+
+
+
+
+._YIKU_Button {
+	width: 60px;
+	border: 1px solid #EEE;
+	font-size: 12px;
+	font-weight: bold;
+	cursor: pointer;
+	color: #fff;
+	background-color: #CB6;
+	line-height: 30px;
+	padding-bottom: 5px;
+	margin: 10px 10px 10px 10px;
+	height: 30px;
+	overflow: hidden;
+}
+._YIKU_Button: hover{
+	background-color: #866150;
+	width:100px;
 }

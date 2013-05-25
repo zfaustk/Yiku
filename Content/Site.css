@@ -342,3 +342,10 @@ div#title
 {
     width: 6em;
 }
+/*----------------------------------*/
+
+._ItemPic
+{
+    width: 460px;
+    height: 370px;
+}

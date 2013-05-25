@@ -12,45 +12,24 @@
     %>
     
     <ul class="sn-quick-menu">
-        <li class="sn-seller j_SellerCenter">
-            <a target="_top" href="#"> <b>
-                <%: Page.User.Identity.Name %>的依库</b>
-            </a>
-            
-            <%: Html.ActionLink("登出", "LogOff", "Account") %>
-        </li>
-        <li class="sn-seller j_SellerCenter">
-            <a target="_top" href="http://mai.taobao.com/seller_admin.htm">商家中心</a>
+        <li class="sn-mybrand">
+            <%: Html.ActionLink(Page.User.Identity.Name + "的依库", "Index", "MyYiku", null, new { target="_top" , Class = "white" })%>            
+            <%: Html.ActionLink("登出", "LogOff", "Account", null, new { Class = "white" })%>
         </li>
         <li class="sn-mybrand">
-            <a href="Item/Buy" target="_top" rel="nofollow">已卖出的宝贝</a>
+            <%: Html.ActionLink("已卖出的商品", "sell", "MyYiku", null, new { target = "_top", Class = "white" })%>    
         </li>
         <li class="sn-mybrand">
-            <a href="Item/Sold" target="_top" rel="nofollow">已买到的宝贝</a>
+            <%: Html.ActionLink("已买到的商品", "trade", "MyYiku", null, new { target = "_top", Class = "white" })%>    
         </li>
-        <li class="cart mini-cart menu">
-                
-                
-            <a id="mc-menu-hd" class="menu-hd" href="ShoppingCar" target="_top" rel="nofollow">
-                <span class="mini-cart-line"></span>
-                <s></s>购物车
-                <span class="mc-count mc-pt3">0</span>件
-            </a>
+        <li class="sn-mybrand">
+            <%: Html.ActionLink("购物车", "Cart", "MyYiku", null, new { target = "_top", Class = "white" })%>
         </li>
-        <li class="sn-favorite menu-item">
-            <div class="sn-menu">
-                <a aria-label="右键弹出菜单，tab键导航，esc关闭当前菜单" aria-haspopup="menu-292" tabindex="0" class="menu-hd" href="Collector" target="_top" rel="nofollow">收藏夹<b></b></a>
-
-                <div id="menu-292" aria-hidden="true" role="menu" class="menu-bd">
-                    <div class="menu-bd-panel">
-                            <a href="http://favorite.taobao.com/collect_list.htm?itemtype=1" target="_top" rel="nofollow">收藏的宝贝</a>
-                            <a href="http://favorite.taobao.com/collect_list.htm?itemtype=0" target="_top" rel="nofollow">收藏的店铺</a>   
-                    </div>
-                </div>
-            </div>
+        <li class="sn-mybrand">
+            <%: Html.ActionLink("收藏的商品", "Collect", "MyYiku", null, new { target = "_top", Class = "white" })%>  
         </li>
         <li class="sn-home">
-            <a href="Home/">依库网</a>
+            <a href="../Home/" Class = "white">依库网</a>
         </li>
         
     </ul>
@@ -60,8 +39,8 @@
         else {
     %> 
     <p id="login-info" class="sn-login-info">喵，欢迎来依库！
-        <%: Html.ActionLink("请登录", "LogIn", "Account") %>
-        <%: Html.ActionLink("免费注册", "Register", "Account")%>
+        <%: Html.ActionLink("请登录", "LogIn", "Account", null,new {Class = "white"}) %>
+        <%: Html.ActionLink("免费注册", "Register", "Account", null, new { Class = "white" })%>
         <i class="sn-separator"></i>
     </p>
     <%

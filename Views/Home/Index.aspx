@@ -6,6 +6,12 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
     <link rel="stylesheet" href="../../Content/a_002.css">
+    <style>
+    .mt-header 
+    {
+        display:none !important;
+    }
+    </style>
 </asp:Content>
 
 
@@ -18,7 +24,7 @@
     <div class="brandCon">
         <div class="brandFp">
             <div class="brandFp-nav">
-                <ul class="bF-navList" data-spm="“3.272134.263213”">
+                <ul class="bF-navList" >
             
                     <% foreach(var classm in Model.rootClasses){ %>
 		            <li class="bFnL-item">
@@ -30,7 +36,6 @@
                             <% foreach (var cl in Model.sonClasses(classm))
                                 { %>
                                 <%: Html.ActionLink(cl.Name, "Item", new { Cl = cl.CID })%>
-
                             <%} %>                    
                         </div>
                     </li>

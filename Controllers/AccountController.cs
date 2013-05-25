@@ -96,8 +96,16 @@ namespace Yiku.Controllers
             {
                 // 尝试注册用户
                 UserCreateStatus createResult 
-                    = 
-                    MembershipService.CreateUser(model.UserName, model.Password, model.ConfirmPassword, model.Address, model.Consignee, model.Tel, model.Zipcode);
+                    =
+                    MembershipService.CreateUser(
+                        model.UserName.Trim()
+                        , model.Password.Trim()
+                        , model.ConfirmPassword.Trim()
+                        , model.Address.Trim()
+                        , model.Consignee.Trim()
+                        , model.Tel.Trim()
+                        , model.Zipcode.Trim()
+                    );
 
                 if (createResult == UserCreateStatus.Succeed)
                 {
