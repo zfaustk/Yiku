@@ -4,7 +4,7 @@
     <%: Model.item.Name ?? "商品详情"%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <% if (Model != null)
+    <% if (Model != null && Model.Exist)
        { %>
     <div id="detail">
         <div id="J_DetailMeta" class="tb-detail-bd tm-clear">
@@ -19,8 +19,9 @@
                             <li class="tb-detail-price tm-clear" id="J_StrPriceModBox"><span class="tb-metatit">
                                 价格</span> <span class="tm-yen">&#165;</span> <strong id="J_StrPrice">
                                     <%: String.Format("{0:f}",Model.item.Price) %></strong> <span class="tb-11-tagTip"
-                                        id="J_Tb-11-tagTip">(专柜价<strong class="del"><%: String.Format("{0:f}",Model.item.Price * 2 + 10) %></strong>元，
-                                        <a href="#" target="_blank">什么是专柜价？</a>) </span><span class="tm-mjsTarget J_PromArrow"
+                                        id="J_Tb-11-tagTip">(专柜价<strong class="del">
+                                            <%: String.Format("{0:f}",Model.item.Price * 2 + 10) %>
+                                        </strong>元， <a href="#" target="_blank">什么是专柜价？</a>) </span><span class="tm-mjsTarget J_PromArrow"
                                             data-type="mjslist">店铺活动 <span class="tb-arrow"></span></span>
                                 <div id="J_MoreMjsSlider" class="tm-promo-slider">
                                     <p>
@@ -36,9 +37,9 @@
                             <li class="tb-delivery tm-clear" id="J_RSPostageCont"><span class="tb-metatit">配送</span>
                                 <div class="tb-postAge">
                                     <span id="J_deliveryAdd" class="tb-deliveryAdd">
-                                        <%: Model.CurrentUser.Address ?? "卖家" %></span>至 <a id="J_dqPostAgeCont" href="#"
+                                        <%: Model.item.User.Address ?? "卖家" %></span>至 <a id="J_dqPostAgeCont" href="#"
                                             class="tb-postAgeCont">
-                                            <%: Model.CurrentUser.Address ?? "买家" %></a>
+                                            <%: (Model.CurrentUser != null) ? Model.CurrentUser.Address ?? "买家" : "买家"%></a>
                                     <div id="J_PostageToggleCont" class="tb-postAge-info">
                                         <span class="tb-deliveryAdd">快递: 卖家包邮 </span>
                                     </div>
@@ -106,8 +107,6 @@
                 </div>
             </div>
         </div>
-
-        
         <div id="bd" class="tb-shop">
             <div class="layout grid-s5m0">
                 <div class="col-main tm-clear clearfix">

@@ -486,6 +486,15 @@ namespace Yiku.Models.DataBase
     [DataContractAttribute(IsReference=true)]
     public partial class Item : EntityObject
     {
+
+        public string thePictureRoute {
+            get
+            {
+                Picture p = Pictures.SingleOrDefault(pic => pic.IID == _IID);
+                return p.Route;
+            }
+        }
+
         #region 工厂方法
     
         /// <summary>

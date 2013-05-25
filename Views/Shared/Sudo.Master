@@ -37,8 +37,9 @@
         <!-- flash logo -->
         <div id="headerCon" class="hasSubLogo">
             <div id="tmallSearch">
-                <form name="searchTop" action="./Search" class="mallSearch-form">
-                <fieldset>
+                <%using (Html.BeginForm("Search","Item",FormMethod.Post,new { Class = "mallSearch-form"} ) )
+                  {%>
+
                     <div class="mallSearch-input clearfix">
                         <label style="visibility: visible;" for="mq">
                             搜索</label>
@@ -52,8 +53,8 @@
                         <input id="J_MallSearchStyle" name="style" value="" type="hidden">
                         <input id="J_Cat" name="cat" value="all" type="hidden">
                     </div>
-                </fieldset>
-                </form>
+
+                <%} %>
             </div>
         </div>
         <div class="headerNav">

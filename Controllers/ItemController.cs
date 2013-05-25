@@ -21,7 +21,7 @@ namespace Yiku.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Search", "Item");
         }
 
         //
@@ -147,6 +147,14 @@ namespace Yiku.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Search(string Uname, string strSearch, int? pMin, int? pMax)
+        {
+            SearchModel sm = new SearchModel();
+
+
+            return View(sm);
         }
     }
 }

@@ -132,7 +132,7 @@ namespace Yiku.Models
             if (String.IsNullOrEmpty(passwordComfirm)) throw new ArgumentException("值不能为 null 或为空。", "passwordComfirm");
 
             if (password != passwordComfirm) return UserCreateStatus.Faild;
-            UserCreateStatus result = yikuData.UserCreate(username, password, address, consignee, tel, zipcode, overwrite);
+            UserCreateStatus result = yikuData.UserCreate(username.Trim(), password.Trim(), address, consignee, tel, zipcode, overwrite);
             yikuData.Save();
             return result;
         }

@@ -98,13 +98,13 @@ namespace Yiku.Controllers
                 UserCreateStatus createResult 
                     =
                     MembershipService.CreateUser(
-                        model.UserName.Trim()
-                        , model.Password.Trim()
-                        , model.ConfirmPassword.Trim()
-                        , model.Address.Trim()
-                        , model.Consignee.Trim()
-                        , model.Tel.Trim()
-                        , model.Zipcode.Trim()
+                        model.UserName
+                        , model.Password
+                        , model.ConfirmPassword
+                        , model.Address
+                        , model.Consignee
+                        , model.Tel
+                        , model.Zipcode
                     );
 
                 if (createResult == UserCreateStatus.Succeed)

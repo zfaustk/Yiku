@@ -3809,8 +3809,9 @@ a.fSort-cur i.f-ico-triangle-mb-slctd {
 	top: 166px
 }
 /*pub-1|2013-04-16 10: 34: 41*/
-	.product {
+.product {
 	position: relative;
+		border: 4px solid #FFF;
 	float: left;
 	padding: 0;
 	margin: 0;
@@ -3831,11 +3832,27 @@ a.fSort-cur i.f-ico-triangle-mb-slctd {
 .product-iWrap {
 	position: absolute;
 	background-color: #fff;
-	border-color: #fff;
-	margin: 0;
-	padding: 10px;
-	font-size: 0
+
+	padding: 5px;
+	font-size: 0;
+	height: auto;
+	transition: background-color .2s ease-in;
 }
+.product:hover  
+{
+    overflow:hidden;
+    background-color: #C2AF60;
+    border: 4px solid #9B8C4C;
+    -webkit-transition: border-color .2s ease-in;
+    transition: background-color .2s ease-in;
+    transition: border-color .2s ease-in;
+}
+
+.product-iWrap:hover  {
+	background-color: #D2C170;
+	transition: background-color .2s ease-in;
+}
+
 .product-iWrap * {
 	font-size: 12px
 }

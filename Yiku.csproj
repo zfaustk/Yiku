@@ -101,6 +101,7 @@
     <Compile Include="Models\ItemModels.cs" />
     <Compile Include="Models\HomeModels.cs" />
     <Compile Include="Models\CollectModels.cs" />
+    <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\SellModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -122,6 +123,7 @@
     <Content Include="Content\MainPage_.css" />
     <Content Include="Content\pro\pf-base.css" />
     <Content Include="Content\register.css" />
+    <Content Include="Content\SearchYiku.css" />
     <Content Include="Content\shoppingtrolley\a.css" />
     <Content Include="Content\shoppingtrolley\cart-min.css" />
     <Content Include="Content\sy.css" />
@@ -207,6 +209,7 @@
     <Content Include="Views\Account\login.aspx" />
     <Content Include="Views\Item\Create.aspx" />
     <Content Include="Views\Item\Edit.aspx" />
+    <Content Include="Views\Item\Search.aspx" />
     <Content Include="Views\MyYiku\cart.aspx" />
     <Content Include="Views\MyYiku\trade.aspx" />
     <Content Include="Views\MyYiku\profile.aspx" />
@@ -216,7 +219,6 @@
     <Content Include="Views\MyYiku\cart3.aspx" />
     <Content Include="Views\MyYiku\collect.aspx" />
     <Content Include="Views\Item\Detail.aspx" />
-    <Content Include="Views\Home\Search.aspx" />
     <Content Include="Views\Home\ssssssy.aspx" />
     <Content Include="Views\Item\Details.aspx" />
     <Content Include="Views\Item\Index.aspx" />
@@ -283,7 +285,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>3394</DevelopmentServerPort>
+          <DevelopmentServerPort>54635</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
