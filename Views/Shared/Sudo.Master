@@ -27,6 +27,15 @@
             position: relative;
             z-index: 1000;
         }
+        #tmallSearch button
+        {
+            background-color: #9B8C4C !important;
+        }
+        #tmallSearch button:hover
+        {
+            border: 2px #9B8C4C solid;
+            background-color:#C4B960 !important;
+        }
     </style>
 </head>
 <body>
@@ -43,10 +52,10 @@
                     <div class="mallSearch-input clearfix">
                         <label style="visibility: visible;" for="mq">
                             搜索</label>
-                        <input name="q" accesskey="s" autocomplete="off" x-webkit-speech="" x-webkit-grammar="builtin:search"
+                        <input name="strSearch" accesskey="s" autocomplete="off" x-webkit-speech="" x-webkit-grammar="builtin:search"
                             id="mq" type="text">
                         <button id="J_CurrShopBtn" class="currShopBtn" type="button">
-                            搜本店<s></s></button>
+                            搜用户<s></s></button>
                         <button id="J_SearchBtn" type="submit">
                             搜依库<s></s></button>
                         <input id="J_Type" name="type" value="p" type="hidden">
@@ -66,7 +75,11 @@
             <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             <div id="footer">
                 <asp:ContentPlaceHolder ID="FooterContent" runat="server" />
+                <span id="icp" class="fleft gray-link">
+                    © 2013-? yiku.com, all rights reserved
+                </span>
             </div>
+            <asp:ContentPlaceHolder ID="FooterScriptContent" runat="server" />
         </div>
     </div>
 </body>

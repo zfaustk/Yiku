@@ -15,83 +15,8 @@
             <div class="msg view-help">
             </div>
         </div>
-        <div class="remide-box" id="J_Remide" data-spm="7">
-            <h3>
-                我的交易提醒：</h3>
-            <ul>
-                <li><a href="http://trade.taobao.com/trade/itemlist/listBoughtItems.htm?action=itemlist/QueryAction&amp;event_submit_do_query=1&amp;auctionStatus=NOT_PAID">
-                    待付款<span class="num">(0)</span></a></li>
-                <li><a href="http://trade.taobao.com/trade/itemlist/listBoughtItems.htm?action=itemlist/QueryAction&amp;event_submit_do_query=1&amp;auctionStatus=SEND">
-                    待确认收货<span class="num">(0)</span></a></li>
-                <li><a href="http://trade.taobao.com/trade/itemlist/listBoughtItems.htm?action=itemlist/QueryAction&amp;event_submit_do_query=1&amp;auctionStatus=ALL&amp;commentStatus=I_HAS_NOT_COMMENT">
-                    待评价<span class="num">(0)</span></a></li>
-            </ul>
-        </div>
         <div class="bought-list">
-            <!-- <div style="float: left;z-index:9999;" class="msg secure-tips"><p class="alert naked h"><a href="https://hi.alipay.com/campaign/account.htm" target="_blank"><font color=red>淘宝支付宝联合送礼：百万礼品随意挑，来抢吧！</font></a></p></div>
- -->
-            <form class="skin-gray clearfix bought-search " action="?search" method="post" id="J_QueryConditionForm">
-            <!--bought-search-more -->
-            <input id="submitNameId" type="hidden" name="event_submit_do_query" value="1">
-            <input type="hidden" id="myAction" name="action" value="itemlist/QueryAction">
-            <input type="hidden" name="user_type" value="0">
-            <input type="hidden" id="order" name="order" value="">
-            <input type="hidden" id="visibility" name="visibility" value="">
-            <input type="hidden" id="J_FormExpandCls" name="wrap" value="">
-            <input type="hidden" name="queryBizType" value="">
-            <label for="J_BaobeiName">
-                宝贝名称：</label>
-            <input type="text" size="50" id="J_BaobeiName" name="auctionTitle" value="" maxlength="30">
-            <button class="J_MakePoint button search-btn" type="submit" data-point-url="http://log.mmstat.com/listbought.1.17">
-                搜索</button>
-            <ul id="J_MoreControl" class="search-filter">
-                <li class="col1">
-                    <label>
-                        成交时间:</label>&nbsp;&nbsp; 从
-                    <input type="text" size="10" id="J_BeginTime" name="bizOrderTimeBegin" value="">
-                    到
-                    <input type="text" size="10" id="J_EndTime" name="bizOrderTimeEnd" value="">
-                </li>
-                <li class="col2">
-                    <label for="J_NickName">
-                        卖家昵称：</label>&nbsp;&nbsp;<input type="text" name="sellerNick" size="15" id="J_NickName"
-                            value="">
-                </li>
-                <li class="col3">
-                    <label for="J_ReviewStatus">
-                        评价状态：</label>
-                    <select id="J_ReviewStatus" class="J_NiceSelect" name="commentStatus">
-                        <option value="ALL">全部</option>
-                        <option value="I_HAS_NOT_COMMENT">需我评价</option>
-                        <option value="I_HAS_COMMENT">我已评价</option>
-                        <option value="_HAS_COMMENT">对方已评</option>
-                        <option value="ALL_COMMENT">双方已评</option>
-                    </select>
-                </li>
-                <li class="col1 ">
-                    <label for="J_TradeStatus">
-                        交易状态：</label>
-                    <select id="J_TradeStatus" class="J_NiceSelect" name="auctionStatus">
-                        <option value="ALL">全部</option>
-                        <option value="NOT_PAID">等待买家付款</option>
-                        <option value="PAID">买家已付款</option>
-                        <option value="SEND">卖家已发货</option>
-                        <option value="SUCCESS">交易成功</option>
-                        <option value="DROP">交易关闭</option>
-                        <option value="REFUNDING">退款中的订单</option>
-                    </select>
-                </li>
-                <li class="col2">
-                    <label for="J_AfterServiceStatus">
-                        售后服务：</label>
-                    <select name="tradeDissension" class="J_NiceSelect" id="J_AfterServiceStatus">
-                        <option value="ALL">全部</option>
-                        <option value="ACCUSED">已投诉</option>
-                        <option value="REFUNDING">退款中</option>
-                    </select>
-                </li>
-            </ul>
-            </form>
+
             <form action="" method="post" id="J_BoughtListForm">
             <input id="J_Token" type="hidden" name="_tb_token_" value="BpL49Ws9oBm">
             <table class="bought-table" id="J_BoughtTable" data-spm="9">

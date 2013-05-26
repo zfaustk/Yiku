@@ -25,6 +25,7 @@ namespace Yiku.Models.DataBase
                    where tcl.IID == item.IID
                    select tcl.Class;
         }
+
         public IQueryable<ClassM> GetRootClasses()
         {
             return from c in yikuData.ClassMs
@@ -74,6 +75,12 @@ namespace Yiku.Models.DataBase
             return false;
         }
 
+        public bool ClassRoot(ClassM classm)
+        {
+            if (classm.FatherID == null || classm.FatherID == 1) return true;
+            return false;
+        }
+
         public ClassM ClassGetFather(ClassM classm)
         {
             return yikuData.ClassMs.SingleOrDefault(cl => cl.CID == classm.FatherID);
@@ -84,6 +91,15 @@ namespace Yiku.Models.DataBase
             return from c in yikuData.ClassMs
                    where c.FatherID == classm.CID
                    select c;
+        }
+
+        public IQueryable<ClassM> ClassGetByItems(IQueryable<Item> items)
+        {
+            return (from cly in yikuData.T_Classify
+                    where items.Contains(cly.Item)
+                    orderby cly.T_Cl_ID
+                    select cly.Class
+                    ).Distinct();
         }
 
         #endregion

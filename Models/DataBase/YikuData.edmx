@@ -342,8 +342,8 @@
           <Property Name="CID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FatherID" Type="Int32" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="Class1" Relationship="YikuDataModel.FK_Class_Class" FromRole="Class" ToRole="Class1" />
-          <NavigationProperty Name="Class2" Relationship="YikuDataModel.FK_Class_Class" FromRole="Class1" ToRole="Class" />
+          <NavigationProperty Name="ClassSons" Relationship="YikuDataModel.FK_Class_Class" FromRole="Class" ToRole="Class1" />
+          <NavigationProperty Name="ClassFather" Relationship="YikuDataModel.FK_Class_Class" FromRole="Class1" ToRole="Class" />
           <NavigationProperty Name="T_Classify" Relationship="YikuDataModel.FK_T_Classify_Class" FromRole="Class" ToRole="T_Classify" />
         </EntityType>
         <EntityType Name="Item">

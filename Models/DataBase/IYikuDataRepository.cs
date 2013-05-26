@@ -58,8 +58,10 @@ namespace Yiku.Models.DataBase
             ClassM ClassCreateAsRoot(string className);
         //Class Method Get
             bool ClassExist(ClassM classm);
+            bool ClassRoot(ClassM classm);
             ClassM ClassGetFather(ClassM classm);
             IQueryable<ClassM> ClassGetSons(ClassM classm);
+            IQueryable<ClassM> ClassGetByItems(IQueryable<Item> items);
 
         #endregion
 
@@ -83,6 +85,7 @@ namespace Yiku.Models.DataBase
             IQueryable<Item> ItemGetByStock(int stockMin, int stockMax);
             IQueryable<Item> ItemGetByBuyer(User buyer);
             IQueryable<Item> ItemGetBySeller(User seller);
+            IQueryable<Item> ItemGetByClass(ClassM classm);
             IQueryable<Item> ItemGetByExist(bool exist = true);
             //--item Method Search
             IQueryable<Item> ItemSearchByNameAndDetail(string searchString);
@@ -94,6 +97,7 @@ namespace Yiku.Models.DataBase
             IQueryable<Item> ItemGetByStock(IQueryable<Item> items, int stockMin, int stockMax);
             IQueryable<Item> ItemGetByBuyer(IQueryable<Item> items, User buyer);
             IQueryable<Item> ItemGetBySeller(IQueryable<Item> items, User seller);
+            IQueryable<Item> ItemGetByClass(IQueryable<Item> items, ClassM classm);
             IQueryable<Item> ItemGetByExist(IQueryable<Item> items, bool exist = true);
             //--item Method Search <itorate>
             IQueryable<Item> ItemSearchByNameAndDetail(IQueryable<Item> items, string searchString);

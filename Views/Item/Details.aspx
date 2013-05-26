@@ -20,44 +20,38 @@
                                 价格</span> <span class="tm-yen">&#165;</span> <strong id="J_StrPrice">
                                     <%: String.Format("{0:f}",Model.item.Price) %></strong> <span class="tb-11-tagTip"
                                         id="J_Tb-11-tagTip">(专柜价<strong class="del">
-                                            <%: String.Format("{0:f}",Model.item.Price * 2 + 10) %>
-                                        </strong>元， <a href="#" target="_blank">什么是专柜价？</a>) </span><span class="tm-mjsTarget J_PromArrow"
-                                            data-type="mjslist">店铺活动 <span class="tb-arrow"></span></span>
-                                <div id="J_MoreMjsSlider" class="tm-promo-slider">
-                                    <p>
-                                    </p>
-                                    <a class="ui-more-nbg" href="">更多<i class="ui-more-nbg-arrow"></i> </a>
-                                </div>
+                                            <%: String.Format("{0:c}",Model.item.Price * 2 + 10)%>
+                                        </strong>) </span>
+                                        <span class="tm-mjsTarget J_PromArrow"">
+                                        优惠价 <span class="tb-arrow"></span></span>
                             </li>
-                            <li class="tb-detail-price tm-clear tb-promo-price  tb-hidden" id="J_PromoPrice"><span
-                                class="tb-metatit">促销</span>
-                                <div id="J_PromoBox">
-                                </div>
-                            </li>
+
                             <li class="tb-delivery tm-clear" id="J_RSPostageCont"><span class="tb-metatit">配送</span>
                                 <div class="tb-postAge">
                                     <span id="J_deliveryAdd" class="tb-deliveryAdd">
-                                        <%: Model.item.User.Address ?? "卖家" %></span>至 <a id="J_dqPostAgeCont" href="#"
-                                            class="tb-postAgeCont">
-                                            <%: (Model.CurrentUser != null) ? Model.CurrentUser.Address ?? "买家" : "买家"%></a>
+                                        <%: Model.item.User.Address ?? "卖家" %></span>
+                                        至
+                                        <%:Html.ActionLink( (Model.CurrentUser != null) ? Model.CurrentUser.Address ?? "买家" : "买家" , "profile" , "MyYiku") %>
                                     <div id="J_PostageToggleCont" class="tb-postAge-info">
-                                        <span class="tb-deliveryAdd">快递: 卖家包邮 </span>
+                                        <span class="tb-deliveryAdd">快递: </span>
+                                        <a class="tb-postAgeCont">卖家包邮</a>
                                     </div>
-                                    <div id="friInfo">
-                                        确认收货地，以确保在商家销售区域</div>
                                 </div>
                             </li>
                             <li class="tb-sold-out tm-clear J_MonSales"><span class="tb-metatit">月销量</span> <em
                                 class="J_MonSalesNum">
                                 <%: String.Format("{0:f}",Model.item.Volume) %></em>件 <span id="J_CspuSaleNum"></span>
                             </li>
-                            <li class="tb-item-rates tm-clear" id="J_ItemRates"><span class="tb-metatit">评价</span>
+                            <%if (!String.IsNullOrEmpty(Model.item.Cut))
+                              {%>
+                            <li class="tb-item-rates tm-clear" id="J_ItemRates"><span class="tb-metatit">折扣:</span>
                                 <div id="J_Stars">
                                     <p>
-                                        <span class="c-value-no c-value-0"></span>
+                                        <span class="c-value-no c-value-0" > <%: Model.item.Cut%></span>
                                     </p>
                                 </div>
                             </li>
+                            <%} %>
                         </ul>
                         <div class="tb-key">
                             <div class="tb-skin tb-naked">
@@ -393,15 +387,11 @@
                     </div>
                 </div>
                 <div id="ks-lazyload275" class="col-sub">
-                    <!-- tair resultCode=code=0, msg=success, tair key: msa101450072, version: 1, cdate: 1970-01-01 08:00:00, mdate: 2013-05-21 08:10:43, edate: 2013-05-21 12:10:43,  -->
                     <div id="side-shop-info" class="shop-intro">
-                        <h3 class="hd">
-                            商家信息</h3>
+                        <h3 class="hd">商家信息</h3>
                         <div class="bd">
                             <div class="name">
-                                新华文轩网络书店 <a target="_blank" href="http://amos.alicdn.com/getcid.aw?v=2&amp;uid=%E6%96%B0%E5%8D%8E%E6%96%87%E8%BD%A9%E7%BD%91%E7%BB%9C%E4%B9%A6%E5%BA%97&amp;site=cntaobao&amp;s=2&amp;groupid=0&amp;charset=utf-8">
-                                    <img src="%E4%BB%8E%E8%88%86%E8%AE%BA%E5%96%A7%E5%9A%A3%E5%88%B0%E7%90%86%E6%80%A7%E5%9B%9E%E5%BD%92%E2%80%94%E2%80%94%E5%AF%B9%E7%BD%91%E7%BB%9C%E4%BA%BA%E8%82%89%E6%90%9C%E7%B4%A2%E7%9A%84%E5%A4%9A%E7%BB%B4%E7%A0%94%E7%A9%B6%20%E4%B9%A6%E7%B1%8D%20%E5%95%86%E5%9F%8E-tmall.com%E5%A4%A9%E7%8C%AB_files/online.gif"
-                                        alt="点这里给商家发消息" border="0"></a>
+                                <%: Html.ActionLink(Model.item.User.Name, "Search", "Item", new { Uname = Model.item.User.Name }, new { target = "_blank" })%>
                             </div>
                             <div>
                                 <div class="shop-rate">

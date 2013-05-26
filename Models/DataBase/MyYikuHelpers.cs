@@ -15,5 +15,19 @@ namespace Yiku.Models.DataBase
                        select tcl.Item;
             return null;
         }
+
+    }
+
+    public partial class Item
+    {
+        YikuDataRepository yikuData = new YikuDataRepository();
+
+        public string thePictureRoute{
+            get
+            {
+                Picture pic = Pictures.SingleOrDefault(P => P.IID == _IID);
+                return pic == null ? "" : pic.Route;
+            }
+        }
     }
 }

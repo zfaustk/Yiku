@@ -149,10 +149,33 @@ namespace Yiku.Controllers
             }
         }
 
-        public ActionResult Search(string Uname, string strSearch, int? pMin, int? pMax)
+        public ActionResult Search(string Uname, string strSearch, string Cname , int? pMin, int? pMax, int? skip)
         {
             SearchModel sm = new SearchModel();
+            if (!String.IsNullOrEmpty(Uname)) sm.Uname = Uname;
+            if (!String.IsNullOrEmpty(Cname)) sm.Cname = Cname;
+            if (!String.IsNullOrEmpty(strSearch)) sm.strSearch = strSearch;
+            if (pMin != null) sm.pMin = pMin.Value;
+            if (pMax != null) sm.pMax = pMax.Value;
+            if (skip != null) sm.skip = skip.Value;
+            return View(sm);
+        }
 
+        [HttpPost]
+        public ActionResult Search(FormCollection formValues)
+        {
+            SearchModel sm = new SearchModel();
+            if (!string.IsNullOrEmpty(Request.Form["strSearch"])) sm.strSearch = Request.Form["strSearch"];
+            if (!string.IsNullOrEmpty(Request.Form["Uname"]))
+                if(yikuData.GetUser(Request.Form["Uname"]) != null)
+                    sm.Uname = Request.Form["Uname"];
+            if (!string.IsNullOrEmpty(Request.Form["Cname"]))
+                if (yikuData.GetClass(Request.Form["Cname"]) != null) 
+                    sm.Cname = Request.Form["Cname"];
+            if (!string.IsNullOrEmpty(Request.Form["pMin"])) sm.pMin = Convert.ToInt32(Request.Form["pMin"]) ;
+            if (!string.IsNullOrEmpty(Request.Form["pMax"])) sm.pMax = Convert.ToInt32(Request.Form["pMax"]) ;
+            if (!string.IsNullOrEmpty(Request.Form["skip"])) sm.skip = Convert.ToInt32(Request.Form["skip"]) ;
+            if (!string.IsNullOrEmpty(Request.Form["pageNumber"])) sm.pageNumber = Convert.ToInt32(Request.Form["pageNumber"]) ;
 
             return View(sm);
         }

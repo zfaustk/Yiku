@@ -115,6 +115,12 @@ namespace Yiku.Models.DataBase
         {
             return ItemGetBySeller(yikuData.Items, seller);
         }
+
+        public IQueryable<Item> ItemGetByClass(ClassM classm)
+        {
+            return ItemGetByClass(yikuData.Items, classm);
+        }
+
         //--item Method Search
         public IQueryable<Item> ItemSearchByNameAndDetail(string searchString)
         {
@@ -181,6 +187,14 @@ namespace Yiku.Models.DataBase
                    where i.PublisherID == seller.UID
                    orderby i.IID
                    select i;
+        }
+
+        public IQueryable<Item> ItemGetByClass(IQueryable<Item> items, ClassM classm)
+        {
+            return from cly in yikuData.T_Classify
+                    where items.Contains(cly.Item) && cly.CID == classm.CID
+                    orderby cly.IID
+                    select cly.Item;
         }
 
         public IQueryable<Item> ItemGetByExist(IQueryable<Item> items, bool exist = true)

@@ -1403,7 +1403,7 @@ button: : -moz-focus-inner {
 	font-size: 11px
 }
 .mallSearch-form {
-	background-color: #980101!important;
+	background-color: #980101;
 	border: none!important
 }
 .mallSearch-tip {

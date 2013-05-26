@@ -399,7 +399,7 @@ namespace Yiku.Models.DataBase
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("YikuDataModel", "FK_Class_Class", "Class1")]
-        public EntityCollection<ClassM> Class1
+        public EntityCollection<ClassM> ClassSons
         {
             get
             {
@@ -421,7 +421,7 @@ namespace Yiku.Models.DataBase
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("YikuDataModel", "FK_Class_Class", "Class")]
-        public ClassM Class2
+        public ClassM ClassFather
         {
             get
             {
@@ -437,7 +437,7 @@ namespace Yiku.Models.DataBase
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<ClassM> Class2Reference
+        public EntityReference<ClassM> ClassFatherReference
         {
             get
             {
@@ -486,15 +486,6 @@ namespace Yiku.Models.DataBase
     [DataContractAttribute(IsReference=true)]
     public partial class Item : EntityObject
     {
-
-        public string thePictureRoute {
-            get
-            {
-                Picture p = Pictures.SingleOrDefault(pic => pic.IID == _IID);
-                return p.Route;
-            }
-        }
-
         #region 工厂方法
     
         /// <summary>
