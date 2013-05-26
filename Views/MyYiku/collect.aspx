@@ -43,7 +43,7 @@
                                     数量
                                 </th>
                                 <th class="amount">
-                                    折后价
+                                    折扣
                                 </th>
                                 <th class="remark">
                                     加入购物车
@@ -75,41 +75,29 @@
                             <tr class="order-bd last">
                                 <td class="baobei" colspan="2">
                                     <a target="_blank" hidefocus="true" title="查看宝贝详情" href="#“" class="pic s50">
-                                        <img alt="查看宝贝详情" src="http://img04.taobaocdn.com/bao/uploaded/i4/17114019395186948/T1qdE0XfddXXXXXXXX_!!0-item_pic.jpg_sum.jpg ">
+                                        <img alt="查看宝贝详情" src="<%: "../../Content/Image/Items/"+clm.thePictureRoute %>">
                                     </a>
                                     <div class="desc">
-                                        <%: Html.ActionLink(clm.Name, "Detail", "Item", new { ID = clm.IID } , new { Class="baobei-name", target="_blank" })%>
+                                        <%: Html.ActionLink(clm.Name, "Details", "Item", new { ID = clm.IID } , new { Class="baobei-name", target="_blank" })%>
                                         <span class="good-icons"></span>
                                         <div class="spec">
                                         </div>
                                     </div>
                                 </td>
-                                <td class="price" title="4720.00">
-                                    4720.00
+                                <td class="price" title="<%: clm.Price %>">
+                                    <%: string.Format("{0:c}",clm.Price) %>
                                 </td>
-                                <td class="quantity" title="1">
-                                    stock
+                                <td class="quantity" title="<%: clm.Stock %>">
+                                    <%: clm.Stock %>
                                 </td>
                                 <td class="amount" rowspan="1">
-                                    <strong>4565.00</strong>
-                                    <p class="post-type">
-                                        (含免运费:45.00 )
-                                    </p>
-                                    <img alt="您已使用信用卡付款" title="您已使用信用卡付款" src="http://assets.taobaocdn.com/sys/common/icon/trade/xcard.png">
+                                    <%: clm.Cut %>
                                 </td>
                                 <td class="trade-status" rowspan="1">
-                                    <a href="#" target="_blank" class="J_MakePoint status success">加入购物车 </a>
+                                    <%: Html.ActionLink("加入购物车", "Buy", "Item", new { ID = clm.IID }, new { Class = "J_MakePoint status success" })%>
                                 </td>
                                 <td class="other" rowspan="1">
-                                    <a class="J_DelOrder J_MakePoint" data-action="delOrder" data-point-url="http://log.mmstat.com/listbought.1.1"
-                                        href="javascript:void(0)">删除</a> <a class=" J_MakePoint" data-memo-url="orderid=226354351557261&amp;isArchive=false"
-                                            title="编辑备忘信息，仅自己可见" href="http://trade.taobao.com/trade/memo/update_buy_memo.htm?bizOrderId=226354351557261&amp;buyerId=832256172&amp;user_type=0&amp;clickMore=0&amp;pageNum=1&amp;auctionTitle=&amp;bizOrderTimeBegin=&amp;bizOrderTimeEnd=&amp;commentStatus=&amp;sellerNick=&amp;auctionStatus=&amp;isArchive=false&amp;logisticsService=&amp;visibility=true"
-                                            data-point-url="http://log.mmstat.com/listbought.1.15">备忘</a>
-                                    <div class="J_ShareSNS sns-share">
-                                        <a href="#" data-param="{&quot;type&quot;:&quot;item&quot;,&quot;itemid&quot;:&quot;22253604649&quot;, &quot;comment&quot; : &quot;亲，很棒的宝贝噢~&quot;}"
-                                            data-name="226354351557261" class="J_MakePoint" data-point-url="http://log.mmstat.com/listbought.1.14">
-                                            分享 </a>
-                                    </div>
+                                    <%: Html.ActionLink("删除", "DeleteCollect", "Item", new { ID = clm.IID }, new { Class = "J_DelOrder J_MakePoint" })%>
                                 </td>
                             </tr>
                         </tbody>

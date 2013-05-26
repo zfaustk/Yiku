@@ -127,6 +127,14 @@ namespace Yiku.Models.DataBase
             return ItemSearchByNameAndDetail(yikuData.Items, searchString);
         }
 
+        public IQueryable<Item> ItemGetShoppingItem(User buyer)
+        {
+            return from tsh in yikuData.T_Shopping
+                   where tsh.UID == buyer.UID
+                   orderby tsh.IID
+                   select tsh.Item;
+        }
+
         #endregion
 
         #region item Method Get <itorate>
@@ -180,6 +188,8 @@ namespace Yiku.Models.DataBase
                         select ord.Item;
 
         }
+
+        
 
         public IQueryable<Item> ItemGetBySeller(IQueryable<Item> items, User seller)
         {

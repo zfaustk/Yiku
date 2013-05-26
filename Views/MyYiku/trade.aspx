@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/MyYiku.Master" Inherits="System.Web.Mvc.ViewPage<Yiku.Models.HomeModels>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/MyYiku.Master" Inherits="System.Web.Mvc.ViewPage<Yiku.Models.OrderModels>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     已买到的宝贝
@@ -17,8 +17,7 @@
         </div>
         <div class="bought-list">
 
-            <form action="" method="post" id="J_BoughtListForm">
-            <input id="J_Token" type="hidden" name="_tb_token_" value="BpL49Ws9oBm">
+
             <table class="bought-table" id="J_BoughtTable" data-spm="9">
                 <colgroup>
                     <col class="selector">
@@ -50,18 +49,8 @@
                         <th class="amount">
                             实付款(元)
                         </th>
-                        <th class="trade-status">
-                            <div class="trade-status">
-                                <select id="J_TradeStatusHandle">
-                                    <option data-msg="交易状态" value="ALL">交易状态</option>
-                                    <option data-msg="等待买家付款" value="NOT_PAID">等待买家付款</option>
-                                    <option data-msg="买家已付款" value="PAID">买家已付款</option>
-                                    <option data-msg="卖家已发货" value="SEND">卖家已发货</option>
-                                    <option data-msg="交易成功" value="SUCCESS">交易成功</option>
-                                    <option data-msg="交易关闭" value="DROP">交易关闭</option>
-                                    <option data-msg="退款中的订单" value="REFUNDING">退款中的订单</option>
-                                </select>
-                            </div>
+                        <th class="amount">
+                            交易状态
                         </th>
                         <th class="remark">
                             交易操作
@@ -76,15 +65,7 @@
                     </tr>
                     <tr class="toolbar skin-gray">
                         <td colspan="7">
-                            <label>
-                                <input type="checkbox" class="all-selector" id="J_AllSelector">全选</label>
-                            <a href="#" class="J_MakePoint toolbtn" data-point-url="http://log.mmstat.com/listbought.1.8"
-                                id="J_CombinPay">合并付款</a> <a href="#" class="J_MakePoint toolbtn" data-point-url="http://log.mmstat.com/listbought.32"
-                                    id="J_CombineAgentPay">合并代付</a> <a href="#" class="J_MakePoint toolbtn long-toolbtn"
-                                        data-point-url="http://log.mmstat.com/listbought.1.11" id="J_BatchReceive">批量确认收货</a>
-                            <span id="J_xCardTip" style="display: none;">如想使用信用卡付款，请只选择带有
-                                <img src="http://a.tbcdn.cn/sys/common/icon/trade/xcard.png" alt="支持信用卡支付" title="支持信用卡支付">
-                                标识的宝贝</span>
+
                         </td>
                         <td class="last-col" colspan="2">
                             <div class="paginator-top">
@@ -98,63 +79,40 @@
                         </td>
                     </tr>
                 </thead>
+                <% foreach(var ord in Model.Orders){ %>
                 <tbody data-isarchive="false" data-orderid="226354351557261" data-status="TRADE_FINISHED"
                     class=" success-order xcard">
                     <tr class="sep-row">
                         <td colspan="9">
                         </td>
                     </tr>
+                    
                     <tr class="order-hd">
                         <td colspan="9">
                             <span class="no">
                                 <label>
-                                    <input type="checkbox" class="selector" id="cb226354351557261" name="biz_order_id"
-                                        value="226354351557261" disabled="disabled">
-                                    订单编号：<span class="order-num">226354351557261</span>
+                                    订单编号：<span class="order-num"><%: string.Format("{0:8D}",ord.OrID) %></span>
                                 </label>
-                                <input type="hidden" name="payOrderId_226354351557261" id="payOrderId_226354351557261"
-                                    value="226354351557261">
-                                <input type="hidden" name="tradeStatus_226354351557261" id="tradeStatus_226354351557261"
-                                    value="TRADE_FINISHED">
-                            </span><span class="deal-time">成交时间：2013-02-16 19:35</span> <span class="seller"><a
-                                target="_blank" class="nickname J_MakePoint" title="叶落方知天下秋" href="http://store.taobao.com/shop/view_shop.htm?user_number_id=52147114"
-                                data-point-url="http://log.mmstat.com/listbought.1.21">叶落方知天下秋</a> <span class="ww-light ww-small"
-                                    data-nick="叶落方知天下秋" data-icon="small" data-tnick="叶落方知天下秋" data-display="inline"
-                                    data-item="$bizOrder.itemID:226354351557261" data-point-url="http://log.mmstat.com/listbought.1.13">
-                                    <a href="http://www.taobao.com/webww/?ver=1&amp;&amp;touid=cntaobao%E5%8F%B6%E8%90%BD%E6%96%B9%E7%9F%A5%E5%A4%A9%E4%B8%8B%E7%A7%8B&amp;siteid=cntaobao&amp;status=2&amp;portalId=&amp;gid=$bizOrder.itemID:226354351557261&amp;itemsId="
-                                        target="_blank" class="ww-inline ww-online" title="点此可以直接和卖家交流选好的宝贝，或相互交流网购体验，还支持语音视频噢。">
-                                        <span>旺旺在线</span></a></span> </span>
-                            <input type="hidden" name="sellerId" value="52147114">
-                            <input type="hidden" name="buyerId" value="832256172">
-                            <input type="hidden" name="payOrderId_226354351557261" id="payOrderId_226354351557261"
-                                value="226354351557261">
-                            <input type="hidden" name="tradeStatus_226354351557261" id="tradeStatus_226354351557261"
-                                value="TRADE_FINISHED">
+                                <span class="deal-time"><%: ord.Time %></span> <span class="seller">
+                                <%: Html.ActionLink(ord.Item.User.Name,"Search","Item",new {Uname = ord.Item.User.Name }) %>
+                                </span>
                         </td>
                     </tr>
                     <tr id="item226354351557261" class="order-bd last">
                         <td class="baobei" colspan="2">
-                            <a target="_blank" hidefocus="true" title="查看宝贝详情" href="http://trade.taobao.com/trade/detail/tradeSnap.htm?tradeID=226354351557261"
+                            <a target="_blank" hidefocus="true" title="查看宝贝详情" href="../../Item/Details/<%: ord.IID%>"
                                 class="pic s50">
-                                <img alt="查看宝贝详情" src="http://img04.taobaocdn.com/bao/uploaded/i4/17114019395186948/T1qdE0XfddXXXXXXXX_!!0-item_pic.jpg_sum.jpg ">
+                                <img alt="查看宝贝详情" src="<%: "../../Content/Image/Item/"+ord.Item.thePictureRoute %>">
                             </a>
                             <div class="desc">
-                                <a class="baobei-name" target="_blank" href="http://trade.taobao.com/trade/detail/tradeSnap.htm?tradeID=226354351557261">
-                                    Asus/华硕 N56XI361VZ-SL I7四核GT650M/升级GTX660M 15寸笔记本 </a><span class="good-icons"><a
-                                        title="保障卡" href="http://trade.taobao.com/trade/security/security_card.htm?bizOrderId=226354351557261"
-                                        target="_blank">
-                                        <img src="http://img02.taobaocdn.com/tps/i2/T1S4ysXh8pXXXXXXXX-52-16.png">
-                                    </a></span>
-                                <div class="spec">
-                                    <span>颜色分类: 黑色</span><span>笔记本套餐: 套餐四</span>
-                                </div>
+                                <%: Html.ActionLink(ord.Item.Name, "Details", "Item", new {Id = ord.IID} , new {Class ="baobei-name", target="_blank" } )%>
                             </div>
                         </td>
-                        <td class="price" title="4720.00">
-                            4720.00
+                        <td class="price" title="<%: ord.Item.Price %>">
+                            <%: string.Format("{0:c}",ord.Item.Price) %>
                         </td>
                         <td class="quantity" title="1">
-                            1
+                            <%: string.Format("{0:d}",ord.Count) %>
                         </td>
                         <td class="after-service">
                             <!--司法拍卖、支付宝电影票交易、支付宝基金订单,网游订单不涉及售后信息-->
@@ -166,139 +124,25 @@
                                     data-point-url="http://log.mmstat.com/listbought.1.12">投诉卖家</a>
                         </td>
                         <td class="amount" rowspan="1">
-                            <strong>4565.00</strong>
-                            <p class="post-type">
-                                (含免运费:45.00 )
-                            </p>
-                            <img alt="您已使用信用卡付款" title="您已使用信用卡付款" src="http://assets.taobaocdn.com/sys/common/icon/trade/xcard.png">
+                            <strong><%: string.Format("{0:c}",ord.Cost) %></strong>
                         </td>
                         <td class="trade-status" rowspan="1">
-                            <a href="http://trade.taobao.com/trade/detail/trade_item_detail.htm?bizOrderId=226354351557261"
-                                target="_blank" data-point-url="http://log.mmstat.com/listbought.1.19" class="J_MakePoint status success">
-                                交易成功 </a><span><a href="http://trade.taobao.com/trade/detail/trade_item_detail.htm?bizOrderId=226354351557261"
-                                    target="_blank" class="detail-link J_MakePoint" data-point-url="http://log.mmstat.com/listbought.1.29">
-                                    订单详情</a> </span><a href="http://wuliu.taobao.com/user/order_detail_new.htm?trade_id=226354351557261&amp;seller_id=52147114"
-                                        class="view-logistics J_MakePoint" target="_blank" data-point-url="http://log.mmstat.com/listbought.1.28">
-                                        查看物流</a>
-                            <div class="remark-status">
-                                双方已评</div>
+                            <%: ord.State %>
+                            <%if (ord.State == "buy")
+                              { %>
+                              <%: Html.ActionLink("前去付款", "cart2", "Cart", new {Id = ord.IID} ,null)%>
+                            <%} %>
                         </td>
                         <td class="operate" rowspan="1">
-                            <a href="http://rate.taobao.com/append_rate.htm?biz_order_id=226354351557261&amp;is_archive=false"
-                                target="_blank" class="J_MakePoint" data-point-url="http://log.mmstat.com/listbought.1.6">
-                                追加评论</a>
+                            <%: Html.ActionLink("再次购买", "Buy", "Item", new {Id = ord.IID} ,null)%>
                         </td>
                         <td class="other" rowspan="1">
-                            <a class="J_DelOrder J_MakePoint" data-action="delOrder" data-point-url="http://log.mmstat.com/listbought.1.1"
-                                href="javascript:void(0)">删除</a> <a class=" J_MakePoint" data-memo-url="orderid=226354351557261&amp;isArchive=false"
-                                    title="编辑备忘信息，仅自己可见" href="http://trade.taobao.com/trade/memo/update_buy_memo.htm?bizOrderId=226354351557261&amp;buyerId=832256172&amp;user_type=0&amp;clickMore=0&amp;pageNum=1&amp;auctionTitle=&amp;bizOrderTimeBegin=&amp;bizOrderTimeEnd=&amp;commentStatus=&amp;sellerNick=&amp;auctionStatus=&amp;isArchive=false&amp;logisticsService=&amp;visibility=true"
-                                    data-point-url="http://log.mmstat.com/listbought.1.15">备忘</a>
-                            <div class="J_ShareSNS sns-share">
-                                <a href="#" data-param="{&quot;type&quot;:&quot;item&quot;,&quot;itemid&quot;:&quot;22253604649&quot;, &quot;comment&quot; : &quot;亲，很棒的宝贝噢~&quot;}"
-                                    data-name="226354351557261" class="J_MakePoint" data-point-url="http://log.mmstat.com/listbought.1.14">
-                                    分享 </a>
-                            </div>
+                            <a class="J_DelOrder J_MakePoint" >删除</a>
                         </td>
                     </tr>
+                    
                 </tbody>
-                <tbody data-isarchive="true" data-orderid="191088028287261" data-status="TRADE_FINISHED"
-                    class=" success-order">
-                    <tr class="sep-row">
-                        <td colspan="9">
-                        </td>
-                    </tr>
-                    <tr class="order-hd">
-                        <td colspan="9">
-                            <span class="no">
-                                <label>
-                                    <input type="checkbox" class="selector" id="cb191088028287261" name="biz_order_id"
-                                        value="191088028287261" disabled="disabled">
-                                    <span class="g-u"><a href="http://www.tmall.com">
-                                        <img src="http://img02.taobaocdn.com/tps/i2/T1F9jSXlXjXXb.cabb-23-18.png"></a>
-                                    </span>订单编号：<span class="order-num">191088028287261</span>
-                                </label>
-                                <input type="hidden" name="payOrderId_191088028287261" id="payOrderId_191088028287261"
-                                    value="191088028287261">
-                                <input type="hidden" name="tradeStatus_191088028287261" id="tradeStatus_191088028287261"
-                                    value="TRADE_FINISHED">
-                            </span><span class="deal-time">成交时间：2013-01-22 16:00</span> <span class="seller"><a
-                                target="_blank" class="nickname J_MakePoint" title="鼎信网络充值专营店" href="http://store.taobao.com/shop/view_shop.htm?user_number_id=784630040"
-                                data-point-url="http://log.mmstat.com/listbought.1.21">鼎信网络充...</a> <span class="ww-light ww-small"
-                                    data-nick="鼎信网络充值专营店" data-icon="small" data-tnick="鼎信网络充值专营店" data-display="inline"
-                                    data-item="$bizOrder.itemID:191088028287261" data-point-url="http://log.mmstat.com/listbought.1.13">
-                                    <a href="http://www.taobao.com/webww/?ver=1&amp;&amp;touid=cntaobao%E9%BC%8E%E4%BF%A1%E7%BD%91%E7%BB%9C%E5%85%85%E5%80%BC%E4%B8%93%E8%90%A5%E5%BA%97&amp;siteid=cntaobao&amp;status=2&amp;portalId=&amp;gid=$bizOrder.itemID:191088028287261&amp;itemsId="
-                                        target="_blank" class="ww-inline ww-online" title="点此可以直接和卖家交流选好的宝贝，或相互交流网购体验，还支持语音视频噢。">
-                                        <span>旺旺在线</span></a></span> </span>
-                            <input type="hidden" name="sellerId" value="784630040">
-                            <input type="hidden" name="buyerId" value="832256172">
-                            <input type="hidden" name="payOrderId_191088028287261" id="payOrderId_191088028287261"
-                                value="191088028287261">
-                            <input type="hidden" name="tradeStatus_191088028287261" id="tradeStatus_191088028287261"
-                                value="TRADE_FINISHED">
-                        </td>
-                    </tr>
-                    <tr id="item191088028287261" class="order-bd last">
-                        <td class="baobei" colspan="2">
-                            <a target="_blank" hidefocus="true" title="查看宝贝详情" href="http://buy.taobao.com/auction/buy_now.jhtml?item_id_num=13463737147"
-                                class="pic s50">
-                                <img alt="查看宝贝详情" src="http://img02.taobaocdn.com/bao/uploaded/i2/T1wv1RXjXoXXaxyJvb_123448.jpg_sum.jpg ">
-                            </a>
-                            <div class="desc">
-                                <a class="baobei-name" target="_blank" href="http://buy.taobao.com/auction/buy_now.jhtml?item_id_num=13463737147">
-                                    上海移动话费充值50元 及时到账 自动发货 </a><span class="good-icons"><a class="xb-description" href="http://www.taobao.com/go/act/315/xfzbz_rsms.php?ad_id=&amp;am_id=130011830696bce9eda3&amp;cm_id=&amp;pm_id="
-                                        title="消费者保障服务，卖家承诺如实描述" target="_blank"></a><a class="xb-quality" href="http://www.taobao.com/go/act/315/xfzbz_jyps.php?ad_id=&amp;am_id=1300118304240d56fca9&amp;cm_id=&amp;pm_id="
-                                            title="消费者保障服务，卖家承诺假一赔三" target="_blank"></a></span>
-                                <div class="spec">
-                                </div>
-                            </div>
-                        </td>
-                        <td class="price" title="49.66">
-                            49.66
-                        </td>
-                        <td class="quantity" title="1">
-                            1
-                        </td>
-                        <td class="after-service">
-                            <!--司法拍卖、支付宝电影票交易、支付宝基金订单,网游订单不涉及售后信息-->
-                            <a href="javascript:void(0)" class="tousu-weiquan J_MakePoint J_HasBuy J_ApplyRepayTrigger"
-                                title="" target="_blank" url="http://support.taobao.com/myservice/rules/rules_redirect.jhtml?trade_id=191088028287261"
-                                data-point-url="http://log.mmstat.com/listbought.1.12">投诉卖家</a>
-                        </td>
-                        <td class="amount" rowspan="1">
-                            <strong>49.66</strong>
-                            <p class="post-type">
-                                (自动充值)
-                            </p>
-                        </td>
-                        <td class="trade-status" rowspan="1">
-                            <a href="http://trade.taobao.com/trade/detail/trade_item_detail.htm?bizOrderId=191088028287261"
-                                target="_blank" data-point-url="http://log.mmstat.com/listbought.1.19" class="J_MakePoint status success">
-                                交易成功 </a><span><span class="vuinfo-icon" data-url="biz_order_id=191088028287261&amp;user_type=1&amp;archive=true">
-                                </span><a href="http://trade.taobao.com/trade/detail/trade_item_detail.htm?bizOrderId=191088028287261"
-                                    target="_blank" class="detail-link J_MakePoint" data-point-url="http://log.mmstat.com/listbought.1.29">
-                                    订单详情</a> </span>
-                            <div class="remark-status">
-                                双方已评</div>
-                        </td>
-                        <td class="operate" rowspan="1">
-                            <a href="http://rate.taobao.com/append_rate.htm?biz_order_id=191088028287261&amp;is_archive=true"
-                                target="_blank" class="J_MakePoint" data-point-url="http://log.mmstat.com/listbought.1.6">
-                                追加评论</a> <a href="#" class="J_Rebuy" data-itemid="13463737147" data-time="1358841821000">
-                                    再次购买</a>
-                        </td>
-                        <td class="other" rowspan="1">
-                            <a class="J_DelOrder J_MakePoint" data-action="delOrder" data-point-url="http://log.mmstat.com/listbought.1.1"
-                                href="javascript:void(0)">删除</a> <a class=" J_MakePoint" data-memo-url="orderid=191088028287261&amp;isArchive=true"
-                                    title="编辑备忘信息，仅自己可见" href="http://trade.taobao.com/trade/memo/update_buy_memo.htm?bizOrderId=191088028287261&amp;buyerId=832256172&amp;user_type=0&amp;clickMore=0&amp;pageNum=1&amp;auctionTitle=&amp;bizOrderTimeBegin=&amp;bizOrderTimeEnd=&amp;commentStatus=&amp;sellerNick=&amp;auctionStatus=&amp;isArchive=true&amp;logisticsService=&amp;visibility=true"
-                                    data-point-url="http://log.mmstat.com/listbought.1.15">备忘</a>
-                            <div class="J_ShareSNS sns-share">
-                                <a href="#" data-param="{&quot;type&quot;:&quot;item&quot;,&quot;itemid&quot;:&quot;13463737147&quot;, &quot;comment&quot; : &quot;亲，很棒的宝贝噢~&quot;}"
-                                    data-name="191088028287261" class="J_MakePoint" data-point-url="http://log.mmstat.com/listbought.1.14">
-                                    分享 </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+                <%} %>
                 <tfoot>
                     <tr class="sep-row">
                         <td colspan="9">
@@ -330,7 +174,7 @@
                     </tr>
                 </tfoot>
             </table>
-            </form>
+
         </div>
         <!--end bought-list-->
     </div>

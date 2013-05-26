@@ -87,6 +87,7 @@ namespace Yiku.Models.DataBase
             IQueryable<Item> ItemGetBySeller(User seller);
             IQueryable<Item> ItemGetByClass(ClassM classm);
             IQueryable<Item> ItemGetByExist(bool exist = true);
+            IQueryable<Item> ItemGetShoppingItem(User buyer);
             //--item Method Search
             IQueryable<Item> ItemSearchByNameAndDetail(string searchString);
         //item Method Get <itorate>

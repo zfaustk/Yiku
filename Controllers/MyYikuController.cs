@@ -11,7 +11,7 @@ namespace Yiku.Controllers
     public class MyYikuController : Controller
     {
         YikuDataRepository yikuData = new YikuDataRepository();
-
+        
         public ActionResult Index()
         {
             ViewData["MyYiku"] = "";
@@ -54,12 +54,13 @@ namespace Yiku.Controllers
         public ActionResult trade()
         {
             ViewData["MyYiku"] = "trade";
-            return View();
+            OrderModels om = new OrderModels();
+            return View(om );
         }
 
         public ActionResult list()
         {
-            return View();
+            return View(yikuData.GetOrders(yikuData.UserCurrent));
         }
         
 

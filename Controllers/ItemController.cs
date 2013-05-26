@@ -27,6 +27,75 @@ namespace Yiku.Controllers
         //
         // GET: /Item/Details/5
 
+        public ActionResult Collect(int? id , bool? Delete)
+        {
+            if (id != null)
+            {
+                Item item = yikuData.GetItem(id.Value);
+                if (item != null)
+                {
+                    yikuData.AddCollection(yikuData.UserCurrent, item);
+                    yikuData.Save();
+                    if(Delete != null && Delete.Value == true)
+                        return RedirectToAction("DeleteShopping", "Item", new { ID = id.Value });
+                    else
+                        return RedirectToAction("Details", "Item", new { ID = id.Value });
+                }           
+            }
+            return RedirectToAction("Index", "Item");
+        }
+
+        public ActionResult Buy(int? id)
+        {
+            if (!CurrentUser.IsAuthenticated) return RedirectToAction("LogIn", "Account");
+            if (id != null)
+            {
+                Item item = yikuData.GetItem(id.Value);
+                T_Shopping tsh = new T_Shopping();
+                if (item != null)
+                {
+                    if (item.PublisherID == yikuData.UserCurrent.UID) return RedirectToAction("Details", "Item", new { ID = id.Value });
+                    tsh = yikuData.AddShopping(yikuData.UserCurrent, item);
+                    yikuData.Save();
+                    return RedirectToAction("Index", "Cart");
+                }
+            }
+            return RedirectToAction("Index", "Item");
+        }
+
+        public ActionResult DeleteShopping(int? id)
+        {
+            if (!CurrentUser.IsAuthenticated) return RedirectToAction("LogIn", "Account");
+            if (id != null)
+            {
+                Item item = yikuData.GetItem(id.Value);
+                if (item != null)
+                {
+                    yikuData.DeleteShopping(yikuData.UserCurrent, item);
+                    yikuData.Save();
+                    return RedirectToAction("Index", "Cart");
+                }
+            }
+            return RedirectToAction("Index", "Item");
+        }
+
+        public ActionResult DeleteCollect(int? id)
+        {
+            if (!CurrentUser.IsAuthenticated) return RedirectToAction("LogIn", "Account");
+            if (id != null)
+            {
+                Item item = yikuData.GetItem(id.Value);
+                if (item != null)
+                {
+                    yikuData.DeleteCollection(yikuData.UserCurrent, item);
+                    yikuData.Save();
+                    return RedirectToAction("Collect", "MyYiku");
+                }
+            }
+            return RedirectToAction("Index", "Item");
+        }
+
+
         public ActionResult Details(int? id)
         {
             if (id != null)
@@ -37,6 +106,33 @@ namespace Yiku.Controllers
                     return View(itemModel);
             }
             return RedirectToAction("Index", "Item");
+        }
+
+        
+
+
+        [HttpPost]
+        public ActionResult Details(int id, FormCollection collection)
+        {
+            if(!CurrentUser.IsAuthenticated)return RedirectToAction("LogIn", "Account");
+
+            int num = 0;
+            if (!string.IsNullOrEmpty(Request.Form["BuyNumber"]))
+                num = Convert.ToInt32(Request.Form["BuyNumber"]);
+            else RedirectToAction("Details", "Item", new { Id = id });
+
+            Item item = yikuData.GetItem(id);
+            T_Shopping tsh = new T_Shopping();
+            if(item != null){
+                if (item.PublisherID == yikuData.UserCurrent.UID) return RedirectToAction("Details", "Item", new { Id = id });
+                tsh = yikuData.AddShopping(yikuData.UserCurrent, item);
+                yikuData.Save();
+                tsh.Count += (num - 1);
+                yikuData.Save();
+                return RedirectToAction("Index", "Cart");
+            }
+
+            return RedirectToAction("Details", "Item", new { Id = id });
         }
 
         //

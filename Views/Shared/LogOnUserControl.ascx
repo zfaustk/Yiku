@@ -23,13 +23,13 @@
             <%: Html.ActionLink("已买到的商品", "trade", "MyYiku", null, new { target = "_top", Class = "white" })%>    
         </li>
         <li class="sn-mybrand">
-            <%: Html.ActionLink("购物车", "Cart", "MyYiku", null, new { target = "_top", Class = "white" })%>
+            <%: Html.ActionLink("购物车", "Index", "Cart", null, new { target = "_top", Class = "white" })%>
         </li>
         <li class="sn-mybrand">
             <%: Html.ActionLink("收藏的商品", "Collect", "MyYiku", null, new { target = "_top", Class = "white" })%>  
         </li>
         <li class="sn-home">
-            <a href="../Home/" Class = "white">依库网</a>
+            <%: Html.ActionLink("依库网", "Index", "Home", null, new { target = "_top", Class = "white" })%>  
         </li>
         
     </ul>
