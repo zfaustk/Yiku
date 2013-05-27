@@ -25,7 +25,9 @@ namespace Yiku.Models
 
         //public User publisher { get { return yikuData.GetUser(item) ;} }
 
-        //public IQueryable<Picture> pictures { get { return yikuData.GetPictures(item); } }
+        //public IQueryable<Item> HomePageItems { get; set; }
+
+        //public IQueryable<string> pictures { get { return from i in HomePageItems select i.thePictureRoute; } }
 
         public User CurrentUser { get { return yikuData.UserCurrent; } }
     }

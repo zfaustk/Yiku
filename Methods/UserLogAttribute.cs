@@ -16,7 +16,6 @@ namespace Yiku.Methods
         {
             if (!CurrentUser.IsAuthenticated) return false;
 
-
             if (Roles.Contains(CurrentUser.UserCurrent.ROLE))
             {
                 if (Roles.Contains("UnLog"))//角色包含UnLog则在未登录时授权

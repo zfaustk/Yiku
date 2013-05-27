@@ -77,7 +77,7 @@
                         <aside class="mt-menu" id="J_MtSideMenu">
                 <div class="mt-avatar">
                     <div class="mt-avatar-box" id="J_MtAvatarBox">
-                        <a class="mt-user-avatar" href="http://i.taobao.com/u/ODMyMjU2MTcy/front.htm?tracelog=snshomeside&amp;nekot=1369316320448" target="_blank">
+                        <a class="mt-user-avatar" href="#">
                         <img src="../../content/image/YikuFace.png"></a>
                         <a class="mt-avatar-operation hide" id="J_MtAvatarOperation" href="#">上传新头像</a>
                     </div>

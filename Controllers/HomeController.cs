@@ -11,6 +11,7 @@ namespace Yiku.Controllers
     [HandleError]
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             ViewData["Message"] = "欢迎使用 ASP.NET MVC!";
@@ -22,24 +23,11 @@ namespace Yiku.Controllers
 
         public ActionResult About()
         {
-            return View();
+            return RedirectToAction("trade", "MyYiku");
         }
         public ActionResult ssssssy()
         {
-            return View();
+            return RedirectToAction("trade", "MyYiku");
         }
-        public ActionResult Search()
-        {
-            return View();
-        }
-        public ActionResult item()
-        {
-            return View();
-        }
-        
-        
-        
-        
-
     }
 }

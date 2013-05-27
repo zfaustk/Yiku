@@ -9,13 +9,13 @@ using Yiku.Models.DataBase;
 
 namespace Yiku.Models
 {
-    public class OrderModels
+    public class TradeModels
     {
         YikuDataRepository yikuData = new YikuDataRepository();
 
         public bool Exist { get { return Orders.Any(); } }
 
-        public IQueryable<Order> Orders { get { return yikuData.OrderGetBySeller(CurrentUser); } }
+        public IQueryable<Order> Orders { get { return yikuData.OrderGetByBuyer(CurrentUser); } }
 
         public User CurrentUser { get { return yikuData.UserCurrent; } }
     }

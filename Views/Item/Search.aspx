@@ -46,6 +46,22 @@
     </script>
     <script>        TMall.THeader.init();</script>
     <style>
+        .SearchBtn
+        {
+            margin: 8px;
+            width: 48px;
+            height: 30px;
+            border: 0;
+            font-size: 18px;
+            color: #FFF;
+            background-color: #C3B360;
+            border-radius: 5px;
+            transition: .1s;
+        }
+        .SearchBtn:hover
+        {
+            background-color: #7F7140;
+        }
         .mt-header
         {
             height: 0px !important;
@@ -121,8 +137,9 @@
                     <%: Html.TextBoxFor(m => m.pMax, new { autocomplete = "off", maxlength = "8", Class = "fSort" })%>
                 </td>
                 <td>
-                    <button type = "submit" style="margin:4px;width: 60px;border: 0;font-size: 12px;color: #fff;background-color: #462824;">
-                        搜索 
+                    <button type = "submit" class="SearchBtn">
+                        <b>搜索</b>
+                        </button> 
                 </div>   
                 </td>        
             

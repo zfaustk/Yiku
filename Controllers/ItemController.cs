@@ -26,7 +26,7 @@ namespace Yiku.Controllers
 
         //
         // GET: /Item/Details/5
-
+        [UserLog]
         public ActionResult Collect(int? id , bool? Delete)
         {
             if (id != null)
@@ -45,6 +45,7 @@ namespace Yiku.Controllers
             return RedirectToAction("Index", "Item");
         }
 
+        [UserLog]
         public ActionResult Buy(int? id)
         {
             if (!CurrentUser.IsAuthenticated) return RedirectToAction("LogIn", "Account");
@@ -63,6 +64,26 @@ namespace Yiku.Controllers
             return RedirectToAction("Index", "Item");
         }
 
+        [UserLog]
+        public ActionResult DeclineShopping(int? id)
+        {
+            if (!CurrentUser.IsAuthenticated) return RedirectToAction("LogIn", "Account");
+            if (id != null)
+            {
+                Item item = yikuData.GetItem(id.Value);
+                T_Shopping tsh = new T_Shopping();
+                if (item != null)
+                {
+                    if (item.PublisherID == yikuData.UserCurrent.UID) return RedirectToAction("Details", "Item", new { ID = id.Value });
+                    tsh = yikuData.DeleteShopping(yikuData.UserCurrent, item, 1);
+                    yikuData.Save();
+                    return RedirectToAction("Index", "Cart");
+                }
+            }
+            return RedirectToAction("Index", "Item");
+        }
+
+        [UserLog]
         public ActionResult DeleteShopping(int? id)
         {
             if (!CurrentUser.IsAuthenticated) return RedirectToAction("LogIn", "Account");
@@ -79,6 +100,7 @@ namespace Yiku.Controllers
             return RedirectToAction("Index", "Item");
         }
 
+        [UserLog]
         public ActionResult DeleteCollect(int? id)
         {
             if (!CurrentUser.IsAuthenticated) return RedirectToAction("LogIn", "Account");
@@ -95,7 +117,6 @@ namespace Yiku.Controllers
             return RedirectToAction("Index", "Item");
         }
 
-
         public ActionResult Details(int? id)
         {
             if (id != null)
@@ -108,8 +129,11 @@ namespace Yiku.Controllers
             return RedirectToAction("Index", "Item");
         }
 
-        
-
+        public ActionResult Error(int? Id, string Errorm)
+        {
+            ViewData["ErrorMessage"] = Errorm;
+            return View(Id);
+        }
 
         [HttpPost]
         public ActionResult Details(int id, FormCollection collection)
@@ -118,13 +142,20 @@ namespace Yiku.Controllers
 
             int num = 0;
             if (!string.IsNullOrEmpty(Request.Form["BuyNumber"]))
-                num = Convert.ToInt32(Request.Form["BuyNumber"]);
-            else RedirectToAction("Details", "Item", new { Id = id });
+                try
+                {
+                    num = Convert.ToInt32(Request.Form["BuyNumber"]);
+                }
+                catch { return RedirectToAction("Error", "Item", new { Id = id, Errorm = "请输入正确的购买数量" }); }
+            else
+                return RedirectToAction("Error", "Item", new { Id = id, Errorm = "请输入购买数量" });
 
             Item item = yikuData.GetItem(id);
             T_Shopping tsh = new T_Shopping();
             if(item != null){
-                if (item.PublisherID == yikuData.UserCurrent.UID) return RedirectToAction("Details", "Item", new { Id = id });
+                if (item.PublisherID == yikuData.UserCurrent.UID)
+                    return RedirectToAction("Error", "Item", new { Id = id , Errorm = "不能购买自己的商品" });
+
                 tsh = yikuData.AddShopping(yikuData.UserCurrent, item);
                 yikuData.Save();
                 tsh.Count += (num - 1);
@@ -137,7 +168,7 @@ namespace Yiku.Controllers
 
         //
         // GET: /Item/Create
-        [Authorize]
+        [UserLog]
         public ActionResult Create()
         {
             return View();
@@ -146,7 +177,7 @@ namespace Yiku.Controllers
         //
         // POST: /Item/Create
 
-        [HttpPost, Authorize]
+        [HttpPost, UserLog]
         public ActionResult Create(Item i)
         {
             try
@@ -170,7 +201,7 @@ namespace Yiku.Controllers
         
         //
         // GET: /Item/Edit/5
-        [Authorize]
+        [UserLog]
         public ActionResult Edit(int id)
         {
             return View(yikuData.GetItem(id));
@@ -179,7 +210,7 @@ namespace Yiku.Controllers
         //
         // POST: /Item/Edit/5
 
-        [HttpPost,Authorize]
+        [HttpPost, UserLog]
         public ActionResult Edit(int id, Item item)
         {
             try
@@ -197,7 +228,7 @@ namespace Yiku.Controllers
             }
         }
 
-        [HttpPost, Authorize]
+        [HttpPost, UserLog]
         public ActionResult EditImage(HttpPostedFileBase imgUpload, int id)
          {
              Picture pic = new Picture();
@@ -219,31 +250,6 @@ namespace Yiku.Controllers
              return RedirectToAction("Edit", "Item", new { ID = id });
          }
 
-        //
-        // GET: /Item/Delete/5
- 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Item/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         public ActionResult Search(string Uname, string strSearch, string Cname , int? pMin, int? pMax, int? skip)
         {

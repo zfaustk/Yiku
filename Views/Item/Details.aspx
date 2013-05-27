@@ -67,7 +67,7 @@
                                     <div class="tb-action tm-clear ">
                                         <div class="tb-btn-buy tb-btn-sku">
                                             <button type="submit" style="border:none;">
-                                                <a id="J_LinkBuy" href="#" data-addfastbuy="true" title="将本商品">加入购物车<b></b></a>
+                                                <a id="J_LinkBuy" title="将本商品">加入购物车<b></b></a>
                                             </button>
                                         </div>
                                         <div class="tb-btn-basket tb-btn-sku">

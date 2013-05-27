@@ -5,6 +5,26 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ScriptContent" runat="server">
     <!-- end vmcommon/mytaobao -->
+    <style>
+        .Submit_
+        {
+            border:none; 
+            width:80px; 
+            height:50px; 
+            margin:20px; 
+            background-color: #C3B360;
+            border-radius: 5px;
+            transition: .1s;
+            color: #FCFCFD;
+            font-size: 20px;
+        }
+        .Submit_:hover
+        {
+            
+            background-color: #7F7140;
+            border-radius: 8px; 
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <div id="main-content">
@@ -72,12 +92,18 @@
                                 邮编：<em>*</em></label>
                                 <%: Html.TextBoxFor(m => m.ZipCode, new { style = "width:360px; margin-left:40px;", Class = "f-txt" })%>
                             </p>
+                            <p>
+                                已获积分：</label>
+                                <%: Model.Point%>
+                            </p>
                             
                         </div>
                         <div class="act skin-blue">
                             <span class="btn n-btn">
-                                <button type="submit" id="J_saveProfile">
-                                    保存</button></span></div>
+                                
+                                <button type="submit" id="J_saveProfile" class="Submit_">
+                                    保存</button>
+                            </span></div>
                         </form>
                     </div>
                 </div>

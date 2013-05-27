@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Models\SellModel.cs" />
     <Compile Include="Models\OrderModels.cs" />
     <Compile Include="Models\CartModels.cs" />
+    <Compile Include="Models\TradeModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -210,16 +212,19 @@
     <Content Include="Scripts\sy_sy\zeroclipboard.js" />
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\login.aspx" />
+    <Content Include="Views\Admin\Classes.aspx" />
+    <Content Include="Views\Admin\Index.aspx" />
+    <Content Include="Views\Admin\Items.aspx" />
+    <Content Include="Views\Admin\Users.aspx" />
     <Content Include="Views\Item\Create.aspx" />
     <Content Include="Views\Item\Edit.aspx" />
+    <Content Include="Views\Item\Error.aspx" />
     <Content Include="Views\Item\Search.aspx" />
     <Content Include="Views\Cart\cart.aspx" />
     <Content Include="Views\MyYiku\trade.aspx" />
     <Content Include="Views\MyYiku\profile.aspx" />
     <Content Include="Views\MyYiku\sell.aspx" />
     <Content Include="Views\MyYiku\Order.aspx" />
-    <Content Include="Views\Cart\cartOther.aspx" />
-    <Content Include="Views\Cart\cart3.aspx" />
     <Content Include="Views\MyYiku\collect.aspx" />
     <Content Include="Views\Home\ssssssy.aspx" />
     <Content Include="Views\Item\Details.aspx" />

@@ -220,6 +220,7 @@ input[type="password"]
 
 table 
 {
+    width:100%;
   border: solid 1px #e8eef4;
   border-collapse: collapse;
 }
@@ -257,6 +258,7 @@ table th
 
 div#title
 {
+    margin:-30px;
     display:block;
     float:left;
     text-align:left;

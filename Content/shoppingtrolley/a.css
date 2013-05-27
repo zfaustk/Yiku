@@ -2849,7 +2849,8 @@ body:first-of-type .main-wrap {
 	border:1px solid #E4E4E4;
 }
 .btn,.small-btn,.long-btn,.short-btn,.small-long-btn {
-	background:url(http://a.tbcdn.cn/sys/common/img/btn_bg.png) no-repeat;
+	background:#9B8C4C;
+	border-radius:3px;
 	width:80px;
 	height:25px;
 	line-height:25px;
@@ -2861,6 +2862,11 @@ body:first-of-type .main-wrap {
 	cursor:pointer;
 	color:#fff;
 }
+.btn,.small-btn,.long-btn,.short-btn,.small-long-btn :hover {
+	background:#E7DBB6;
+	color:#fff;
+}
+
 .small-btn {
 	background-position:0 -150px;
 	width:51px;

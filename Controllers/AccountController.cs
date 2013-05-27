@@ -34,6 +34,10 @@ namespace Yiku.Controllers
         // **************************************
         // URL: /Account/LogIn
         // **************************************
+        public ActionResult LogOn()
+        {
+            return RedirectToAction("LogIn");
+        }
 
         public ActionResult LogIn()
         {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/MyYiku.Master" Inherits="System.Web.Mvc.ViewPage<Yiku.Models.OrderModels>" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Views/Shared/MyYiku.Master" Inherits="System.Web.Mvc.ViewPage<Yiku.Models.TradeModels>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
     已买到的宝贝
@@ -16,8 +16,6 @@
             </div>
         </div>
         <div class="bought-list">
-
-
             <table class="bought-table" id="J_BoughtTable" data-spm="9">
                 <colgroup>
                     <col class="selector">
@@ -65,7 +63,6 @@
                     </tr>
                     <tr class="toolbar skin-gray">
                         <td colspan="7">
-
                         </td>
                         <td class="last-col" colspan="2">
                             <div class="paginator-top">
@@ -79,30 +76,31 @@
                         </td>
                     </tr>
                 </thead>
-                <% foreach(var ord in Model.Orders){ %>
+                <% foreach (var ord in Model.Orders)
+                   { %>
                 <tbody data-isarchive="false" data-orderid="226354351557261" data-status="TRADE_FINISHED"
                     class=" success-order xcard">
                     <tr class="sep-row">
                         <td colspan="9">
                         </td>
                     </tr>
-                    
                     <tr class="order-hd">
                         <td colspan="9">
                             <span class="no">
                                 <label>
-                                    订单编号：<span class="order-num"><%: string.Format("{0:8D}",ord.OrID) %></span>
+                                    订单编号：<span class="order-num"><%: string.Format("{0:00000000}",ord.OrID) %></span>
                                 </label>
-                                <span class="deal-time"><%: ord.Time %></span> <span class="seller">
-                                <%: Html.ActionLink(ord.Item.User.Name,"Search","Item",new {Uname = ord.Item.User.Name }) %>
-                                </span>
+                                下单时间： <span class="deal-time">
+                                    <%: string.Format("{0:f}",ord.Time) %></span> 卖家：<span class="seller">
+                                        <%: Html.ActionLink(ord.Item.User.Name,"Search","Item",new {Uname = ord.Item.User.Name },null) %>
+                                    </span>
                         </td>
                     </tr>
                     <tr id="item226354351557261" class="order-bd last">
                         <td class="baobei" colspan="2">
                             <a target="_blank" hidefocus="true" title="查看宝贝详情" href="../../Item/Details/<%: ord.IID%>"
                                 class="pic s50">
-                                <img alt="查看宝贝详情" src="<%: "../../Content/Image/Item/"+ord.Item.thePictureRoute %>">
+                                <img alt="查看宝贝详情" src="<%: "../../Content/Image/Items/"+ord.Item.thePictureRoute %>">
                             </a>
                             <div class="desc">
                                 <%: Html.ActionLink(ord.Item.Name, "Details", "Item", new {Id = ord.IID} , new {Class ="baobei-name", target="_blank" } )%>
@@ -124,26 +122,30 @@
                                     data-point-url="http://log.mmstat.com/listbought.1.12">投诉卖家</a>
                         </td>
                         <td class="amount" rowspan="1">
-                            <strong><%: string.Format("{0:c}",ord.Cost) %></strong>
+                            <strong>
+                                <%: string.Format("{0:c}",ord.Cost) %></strong>
                         </td>
                         <td class="trade-status" rowspan="1">
                             <%: ord.State %>
                             <%if (ord.State == "buy")
                               { %>
-                              <%: Html.ActionLink("前去付款", "cart2", "Cart", new {Id = ord.IID} ,null)%>
+                            <%: Html.ActionLink("前去付款", "cart", "Cart", new {Id = ord.IID} ,null)%>
+                            <%} %>
+                            <%else if (ord.State == "dealed")
+                              { %>
+                            <%: Html.ActionLink("确认收货", "Recieved", "Cart", new { Id = ord.OrID }, null)%>
                             <%} %>
                         </td>
                         <td class="operate" rowspan="1">
                             <%: Html.ActionLink("再次购买", "Buy", "Item", new {Id = ord.IID} ,null)%>
                         </td>
                         <td class="other" rowspan="1">
-                            <a class="J_DelOrder J_MakePoint" >删除</a>
+                            <a class="J_DelOrder J_MakePoint">删除</a>
                         </td>
                     </tr>
-                    
                 </tbody>
                 <%} %>
-                <tfoot>
+                <%--<tfoot>
                     <tr class="sep-row">
                         <td colspan="9">
                         </td>
@@ -172,9 +174,8 @@
                             </ul>
                         </td>
                     </tr>
-                </tfoot>
+                </tfoot>--%>
             </table>
-
         </div>
         <!--end bought-list-->
     </div>

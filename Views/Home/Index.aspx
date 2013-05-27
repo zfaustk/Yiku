@@ -29,13 +29,13 @@
                     <% foreach(var classm in Model.rootClasses){ %>
 		            <li class="bFnL-item">
                         <h3>
-                            <%: Html.ActionLink(classm.Name,"Item",new {Cl = classm.CID })  %>
+                            <%: Html.ActionLink(classm.Name,"Search", "Item",new {Cname = classm.Name },null)  %>
                         </h3>
             
                         <div class="bFnL-subNav">
                             <% foreach (var cl in Model.sonClasses(classm))
                                 { %>
-                                <%: Html.ActionLink(cl.Name, "Item", new { Cl = cl.CID })%>
+                                <%: Html.ActionLink(cl.Name, "Search", "Item", new { Cname = cl.Name }, null)%>
                             <%} %>                    
                         </div>
                     </li>

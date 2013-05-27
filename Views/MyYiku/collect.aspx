@@ -102,7 +102,7 @@
                             </tr>
                         </tbody>
                         <%} %>
-                        <tfoot style="width: 100%">
+                        <%--<tfoot style="width: 100%">
                             <tr class="sep-row">
                                 <td colspan="6">
                                 </td>
@@ -122,7 +122,7 @@
                                     </ul>
                                 </td>
                             </tr>
-                        </tfoot>
+                        </tfoot>--%>
                     </table>
                 </div>
             </div>

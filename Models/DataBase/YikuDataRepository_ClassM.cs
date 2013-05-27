@@ -26,6 +26,11 @@ namespace Yiku.Models.DataBase
                    select tcl.Class;
         }
 
+        public IQueryable<ClassM> GetClasses()
+        {
+            return yikuData.ClassMs;
+        }
+
         public IQueryable<ClassM> GetRootClasses()
         {
             return from c in yikuData.ClassMs

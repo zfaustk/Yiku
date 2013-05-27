@@ -17,13 +17,13 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="flow-steps">
+    <%--<div class="flow-steps">
         <ol class="num5">
             <li class="current"><span class="first">1. 查看购物车</span> </li>
             <li><span>2. 确认订单信息</span> </li>
             <li class="last"><span>3. 付款到支付宝</span> </li>
         </ol>
-    </div>
+    </div>--%>
     <% if (Model.Exist)
        {%> 
     <div id="cart">
@@ -104,7 +104,7 @@
                     <td></td>
                     <td class="s-title">
                         <a href="../../Item/Details/<%: tsh.IID %>" target="_blank">
-                            <img src="<%: "../../Content/Image/Items" + tsh.Item.thePictureRoute %>"
+                            <img src="<%: "../../Content/Image/Items/" + tsh.Item.thePictureRoute %>"
                                 class="itempic">
                             <%: tsh.Item.Name%></a>
                     </td>
@@ -115,9 +115,9 @@
                         <em class="J_Price" tabindex="0"><%: string.Format("{0:c}", tsh.Item.Price)%></em>
                     </td>
                     <td class="s-amount ">
-                        <a href="#" class="no-minus">-</a>
+                        <%: Html.ActionLink("-", "DeclineShopping", "Item", new { ID = tsh.IID }, new { Class = "minus" })%>
                         <%: tsh.Count%>
-                        <a href="#" class="plus">+</a>
+                        <%: Html.ActionLink("+","Buy","Item",new {ID = tsh.IID},new {Class = "plus"} )%>
                     </td>
                     <td class="s-agio">
                         <%: tsh.Cut ?? "-"%>

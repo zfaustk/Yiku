@@ -17,7 +17,7 @@
             <%: Html.ActionLink("登出", "LogOff", "Account", null, new { Class = "white" })%>
         </li>
         <li class="sn-mybrand">
-            <%: Html.ActionLink("已卖出的商品", "sell", "MyYiku", null, new { target = "_top", Class = "white" })%>    
+            <%: Html.ActionLink("已卖出的商品", "Order", "MyYiku", null, new { target = "_top", Class = "white" })%>    
         </li>
         <li class="sn-mybrand">
             <%: Html.ActionLink("已买到的商品", "trade", "MyYiku", null, new { target = "_top", Class = "white" })%>    
