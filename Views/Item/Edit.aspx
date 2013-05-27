@@ -81,6 +81,21 @@
                         <%: Html.ValidationMessageFor(model => model.Cut) %>
                     </div>
                     <div class="editor-label">
+                        分类
+                    </div>
+                    <div class="editor-field">
+                        <div>
+                            <%if (Model.T_Classify != null)
+                              {%>
+                            <%foreach (var tcl in Model.T_Classify)
+                              {%>
+                            <%: tcl.Class.Name %>
+                            <%} %>
+                            <%} %>
+                        </div>
+                        <%: Html.TextBox("ClassM",null,new { style = "margin-left:40px;", Class = "f-txt" }) %>
+                    </div>
+                    <div class="editor-label">
                         不删除？
                     </div>
                     <div class="editor-field">
@@ -89,11 +104,11 @@
                     </div>
                     <p>
                         <button type="submit" class="_YIKU_Button">
-                                保存
+                            保存
                         </button>
                     </p>
                     <% } %>
-                    </div>
+                </div>
             </td>
             <td>
                 <div style="float: right;">
@@ -101,8 +116,9 @@
                        {%>
                     <fieldset>
                         <div class="editor-field">
-                            <%foreach(var pic in Model.Pictures){ %>
-                            <img src = "../../../Content/Image/Items/<%: pic.Route %>" class = "_ItemPic"  />
+                            <%foreach (var pic in Model.Pictures)
+                              { %>
+                            <img src="../../../Content/Image/Items/<%: pic.Route %>" class="_ItemPic" />
                             <%break;
                               } %>
                         </div>
@@ -120,7 +136,6 @@
             </td>
         </thead>
     </table>
-
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ScriptContent" runat="server">
 </asp:Content>

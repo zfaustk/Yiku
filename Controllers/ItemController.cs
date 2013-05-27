@@ -218,6 +218,17 @@ namespace Yiku.Controllers
                 // TODO: Add update logic here
                 Item it = yikuData.GetItem(id);
                 UpdateModel(it);
+
+                if (!string.IsNullOrEmpty(Request.Form["ClassM"]))
+                {
+                    string str = Request.Form["ClassM"];
+                    ClassM classm =yikuData.GetClass(str);
+                    if (classm != null)
+                    {
+                        yikuData.AddClassify(it, classm);
+                    }
+                }
+
                 yikuData.Save();
 
                 return RedirectToAction("sell", "MyYiku", null);
