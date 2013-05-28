@@ -265,8 +265,15 @@ namespace Yiku.Controllers
         public ActionResult Search(string Uname, string strSearch, string Cname , int? pMin, int? pMax, int? skip)
         {
             SearchModel sm = new SearchModel();
-            if (!String.IsNullOrEmpty(Uname)) sm.Uname = Uname;
-            if (!String.IsNullOrEmpty(Cname)) sm.Cname = Cname;
+            if (!String.IsNullOrEmpty(Uname))
+            {
+                if(null != yikuData.GetUser(Uname))
+                sm.Uname = Uname;
+            }
+            if (!String.IsNullOrEmpty(Cname)) {
+                if (null != yikuData.GetClass(Cname))
+                sm.Cname = Cname; 
+            }
             if (!String.IsNullOrEmpty(strSearch)) sm.strSearch = strSearch;
             if (pMin != null) sm.pMin = pMin.Value;
             if (pMax != null) sm.pMax = pMax.Value;

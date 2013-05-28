@@ -20,12 +20,20 @@ namespace Yiku.Models.DataBase
             return yikuData.Items.SingleOrDefault(i => picture.IID == i.IID);
         }
 
+        public IQueryable<Item> GetItems()
+        {
+            return from i in yikuData.Items
+                   orderby i.Volume
+                   select i;
+        }
+
         public IQueryable<Item> GetItems(string itemName)
         {
             return from i in yikuData.Items
                    where i.Name.ToLower().Contains(itemName.Trim().ToLower())
                    select i;
         }
+
         public IQueryable<Item> GetItems(User user)//publisher
         {
             return from i in yikuData.Items

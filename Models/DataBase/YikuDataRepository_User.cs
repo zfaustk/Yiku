@@ -22,6 +22,13 @@ namespace Yiku.Models.DataBase
             return yikuData.Users.SingleOrDefault(u => u.UID == item.IID);
         }
 
+        public IQueryable<User> GetUsers()//All
+        {
+            return from user in yikuData.Users
+                   orderby user.Items.Count descending 
+                   select user;
+        }
+
         #endregion
 
         #region User Method Set

@@ -47,9 +47,15 @@ namespace Yiku.Controllers
         [HttpPost]
         public ActionResult LogIn(LogOnModel model, string returnUrl)
         {
+            ViewData["ErrorMessage"] = "";
             if (yikuData.UserCurrent == null)
             {
-                
+                if (model.UserName == null || model.Password == null)
+                {
+                    ModelState.AddModelError("", "提供的用户名或密码不正确。");
+                    return View(model);
+                }
+
                 if (MembershipService.ValidateUser(model.UserName,  model.Password))
                 {
                     FormsService.SignIn(model.UserName, model.RememberMe);
@@ -68,9 +74,11 @@ namespace Yiku.Controllers
                 }
             }
 
+            ViewData["ErrorMessage"] = "提供的用户名或密码不正确。";
             // 如果我们进行到这一步时某个地方出错，则重新显示表单
             return View(model);
         }
+
 
         // **************************************
         // URL: /Account/LogOff

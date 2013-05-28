@@ -79,7 +79,7 @@ namespace Yiku.Models.DataBase
         {
             if (items == null || items.Count() <= 0) return null;
             return from item in items
-                   orderby item.Volume
+                   orderby item.Volume descending 
                    select item;
         }
     }
