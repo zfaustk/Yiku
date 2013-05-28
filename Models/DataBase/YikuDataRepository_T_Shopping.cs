@@ -51,7 +51,7 @@ namespace Yiku.Models.DataBase
             }
             else
             {
-                tsh.Count += tsh.Count;
+                tsh.Count += Count;
                 if (Cut != null)
                     tsh.Cut = Cut;
             }
@@ -70,7 +70,7 @@ namespace Yiku.Models.DataBase
             T_Shopping tsh = GetT_Shopping(item, user);
             if (tsh != null)
             {
-                if (tsh.Count < count) Delete(tsh);
+                if (tsh.Count <= count) Delete(tsh);
                 else
                 {
                     tsh.Count -= count;

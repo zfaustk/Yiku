@@ -240,6 +240,7 @@ body #page {
     width: 990px;
     margin: 0 auto;
     padding: 0;
+    padding-bottom:10px;
 }
 
 #mytaobao #Content,

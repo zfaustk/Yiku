@@ -70,12 +70,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\MyYikuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DataBase\MyYikuHelpers.cs" />
     <Compile Include="Models\DataBase\YikuDataRepository_UserCurrent.cs" />
     <Compile Include="Models\DataBase\IYikuDataRepository.cs" />
     <Compile Include="Models\DataBase\SortHelper\SortHelper_Item.cs" />
@@ -98,6 +102,12 @@
     <Compile Include="Methods\UserLogAttribute.cs" />
     <Compile Include="Models\ItemModels.cs" />
     <Compile Include="Models\HomeModels.cs" />
+    <Compile Include="Models\CollectModels.cs" />
+    <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\SellModel.cs" />
+    <Compile Include="Models\OrderModels.cs" />
+    <Compile Include="Models\CartModels.cs" />
+    <Compile Include="Models\TradeModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +128,7 @@
     <Content Include="Content\MainPage_.css" />
     <Content Include="Content\pro\pf-base.css" />
     <Content Include="Content\register.css" />
+    <Content Include="Content\SearchYiku.css" />
     <Content Include="Content\shoppingtrolley\a.css" />
     <Content Include="Content\shoppingtrolley\cart-min.css" />
     <Content Include="Content\sy.css" />
@@ -201,17 +212,20 @@
     <Content Include="Scripts\sy_sy\zeroclipboard.js" />
     <Content Include="Views\Account\Register.aspx" />
     <Content Include="Views\Account\login.aspx" />
-    <Content Include="Views\Home\cart.aspx" />
-    <Content Include="Views\Home\list.aspx" />
-    <Content Include="Views\Home\profile.aspx" />
-    <Content Include="Views\Home\sell.aspx" />
-    <Content Include="Views\Home\selllist.aspx" />
-    <Content Include="Views\Home\sellorder.aspx" />
-    <Content Include="Views\Home\trade.aspx" />
-    <Content Include="Views\Home\tradeok.aspx" />
-    <Content Include="Views\Home\collect.aspx" />
-    <Content Include="Views\Item\Detail.aspx" />
-    <Content Include="Views\Home\Search.aspx" />
+    <Content Include="Views\Admin\Classes.aspx" />
+    <Content Include="Views\Admin\Index.aspx" />
+    <Content Include="Views\Admin\Items.aspx" />
+    <Content Include="Views\Admin\Users.aspx" />
+    <Content Include="Views\Item\Create.aspx" />
+    <Content Include="Views\Item\Edit.aspx" />
+    <Content Include="Views\Item\Error.aspx" />
+    <Content Include="Views\Item\Search.aspx" />
+    <Content Include="Views\Cart\cart.aspx" />
+    <Content Include="Views\MyYiku\trade.aspx" />
+    <Content Include="Views\MyYiku\profile.aspx" />
+    <Content Include="Views\MyYiku\sell.aspx" />
+    <Content Include="Views\MyYiku\Order.aspx" />
+    <Content Include="Views\MyYiku\collect.aspx" />
     <Content Include="Views\Home\ssssssy.aspx" />
     <Content Include="Views\Item\Details.aspx" />
     <Content Include="Views\Item\Index.aspx" />
@@ -257,8 +271,10 @@
     <None Include="Scripts\sy_sy\counter6" />
     <None Include="Scripts\sy_sy\saved_resource%281%29" />
     <Content Include="Views\Shared\Sudo.Master" />
+    <Content Include="Views\Shared\MyYiku.master" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\App_LocalResources\" />
     <Folder Include="Content\trade\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -276,7 +292,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>3394</DevelopmentServerPort>
+          <DevelopmentServerPort>24454</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

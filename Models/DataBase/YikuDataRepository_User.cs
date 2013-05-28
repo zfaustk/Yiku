@@ -22,6 +22,13 @@ namespace Yiku.Models.DataBase
             return yikuData.Users.SingleOrDefault(u => u.UID == item.IID);
         }
 
+        public IQueryable<User> GetUsers()//All
+        {
+            return from user in yikuData.Users
+                   orderby user.Items.Count descending 
+                   select user;
+        }
+
         #endregion
 
         #region User Method Set
@@ -62,7 +69,7 @@ namespace Yiku.Models.DataBase
 
         public bool UserChangePassword(User user, string pswOld, string pswNew)
         {
-            if (UserExist(user) && user.PSW == pswOld)
+            if (UserExist(user) && user.PSW.Trim() == pswOld)
             {
                 user.PSW = pswNew;
                 return true;

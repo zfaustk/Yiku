@@ -74,7 +74,6 @@ a.brand-subNav-last,strong.brand-subNav-last {
 	min-width:990px;
 }
 .brandTitle,.brand-subNavList,.brandSubNav,.bFnL-item h3 s,.bFnL-item:hover h3 s,.bFnL-item-hover h3 s,.bFe-recommend h3 s,.bFe-userFav h3 s,.bFe-newBrand h3 s,.brandFloor-top h4 s,.bFt-list-num,.bFlil-mask-shop i,.bFlisc-mask-shop i,.ui-title-num,.ui-title-mask,.ui-title-arrow,.cfbo-up-red,.cfbo-up-gray,.cfbo-down-gray,.catMore-arrow,.catMore a:hover .catMore-arrow,.azFilter-search-con,.brandTipsDialog a.tml-ext-close,.brandTipsDialog a.tml-ext-close:hover,.brandRecommend h2 s,.bQN-feedback,.bFlil-img,.bFl-item-logo li,.bFt-list-name,.bQN-list a,.bFeuF-list span,.bFt-list-name,.bIc-title {
-	background-image:url(http://img04.taobaocdn.com/tps/i4/T13d4eXERgXXXzKHv4-200-366.png);
 	background-repeat:no-repeat;
 }
 #mallNav {
@@ -1809,7 +1808,7 @@ li.brandSlide-active {
 	margin:0 7px;
 	height:100%;
 	background-position:0 32px;
-	font-family:\5fae \8f6f \96c5 \9ed1
+	font-family:"5fae 8f6f 96c5 9ed1"
 }
 .bQN-list a:hover {
 	background:#333;
@@ -2277,4 +2276,13 @@ a.azList-addBtn {
 }
 .azFilter-search-input:focus {
 	outline:0;
+}
+
+
+
+/*--------------------------------------*/
+._ItemPic
+{
+    width: 280px;
+
 }

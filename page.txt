@@ -1,0 +1,126 @@
+---页面---
+
+所有用户:
+√	MyYiku\Profile		用户信息修改
+√	MyYiku\Index		后台首页
+
+买家页面：
+√	Home\Index		主页 		
+√	Account\Login		登录
+√	Account\Register	注册	
+
+√	Items\Index		搜索商品		http://list.tmall.com/search_product.htm?q=%CB%D1%B5%B%B5%C4&type=p&style=&cat=all
+√	Items\Details\ID	商品页面		http://detail.tmall.com/item.htm?spm=a220m.1000858.1000725.9.GRNb0a&id=4492887220&user_id=101450072&is_b=1&cat_id=2&q=%CB%D1%B5%BD%B5%C4&rn=b621330347669321b4fd1b80ef8b91d3
+
+√	Cart\cart		购物车
+				交易确认
+
+√	MyYiku\Collction	我的收藏 （列表）
+√	MyYiku\Trade		已买到的宝贝 （列表）
+
+卖家页面：	
+√	MyYiku\Sell\		宝贝管理
+√	Item\Edit\ID	
+√	MyYiku\Order\		订单处理
+
+后台管理：
+	Admin\Index		后台首页
+	Admin\Users		所有用户
+	Admin\UserEdit\ID	修改某个用户
+	Admin\Items		所有商品
+	Admin\ItemEdit\ID	修改某个商品
+	Admin\Orders		所有订单
+	Admin\OrderEdit\ID	修改某个订单
+
+---实体关系---
+
+用户
+  C:
+  1--n 商品(购物车) [deal ]
+  1--n 商品(收藏)   [deal ]
+  1--n 订单
+  //1--n 评价
+  B:
+  1--n 商品(sell) [edit ]
+  1--n 订单(sell) [view, edit, deal ]
+商品
+  1--n 分类
+  1--n 图片
+  //1--n 评价
+订单
+  1--1 商品
+分类
+  1--n 分类(子)
+评价
+图片
+
+
+---类设计---
+
+class 用户 User
+- ID		UID
+- 用户名		Name
+- psw		Psw
+- point		Point
+- 收货地址	Address
+- 收货人		Guy
+- Tel		Tel
+- Zip-code	zip
+
+-- class 用户-商品(购物车)	T_Shoping
+	- ID		T_Sh_ID
+	- User		UID
+	- Item		IID
+	- Count 	Count
+	- 算法		Cut
+
+-- class 用户-商品(收藏)		T_Collection
+	- ID		T_Co_ID
+	- User		UID
+	- Item		IID
+
+class 订单	Order
+- ID		OrID
+- Item		IID
+- User 		UID
+- Count 	Count
+- 折扣算法	Cut
+- 时间		Time
+- Cost		Cost
+- State		State  [[buy , pay , dealed , recieved ], return , return_end , argue ]
+
+class 商品 	Item
+- ID		IID
+- 发布者		UID
+- 商品名		Name
+- 介绍		Detail
+- 库存		Stock
+- 销量		Volume
+- 折扣算法	Cut
+- 创建时间	TimeCreat
+- 价格		Price
+
+-- class 商品-分类		T_Classify
+	- ID		T_Cl_ID
+	- Item		IID
+	- Class		CID
+
+-- class 商品-图片		T_PicOfItem
+	- ID		T_Poi_ID
+	- Item		IID
+	- Pic		PID
+
+class 分类	Class
+- ID		CID
+- FatherID	FCID
+- 类名		Name
+
+class 图片	Picture
+- ID		PID
+- Route		Route
+
+
+
+
+
+

@@ -34,6 +34,10 @@ namespace Yiku.Controllers
         // **************************************
         // URL: /Account/LogIn
         // **************************************
+        public ActionResult LogOn()
+        {
+            return RedirectToAction("LogIn");
+        }
 
         public ActionResult LogIn()
         {
@@ -43,9 +47,15 @@ namespace Yiku.Controllers
         [HttpPost]
         public ActionResult LogIn(LogOnModel model, string returnUrl)
         {
+            ViewData["ErrorMessage"] = "";
             if (yikuData.UserCurrent == null)
             {
-                
+                if (model.UserName == null || model.Password == null)
+                {
+                    ModelState.AddModelError("", "提供的用户名或密码不正确。");
+                    return View(model);
+                }
+
                 if (MembershipService.ValidateUser(model.UserName,  model.Password))
                 {
                     FormsService.SignIn(model.UserName, model.RememberMe);
@@ -64,9 +74,11 @@ namespace Yiku.Controllers
                 }
             }
 
+            ViewData["ErrorMessage"] = "提供的用户名或密码不正确。";
             // 如果我们进行到这一步时某个地方出错，则重新显示表单
             return View(model);
         }
+
 
         // **************************************
         // URL: /Account/LogOff
@@ -96,8 +108,16 @@ namespace Yiku.Controllers
             {
                 // 尝试注册用户
                 UserCreateStatus createResult 
-                    = 
-                    MembershipService.CreateUser(model.UserName, model.Password, model.ConfirmPassword, model.Address, model.Consignee, model.Tel, model.Zipcode);
+                    =
+                    MembershipService.CreateUser(
+                        model.UserName
+                        , model.Password
+                        , model.ConfirmPassword
+                        , model.Address
+                        , model.Consignee
+                        , model.Tel
+                        , model.Zipcode
+                    );
 
                 if (createResult == UserCreateStatus.Succeed)
                 {

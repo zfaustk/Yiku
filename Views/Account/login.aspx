@@ -22,10 +22,14 @@
 <div class="article">
       
 
-<% using (Html.BeginForm()) { %>
-    <div id="item-error" style="display:none">
-        <p class="error">错误的帐号类型</p>
+<% using (Html.BeginForm()) {
+       if (ViewData["ErrorMessage"] != null)
+       {%>
+    
+    <div id="item-error" >
+        <p class="error"><%:ViewData["ErrorMessage"]%></p>
     </div>
+    <%} %>
     <div class="item">
             <label>帐号</label> 
             <%: Html.TextBoxFor(m => m.UserName) %>

@@ -35,6 +35,17 @@ namespace Yiku.Models.DataBase
             return picture;
         }
 
+        public void PictureRemoveAll(Item item)
+        {
+            IQueryable<Picture> pics = GetPictures(item);
+            if(pics == null)return;
+            foreach (Picture pic in pics)
+            {
+                Delete(pic);
+            }
+            Save();
+        }
+
         #endregion
 
         #region Picture Method Get

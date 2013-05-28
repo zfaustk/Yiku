@@ -1,0 +1,117 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Views/Shared/Sudo.Master" AutoEventWireup="true"
+    Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
+    依库商城_<asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ScriptContent" runat="server">
+    <link rel="stylesheet" href="../../Content/a_002.css" />
+    <link rel="Stylesheet" href="../../Content/list/bought.css" />
+    <link rel="Stylesheet" href="../../Content/list/base.css" />
+    <link rel="Stylesheet" href="../../Content/list/bk.css" />
+    <asp:ContentPlaceHolder ID="ScriptContent" runat="server" />
+    <link rel="stylesheet" href="../../Content/list/banshi.css" />
+    <link rel="Stylesheet" href="../../Content/pro/app.css">
+    <link rel="Stylesheet" href="../../Content/pro/pf-base.css" />
+    <style>
+        #Content .main-wrap,
+        #content .main-wrap {
+         margin-left: 140px;
+        }
+
+        #Content .col-sub,
+        #content .col-sub {
+         width: 140px;
+        margin-left: -100%;
+        *display: inline;
+    
+        }
+
+        a .Link
+        {
+            color: #738C4B !important;
+        }
+        
+        .main-wrap
+        {
+            border-left: 1px solid #E6E6E6 !important;
+        }
+        
+        .grid-c2 
+        {
+            background-color: #FAF6F0 !important;
+        }
+        
+
+    </style>
+    <%--    <script runat="server" language="c#">
+        public Label MasterPageLabel
+        {
+            get{
+                return ;
+            }
+            set{
+                Label1 = value;
+            }
+        }
+    </script>--%>
+    <script>        TB.Global.init();</script>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <div id="page" style="width: 990px;">
+        
+        <div id="content">
+            <div id="mytaobao-panel" class="grid-c2">
+                <div class="col-main">
+                    <div class="main-wrap">
+                        <span class="mytaobao-rc-tp"><span></span></span>
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+                        <!--end main-content-->
+                    </div>
+                    <!--end main-wrap-->
+                </div>
+                <!-- end col-main -->
+                <div class="col-sub">
+                    <!--$sns mytaobao_menu.vm-->
+                    <div class="Yiku_Menu_left">
+                        <aside class="mt-menu" id="J_MtSideMenu">
+                <div class="mt-avatar">
+                    <div class="mt-avatar-box" id="J_MtAvatarBox">
+                        <a class="mt-user-avatar" href="#">
+                        <img src="../../content/image/YikuFace.png"></a>
+                        <a class="mt-avatar-operation hide" id="J_MtAvatarOperation" href="#">上传新头像</a>
+                    </div>
+                    <div class="mt-edit-userinfo">
+                        <%: Html.ActionLink("编辑资料", "profile", "MyYiku", null, new { Class = "mt-edit-info" })%>
+                        <%: Html.ActionLink("隐私设置", "ChangePassword", "Account", null, new { Class = "mt-edit-private" })%>
+                    </div>
+                </div>
+
+                <div class="mt-menu-tree"> 
+                    <dl class="mt-menu-item">
+                        <dt class="fs14">我的交易</dt>
+                        <dd>
+                        <!-- 不同子页面显示不一样的怎么解决？ -->
+                            <%: Html.ActionLink("个人信息管理", "profile", "MyYiku", null, new { Class = (ViewData["MyYiku"]=="profile")?"selected" : "mt-edit-info" })%>
+                        </dd>
+                        <dd class="mt-menu-sub unfold">
+                            <%: Html.ActionLink("已买到的宝贝", "trade", "MyYiku", null, new { Class = (ViewData["MyYiku"] == "trade") ? "selected" : "mt-edit-info" })%>
+                        </dd>
+                        <dd id="favorite">
+                            <%: Html.ActionLink("我的收藏", "collect", "MyYiku", null, new { Class = (ViewData["MyYiku"] == "collect") ? "selected" : "mt-edit-info" })%>
+                        </dd>
+                        <dt class="fs14">我是卖家</dt>
+                        <dd id="point">
+                            <%: Html.ActionLink("商品管理", "sell", "MyYiku", null, new { Class = (ViewData["MyYiku"] == "sell") ? "selected" : "mt-edit-info" })%>
+                        </dd>
+                        <dd id="gotBonus">
+                            <%: Html.ActionLink("订单管理", "Order", "MyYiku", null, new { Class = (ViewData["MyYiku"] == "order") ? "selected" : "mt-edit-info" })%>
+                        </dd>
+                    </dl>
+                </div>
+            </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+</asp:Content>

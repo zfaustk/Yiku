@@ -10,23 +10,20 @@
 
 <body>
     <div class="page">
-
+    
         <div id="header">
+
             <div id="title">
-                <h1>我的 MVC 应用程序</h1>
+                <h1>依库后台</h1>
             </div>
-              
-            <div id="logindisplay">
-                <% Html.RenderPartial("LogOnUserControl"); %>
-            </div> 
-            
             <div id="menucontainer">
-            
                 <ul id="menu">              
-                    <li><%: Html.ActionLink("主页", "Index", "Home")%></li>
-                    <li><%: Html.ActionLink("关于", "About", "Home")%></li>
+                    <li><%: Html.ActionLink("依库网", "Index", "Home")%></li>
+                    <li><%: Html.ActionLink("后台主页", "Index", "Admin")%></li>
+                    <li><%: Html.ActionLink("用户列表", "Users", "Admin")%></li>
+                    <li><%: Html.ActionLink("商品列表", "Items", "Admin")%></li>
+                    <li><%: Html.ActionLink("类目列表", "Classes", "Admin")%></li>
                 </ul>
-            
             </div>
         </div>
 
