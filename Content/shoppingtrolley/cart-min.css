@@ -171,8 +171,8 @@ padding-bottom: 60px;
 }
 .order-table thead th {
 	text-align:center;
-	color:#404040;
-	border-top:3px solid #A7CBFF
+	color:#5236A1;
+	border-top:3px solid #003DF5;
 }
 .order-table thead th.s-chk input {
 	margin:0 3px -2px 0
@@ -280,7 +280,10 @@ padding-bottom: 60px;
 	background:#f1f8ff
 }
 .order-table tbody tr.selected {
-	background:#e2f2ff
+	background:#E7DBB6
+}
+.order-table tbody tr.selected:hover {
+	background:#D7C588
 }
 .order-table tbody td {
 	padding:5px;
@@ -446,7 +449,7 @@ padding-bottom: 60px;
 }
 .order-table tbody td.s-agio select {
 	}.order-table tbody td.s-total em {
-	color:#f60;
+	color:#5BABC8;
 	font:bold 12px tahoma
 }
 .order-table tbody .shop,.order-table tbody .shop:hover {
@@ -848,8 +851,8 @@ padding-bottom: 60px;
 	background:#f1f8ff
 }
 #empty {
-	padding:88px 0 100px 156px;
-	background:url(http://img03.taobaocdn.com/tps/i3/T1TvXUXnNjXXXXXXXX-100-100.png) no-repeat 40px 86px;
+	padding: 88px 0 100px 256px;
+	background:url(../../Content/Image/Cart.png) no-repeat 40px 86px;
 	position:relative
 }
 *html #empty #status-bar {
@@ -2003,7 +2006,7 @@ td.promo-info .scrolling-container {
 	margin-top:-67px
 }
 .choose-all,.choose-cod,.un-choose-cod,.un-choose-all,em.cod-icon,.choose .btn-small-go,.order-table .go button,.order-table .cod-go,.order-table .un-go,#cart .skin-gray .thin,.choose .btn-small-un-go,.temp-cart-info .temp-cart,.cod-tip i,.select-cod,.float-bar button,.float-bar .goto {
-	background:url(http://img03.taobaocdn.com/tps/i3/T1JXrIXoXkXXa.AtHl-250-270.png) no-repeat -9999px -9999px transparent
+	background:#9B8C4C transparent;
 }
 .temp-cart-info {
 	height:30px;
@@ -2143,7 +2146,7 @@ em.cod-icon {
 	margin-right:10px
 }
 .order-table thead tr {
-	background-color:#E2F2FF;
+	background-color:#E7DBB6;
 	text-align:center;
 	height:40px
 }
@@ -2333,7 +2336,11 @@ em.cod-icon {
 	cursor:auto
 }
 .float-bar .btn {
-	background-color:#FE9C44;
+	background-color:#9B8C4C;
+	font-size:16px
+}
+.float-bar .btn :hover {
+	background-color:#E7DBB6;
 	font-size:16px
 }
 .float-bar button {
@@ -2370,7 +2377,7 @@ em.cod-icon {
 	margin-right:10px
 }
 .float-bar .total {
-	color:#F60;
+	color:#5BABC8;
 	font:24px tahoma;
 	margin-right:3px;
 	text-shadow:0 1px 1px #CCC;

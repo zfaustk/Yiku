@@ -20,12 +20,20 @@ namespace Yiku.Models.DataBase
             return yikuData.Items.SingleOrDefault(i => picture.IID == i.IID);
         }
 
+        public IQueryable<Item> GetItems()
+        {
+            return from i in yikuData.Items
+                   orderby i.Volume
+                   select i;
+        }
+
         public IQueryable<Item> GetItems(string itemName)
         {
             return from i in yikuData.Items
                    where i.Name.ToLower().Contains(itemName.Trim().ToLower())
                    select i;
         }
+
         public IQueryable<Item> GetItems(User user)//publisher
         {
             return from i in yikuData.Items
@@ -76,6 +84,11 @@ namespace Yiku.Models.DataBase
             else return false;
         }
 
+        public IQueryable<Item> ItemGetByExist(bool exist = true)
+        {
+            return ItemGetByExist(yikuData.Items, exist);
+        }
+
         public IQueryable<Item> ItemGetRelateds(Item item)
         {
             return ItemGetRelateds(yikuData.Items, item);
@@ -110,10 +123,24 @@ namespace Yiku.Models.DataBase
         {
             return ItemGetBySeller(yikuData.Items, seller);
         }
+
+        public IQueryable<Item> ItemGetByClass(ClassM classm)
+        {
+            return ItemGetByClass(yikuData.Items, classm);
+        }
+
         //--item Method Search
         public IQueryable<Item> ItemSearchByNameAndDetail(string searchString)
         {
             return ItemSearchByNameAndDetail(yikuData.Items, searchString);
+        }
+
+        public IQueryable<Item> ItemGetShoppingItem(User buyer)
+        {
+            return from tsh in yikuData.T_Shopping
+                   where tsh.UID == buyer.UID
+                   orderby tsh.IID
+                   select tsh.Item;
         }
 
         #endregion
@@ -126,12 +153,14 @@ namespace Yiku.Models.DataBase
             return from i in items
                    where i.Name.ToLower().Contains(item.Name.ToLower())
                         || item.Name.ToLower().Contains(i.Name.ToLower())
+                   orderby i.IID
                    select i;
         }
         public IQueryable<Item> ItemGetByTime(IQueryable<Item> items, DateTime timeBegin, DateTime timeEnd)
         {
             return from i in items
                    where i.TimeCreate >= timeBegin && i.TimeCreate <= timeEnd
+                   orderby i.IID
                    select i;
         }
 
@@ -139,6 +168,7 @@ namespace Yiku.Models.DataBase
         {
             return from i in items
                    where i.Price >= priceMin && i.Price <= priceMax
+                   orderby i.IID
                    select i;
         }
 
@@ -146,6 +176,7 @@ namespace Yiku.Models.DataBase
         {
             return from i in items
                    where i.Volume >= volumeMin && i.Volume <= volumeMax
+                   orderby i.IID
                    select i;
         }
 
@@ -153,6 +184,7 @@ namespace Yiku.Models.DataBase
         {
             return from i in items
                    where i.Stock >= stockMin && i.Stock <= stockMax
+                   orderby i.IID
                    select i;
         }
 
@@ -160,14 +192,34 @@ namespace Yiku.Models.DataBase
         {
             return from ord in yikuData.Orders
                         where ord.UID == buyer.UID && items.Contains(ord.Item)
+                        orderby ord.OrID   
                         select ord.Item;
 
         }
+
+        
 
         public IQueryable<Item> ItemGetBySeller(IQueryable<Item> items, User seller)
         {
             return from i in items
                    where i.PublisherID == seller.UID
+                   orderby i.IID
+                   select i;
+        }
+
+        public IQueryable<Item> ItemGetByClass(IQueryable<Item> items, ClassM classm)
+        {
+            return from cly in yikuData.T_Classify
+                    where items.Contains(cly.Item) && cly.CID == classm.CID
+                    orderby cly.IID
+                    select cly.Item;
+        }
+
+        public IQueryable<Item> ItemGetByExist(IQueryable<Item> items, bool exist = true)
+        {
+            return from i in items
+                   where i.Exist == exist
+                   orderby i.IID
                    select i;
         }
         //--item Method Search
@@ -177,8 +229,11 @@ namespace Yiku.Models.DataBase
                    where i.Detail.ToLower().Contains(searchString.ToLower().Trim())
                         || i.Name.ToLower().Contains(searchString.ToLower().Trim())
                         || i.User.Name.ToLower().Contains(searchString.ToLower().Trim())
+                   orderby i.IID
                    select i;
         }
+
+
         #endregion
 
         #region item Method Sort

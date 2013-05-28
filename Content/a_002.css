@@ -7,9 +7,12 @@ extarea,th,td {
 	padding: 0
 }
 body,button,input,select,textarea {
-	font: 12px/1.5 tahoma,arial,\5b8b
-\4f53;
-	*line-height: 1.5
+	*line-height: 1.5;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 12px;
+    font-family: tahoma, arial, "5b8b 4f53";
 }
 h1,h2,h3,h4,h5,h6 {
 	font-size: 100%
@@ -898,16 +901,14 @@ separator {
 }
 .sn-simple-logo-shop {
 	color: #fff;
-	font-family: 'Lucida
-Grande','\5fae\8f6f\96c5\9ed1'
+	font-family: "Lucida Grande", \5fae\8f6f\96c5\9ed1
 }
 .w990 .sn-simple-container .sn-mobile,.w990 .sn-simple-container .sn-home {
 	display: none
 }
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
 	.safari-font-fix {
-	font-family: 'Lucida
-Grande',tahoma,arial,'\5fae\8f6f\96c5\9ed1','\5b8b\4f53'
+	font-family: "Lucida Grande", tahoma, arial, \5fae\8f6f\96c5\9ed1, \5b8b\4f53
 }
 }.cart,.sn-mybrand,.sn-mobile,.sn-home,.sn-
 point,.sn-message,.sn-miao-message {
@@ -1308,8 +1309,7 @@ index: 1000000;
 	height: 24px;
 	overflow: hidden;
 	color: #fff!important;
-	font-family: 'Lucida Grande','\5fae\8f6f
-\96c5\9ed1';
+	font-family: "Lucida Grande", "\5fae\8f6f \96c5\9ed1";
 	font-weight: bold
 }
 .subLogo-hd i {

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="YikuDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="YikuDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="YikuDataModelStoreContainer">
           <EntitySet Name="Class" EntityType="YikuDataModel.Store.Class" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Item" EntityType="YikuDataModel.Store.Item" store:Type="Tables" Schema="dbo" />
@@ -65,7 +65,7 @@
           </Key>
           <Property Name="CID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="FatherID" Type="int" />
-          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -79,7 +79,7 @@
           <Property Name="Volume" Type="int" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="TimeCreate" Type="datetime" Nullable="false" />
-          <Property Name="Cut" Type="nchar" MaxLength="10" />
+          <Property Name="Cut" Type="nvarchar" MaxLength="20" />
           <Property Name="Exist" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
@@ -90,17 +90,18 @@
           <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="IID" Type="int" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
-          <Property Name="Cut" Type="nchar" MaxLength="20" />
+          <Property Name="Cut" Type="nvarchar" MaxLength="20" />
           <Property Name="Time" Type="datetime" Nullable="false" />
           <Property Name="Cost" Type="money" Nullable="false" />
-          <Property Name="State" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="40" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="PID" />
           </Key>
           <Property Name="PID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Route" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Route" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="IID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="T_Classify">
@@ -127,22 +128,22 @@
           <Property Name="UID" Type="int" Nullable="false" />
           <Property Name="IID" Type="int" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
-          <Property Name="Cut" Type="nchar" MaxLength="20" />
+          <Property Name="Cut" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="20" />
           <Property Name="Point" Type="bigint" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
           <Property Name="Consignee" Type="nvarchar" MaxLength="20" />
           <Property Name="Tel" Type="char" MaxLength="15" />
           <Property Name="ZipCode" Type="char" MaxLength="10" />
           <Property Name="Exist" Type="bit" Nullable="false" />
-          <Property Name="PSW" Type="nchar" Nullable="false" MaxLength="30" />
-          <Property Name="ROLE" Type="nchar" Nullable="false" MaxLength="20" />
+          <Property Name="PSW" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="ROLE" Type="nvarchar" Nullable="false" MaxLength="20" />
         </EntityType>
         <Association Name="FK_Class_Class">
           <End Role="Class" Type="YikuDataModel.Store.Class" Multiplicity="0..1" />
@@ -276,8 +277,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="YikuDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -342,8 +342,8 @@
           <Property Name="CID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FatherID" Type="Int32" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
-          <NavigationProperty Name="Class1" Relationship="YikuDataModel.FK_Class_Class" FromRole="Class" ToRole="Class1" />
-          <NavigationProperty Name="Class2" Relationship="YikuDataModel.FK_Class_Class" FromRole="Class1" ToRole="Class" />
+          <NavigationProperty Name="ClassSons" Relationship="YikuDataModel.FK_Class_Class" FromRole="Class" ToRole="Class1" />
+          <NavigationProperty Name="ClassFather" Relationship="YikuDataModel.FK_Class_Class" FromRole="Class1" ToRole="Class" />
           <NavigationProperty Name="T_Classify" Relationship="YikuDataModel.FK_T_Classify_Class" FromRole="Class" ToRole="T_Classify" />
         </EntityType>
         <EntityType Name="Item">
@@ -381,13 +381,14 @@
           <Property Name="State" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="true" />
           <NavigationProperty Name="Item" Relationship="YikuDataModel.FK_Order_Item" FromRole="Order" ToRole="Item" />
           <NavigationProperty Name="User" Relationship="YikuDataModel.FK_Order_User" FromRole="Order" ToRole="User" />
+          <Property Type="String" Name="Address" MaxLength="40" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="PID" />
           </Key>
           <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Route" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Route" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="IID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Item" Relationship="YikuDataModel.FK_Picture_Item" FromRole="Picture" ToRole="Item" />
         </EntityType>
@@ -608,6 +609,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="YikuDataModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="OrID" ColumnName="OrID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
                 <ScalarProperty Name="IID" ColumnName="IID" />
@@ -693,7 +695,7 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="YikuData" ZoomLevel="60">
+      <Diagram Name="YikuData" ZoomLevel="78">
         <EntityTypeShape EntityType="YikuDataModel.ClassM" Width="1.5" PointX="16.625" PointY="6.5" Height="2.1610522460937496" IsExpanded="true" />
         <EntityTypeShape EntityType="YikuDataModel.Item" Width="1.5" PointX="12.875" PointY="6.5" Height="4.0712491861979148" IsExpanded="true" />
         <EntityTypeShape EntityType="YikuDataModel.Order" Width="1.5" PointX="10" PointY="6.5" Height="2.9251310221354148" IsExpanded="true" />
